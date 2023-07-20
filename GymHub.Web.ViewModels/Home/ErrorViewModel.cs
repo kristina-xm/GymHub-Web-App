@@ -1,4 +1,4 @@
-namespace GymHub.Web.Models
+namespace GymHub.Web.ViewModels.Home
 {
     public class ErrorViewModel
     {

@@ -19,4 +19,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GymHub.Common\GymHub.Common.csproj" />
+    <ProjectReference Include="..\GymHub.Data.Models\GymHub.Data.Models.csproj" />
+  </ItemGroup>
+
 </Project>

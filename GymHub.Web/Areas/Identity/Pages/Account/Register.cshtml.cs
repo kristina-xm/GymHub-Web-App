@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
+using static GymHub.Common.EntityValidationConstants;
 
 namespace GymHub.Web.Areas.Identity.Pages.Account
 {
@@ -55,12 +56,7 @@ namespace GymHub.Web.Areas.Identity.Pages.Account
         /// </summary>
         public string ReturnUrl { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
-
+       
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -74,16 +70,16 @@ namespace GymHub.Web.Areas.Identity.Pages.Account
             /// 
             [Required]
             [Display(Name = "Name")]
-            public string FirstName { get; set; }
+            public string FirstName { get; set; } = null!;
 
             [Required]
             [Display(Name = "Surname")]
-            public string LastName { get; set; }
+            public string LastName { get; set; } = null!;
 
             [Required]
             [Phone]
             [Display(Name = "Phone number")]
-            public string PhoneNumber { get; set; }
+            public string PhoneNumber { get; set; } = null!;
 
             [Required]
             [EmailAddress]
@@ -114,14 +110,13 @@ namespace GymHub.Web.Areas.Identity.Pages.Account
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+           
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-
+           
 
             if (ModelState.IsValid)
             {
@@ -129,7 +124,7 @@ namespace GymHub.Web.Areas.Identity.Pages.Account
 
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
-
+                user.PhoneNumber = Input.PhoneNumber;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

@@ -30,5 +30,40 @@
             await this.dbContext.SaveChangesAsync();
         }
 
+        public async Task AddTrainerUser(MoreInfoTrainerViewModel model, Guid userId)
+        {
+            if (model.Certificate != null)
+            {
+                var certificate = new Certification
+                {
+                    Name = model.Certificate.Name,
+                    IssueDate = model.Certificate.IssueDate
+                };
+
+                var certificateOfTrainer = new TrainerCertification
+                {
+                    TrainerId = userId,
+                    CetrificationId = certificate.Id,
+                };
+
+                await this.dbContext.Certifications.AddAsync(certificate);
+                await this.dbContext.TrainerCertifications.AddAsync(certificateOfTrainer);
+                
+            }
+
+            var trainer = new Trainer
+            {
+                UserId = userId,
+                Experience = model.Experience,
+                Bio = model.Bio,
+                
+            };
+           
+            
+
+            await this.dbContext.Trainers.AddAsync(trainer);
+            await this.dbContext.SaveChangesAsync();
+        }
+
     }
 }

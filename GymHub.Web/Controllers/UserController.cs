@@ -77,7 +77,6 @@
             return View();
         }
 
-
         [HttpPost]
         public async Task<IActionResult> AddTrainee(MoreInfoTraineeViewModel model)
         {
@@ -91,6 +90,37 @@
             try
             {
                 await this.userService.AddTraineeUser(model, userId);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "Unexpected error while adding your post");
+                return View(model);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        [HttpGet]
+        public IActionResult InfoFormTrainer()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddTrainer(MoreInfoTrainerViewModel model)
+        {
+            Guid userId = GetUserId();
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                await this.userService.AddTrainerUser(model, userId);
             }
             catch (Exception)
             {

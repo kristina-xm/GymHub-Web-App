@@ -6,5 +6,7 @@
     public interface IUserService
     {
         Task AddTraineeUser(MoreInfoTraineeViewModel model, Guid userId);
+
+        Task AddTrainerUser(MoreInfoTrainerViewModel model, Guid userId);
     }
 }

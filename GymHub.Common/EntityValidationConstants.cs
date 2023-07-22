@@ -30,11 +30,17 @@
         public static class Trainer
         {
             public const int BioMaxLength = 150;
+            public const int BioMinLength = 10;
+
+
+            public const int ExperienceMax = 30;
+            public const int ExperienceMin = 0;
         }
 
         public static class Certification
         {
             public const int NameMaxLength = 50;
+            public const int NameMinLength = 3;
         }
 
         public static class IndividualTraining

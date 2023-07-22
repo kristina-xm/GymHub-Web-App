@@ -1,21 +1,16 @@
-﻿@*@model ProFitTest.ViewModels.ProvideInfoTrainerViewModel
+﻿@model MoreInfoTrainerViewModel
 
 <form method="post" asp-controller="AfterRegistration" asp-action="AddTrainer">
     <div class="row">
-        <div class="mb-3 col-md-7">
-            <label asp-for="Name" class="form-label">Name</label>
-            <input asp-for="Name" class="form-control">
-        </div>
-        <label asp-for="Bio" class="form-label">Bio</label>
+    <label asp-for="Bio" class="form-label">Bio</label>
         <div class="form-floating col-md-7">
             <textarea asp-for="Bio" class="form-control" placeholder="Write a little bit about yourself!" id="floatingTextarea2"></textarea>
-            <label for="floatingTextarea2" class="fst-italic text-muted">Write a little bit about yourself...</label>
-        </div>
+        <label for="floatingTextarea2" class="fst-italic text-muted">Write a little bit about yourself...</label>
+    </div>
         <div class="mb-3 col-md-7">
-            <label asp-for="Experience" class="form-label">Experience</label>
-            <input asp-for="Experience" min="0" class="form-control" id="traineeName">
-        </div>
+        <label  asp-for="Experience" class="form-label">Experience</label>
+        <input asp-for="Experience" min="0" class="form-control" id="traineeName">
+    </div>
     </div>
     <button type="submit" id="trainerSubmitBtn" class="btn btn-primary">Submit</button>
 </form>
-*@

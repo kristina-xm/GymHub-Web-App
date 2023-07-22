@@ -32,6 +32,7 @@
 
         public string Description = null!;
 
+        [Required]
         public ICollection<GroupSchedule> GroupSchedules { get; set; }
     }
 }

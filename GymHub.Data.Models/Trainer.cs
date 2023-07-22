@@ -30,6 +30,7 @@
         [Required]
         public int Experience { get; set; }
 
+        [Required]
         public int CountOfTrainees { get; set; }
 
         public ICollection<IndividualTrainingTrainer> IndividualTrainingTrainer { get; set; }

@@ -25,5 +25,20 @@
         {
             public const int BioMaxLength = 150;
         }
+
+        public static class Certification
+        {
+            public const int NameMaxLength = 50;
+        }
+
+        public static class IndividualTraining
+        {
+            public const int IntensityMaxLength = 30;
+        }
+
+        public static class Trainee
+        {
+            public const int LevelMaxLength = 20;
+        }
     }
 }

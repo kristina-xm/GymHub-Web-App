@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using static GymHub.Common.EntityValidationConstants.Trainee;
 
     public class Trainee
     {
@@ -30,6 +31,7 @@
         public string? Gender { get; set; } 
 
         [Required]
+        [MaxLength(LevelMaxLength)]
         public string Level { get; set; } = null!;
         
         public ICollection<Enrollment> Enrollments { get; set; }

@@ -3,10 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    using static GymHub.Common.EntityValidationConstants.IndividualTraining;
     public class IndividualTraining
     {
-
         public IndividualTraining()
         {
             this.IndividualTrainingTrainer = new HashSet<IndividualTrainingTrainer>();
@@ -22,6 +21,7 @@
         public DateTime EndTime { get; set; }
 
         [Required]
+        [MaxLength(IntensityMaxLength)]
         public string Intensity { get; set; } = null!;
 
         public bool IsCanceled { get; set; } = false;

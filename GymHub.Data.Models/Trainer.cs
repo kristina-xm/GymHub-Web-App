@@ -13,14 +13,15 @@
             this.Id = Guid.NewGuid();
             this.IndividualTrainingTrainer = new HashSet<IndividualTrainingTrainer>();
             this.GroupActivitiesTrainers = new HashSet<GroupActivityTrainer>();
+            this.TrainerCertifications = new HashSet<TrainerCertification>();
         }
 
         [Key]
         public Guid Id { get; set; }
 
         [ForeignKey(nameof(User))]
-        public string UserId { get; set; } = null!;
-        public IdentityUser User { get; set; } = null!;
+        public Guid UserId { get; set; }
+        public ApplicationUser User { get; set; } = null!;
 
         [Required]
         [MaxLength(BioMaxLength)]
@@ -29,10 +30,10 @@
         [Required]
         public int Experience { get; set; }
 
-
         public int CountOfTrainees { get; set; }
 
         public ICollection<IndividualTrainingTrainer> IndividualTrainingTrainer { get; set; }
         public ICollection<GroupActivityTrainer> GroupActivitiesTrainers { get; set; }
+        public ICollection<TrainerCertification> TrainerCertifications { get; set; }
     }
 }

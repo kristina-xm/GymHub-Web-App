@@ -14,16 +14,18 @@
 
         }
 
-        public DbSet<Trainee> Trainees { get; set; }
-        public DbSet<Trainer> Trainers { get; set; }
-        public DbSet<Enrollment> Enrollments { get; set; }
-        public DbSet<IndividualTraining> IndividualTrainings { get; set; }
-        public DbSet<IndividualTrainingTrainer> IndividualTrainingsTrainers { get; set; }
-        public DbSet<GroupEnrollment> GroupEnrollments { get; set; }
-        public DbSet<GroupSchedule> GroupSchedules { get; set; }
-        public DbSet<GroupActivityTrainer> GroupActivityTrainers { get; set; }
-        public DbSet<ActivityCategory> ActivitiesCategories { get; set; }
-        public DbSet<GroupActivity> Activities { get; set; }
+        public DbSet<Trainee> Trainees { get; set; } = null!;
+        public DbSet<Trainer> Trainers { get; set; } = null!;
+        public DbSet<Enrollment> Enrollments { get; set; } = null!;
+        public DbSet<IndividualTraining> IndividualTrainings { get; set; } = null!;
+        public DbSet<IndividualTrainingTrainer> IndividualTrainingsTrainers { get; set; } = null!;
+        public DbSet<GroupEnrollment> GroupEnrollments { get; set; } = null!;
+        public DbSet<GroupSchedule> GroupSchedules { get; set; } = null!;
+        public DbSet<GroupActivityTrainer> GroupActivityTrainers { get; set; } = null!;
+        public DbSet<ActivityCategory> ActivitiesCategories { get; set; } = null!;
+        public DbSet<GroupActivity> GroupActivities { get; set; } = null!;
+        public DbSet<Certification> Certifications { get; set; } = null!; 
+        public DbSet<TrainerCertification> TrainerCertifications { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -43,6 +45,12 @@
             {
                 gat.TrainerId,
                 gat.ActivityId
+            });
+
+            builder.Entity<TrainerCertification>().HasKey(tc => new
+            {
+                tc.CetrificationId,
+                tc.TrainerId
             });
 
             builder.Entity<Trainer>()

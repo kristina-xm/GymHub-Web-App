@@ -11,7 +11,14 @@
 
         public static class GroupActivity
         {
-            public const int NameMaxLength = 15;
+            public const int NameMaxLength = 20;
+            public const int DescriptionMaxLength = 200;
+        }
+
+        public static class ActivityCategory
+        {
+            public const int IntensityMaxLength = 30;
+            public const int TraineeLevelMaxLenght = 40;
         }
 
         public static class Trainer

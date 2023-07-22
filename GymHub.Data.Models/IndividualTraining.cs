@@ -21,7 +21,10 @@
         [Required]
         public DateTime EndTime { get; set; }
 
-        public bool isApproved { get; set; } = false;
+        [Required]
+        public string Intensity { get; set; } = null!;
+
+        public bool IsCanceled { get; set; } = false;
 
         public ICollection<IndividualTrainingTrainer> IndividualTrainingTrainer { get; set; }
 

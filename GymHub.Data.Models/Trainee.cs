@@ -17,17 +17,21 @@
         public Guid Id { get; set; }
 
         [ForeignKey(nameof(User))]
-        public string UserId { get; set; } = null!;
-        public IdentityUser User { get; set; } = null!;
+        public Guid UserId { get; set; }
+        public ApplicationUser User { get; set; } = null!;
 
         [Required]
         public int Age { get; set; }
 
+        public double? Weight { get; set; }
+
+        public double? Height { get; set; }
+
+        public string? Gender { get; set; } 
+
         [Required]
         public string Level { get; set; } = null!;
-
-       
-
+        
         public ICollection<Enrollment> Enrollments { get; set; }
         public ICollection<GroupEnrollment> GroupEnrollments { get; set; }
     }

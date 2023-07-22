@@ -10,11 +10,10 @@ namespace GymHub.Web.ViewModels.User
 {
     public class TrainerCertificateViewModel
     {
-        [Required]
+       
         [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
-        public string Name { get; set; } = null!;
+        public string? Name { get; set; } 
 
-        [Required]
         public DateTime IssueDate { get; set; }
     }
 }

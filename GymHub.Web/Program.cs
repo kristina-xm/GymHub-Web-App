@@ -1,10 +1,10 @@
 namespace GymHub.Web
 {
-    using Microsoft.EntityFrameworkCore;
     using GymHub.Data;
     using GymHub.Data.Models;
-    using System.Configuration;
-    using Microsoft.AspNetCore.Identity;
+    using GymHub.Services.Data;
+    using GymHub.Services.Data.Interfaces;
+    using Microsoft.EntityFrameworkCore;
 
     public class Program
     {
@@ -30,6 +30,8 @@ namespace GymHub.Web
             })
                 .AddEntityFrameworkStores<GymHubDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<IUserService, UserService>();
 
             var app = builder.Build();
 

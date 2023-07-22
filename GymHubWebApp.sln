@@ -9,13 +9,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{2E4E31DA-E4B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{92301968-0CFD-4A5C-88EE-EBBDA8B1A61C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymHub.Data", "GymHub.Data\GymHub.Data.csproj", "{5FA8BF6A-4878-468D-B056-4971915045E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymHub.Data", "GymHub.Data\GymHub.Data.csproj", "{5FA8BF6A-4878-468D-B056-4971915045E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymHub.Data.Models", "GymHub.Data.Models\GymHub.Data.Models.csproj", "{864A7E79-D866-48B0-84B5-1A237DB3352D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymHub.Data.Models", "GymHub.Data.Models\GymHub.Data.Models.csproj", "{864A7E79-D866-48B0-84B5-1A237DB3352D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymHub.Web.ViewModels", "GymHub.Web.ViewModels\GymHub.Web.ViewModels.csproj", "{70C55769-9DE1-479B-BAC2-A5A900B0EFBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymHub.Web.ViewModels", "GymHub.Web.ViewModels\GymHub.Web.ViewModels.csproj", "{70C55769-9DE1-479B-BAC2-A5A900B0EFBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymHub.Common", "GymHub.Common\GymHub.Common.csproj", "{42E13C93-A2CE-46FA-A022-913C991752EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymHub.Common", "GymHub.Common\GymHub.Common.csproj", "{42E13C93-A2CE-46FA-A022-913C991752EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{7BFF80F7-13DC-47BE-A56F-C184B1EA8386}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymHub.Services.Data", "GymHub.Services.Data\GymHub.Services.Data.csproj", "{33B3F07E-B584-4F3D-B338-A660010325A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +47,10 @@ Global
 		{42E13C93-A2CE-46FA-A022-913C991752EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42E13C93-A2CE-46FA-A022-913C991752EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42E13C93-A2CE-46FA-A022-913C991752EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33B3F07E-B584-4F3D-B338-A660010325A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33B3F07E-B584-4F3D-B338-A660010325A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33B3F07E-B584-4F3D-B338-A660010325A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33B3F07E-B584-4F3D-B338-A660010325A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +60,7 @@ Global
 		{5FA8BF6A-4878-468D-B056-4971915045E9} = {92301968-0CFD-4A5C-88EE-EBBDA8B1A61C}
 		{864A7E79-D866-48B0-84B5-1A237DB3352D} = {92301968-0CFD-4A5C-88EE-EBBDA8B1A61C}
 		{70C55769-9DE1-479B-BAC2-A5A900B0EFBC} = {2E4E31DA-E4B3-40A6-B342-B5C2477EC34B}
+		{33B3F07E-B584-4F3D-B338-A660010325A5} = {7BFF80F7-13DC-47BE-A56F-C184B1EA8386}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86C692EB-7210-4CB0-832D-3A4171612CDF}

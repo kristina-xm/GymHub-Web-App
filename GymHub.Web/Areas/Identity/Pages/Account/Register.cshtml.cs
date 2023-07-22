@@ -115,7 +115,7 @@ namespace GymHub.Web.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            
            
 
             if (ModelState.IsValid)

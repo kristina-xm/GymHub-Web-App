@@ -1,0 +1,65 @@
+﻿@{
+
+}
+<head>
+    <!-- Include necessary Bootstrap CSS file -->
+    <style>
+        #provideInfoForm {
+            margin-top: 60px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #buttonsForType {
+            margin-top: 100px;
+            align-items: center;
+        }
+
+        #btnTrainee {
+            margin-right: 85px;
+            font-size: 3.110rem;
+            border-radius: 30px;
+            border: 3px solid lightblue;
+            padding: 15px;
+            background-color: transparent;
+            color: black
+        }
+
+            #btnTrainee:hover {
+                background-color: lightblue;
+                color: black
+            }
+
+        #btnTrainer {
+            margin-left: 85px;
+            font-size: 3.110rem;
+            border-radius: 30px;
+            border: 3px solid lightblue;
+            padding: 15px;
+            background-color: transparent;
+            color: black
+        }
+
+            #btnTrainer:hover {
+                background-color: lightblue;
+                color: black
+            }
+    </style>
+</head>
+
+<body>
+    <div id="provideInfoForm">
+        <h1 class="h1 text-center">Tell us more about yourself!</h1>
+        <h4 class="h4 text-center">Pick up your role before training</h4>
+        <div class="container">
+            <div class="row justify-content-center">
+                <form id="buttonsForType">
+                    <div class="col d-flex justify-content-center">
+                        <a href="/User/InfoFormTrainee" class="btn btn-primary" id="btnTrainee">Trainee</a>
+                        <a href="/User/InfoFormTrainer" class="btn btn-primary" id="btnTrainer">Trainer</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

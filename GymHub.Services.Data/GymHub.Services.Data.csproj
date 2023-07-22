@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GymHub.Data.Models\GymHub.Data.Models.csproj" />
+    <ProjectReference Include="..\GymHub.Data\GymHub.Data.csproj" />
+    <ProjectReference Include="..\GymHub.Web.ViewModels\GymHub.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

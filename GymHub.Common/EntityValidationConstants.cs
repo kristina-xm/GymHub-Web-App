@@ -9,6 +9,10 @@
             public const int NameMaxLength = 25;
 
             public const int NumberMaxLength = 20;
+            public const int NumberMinLength = 10;
+
+            public const int PasswordMaxLength = 100;
+            public const int PasswordMinLength = 6;
         }
 
         public static class GroupActivity
@@ -41,6 +45,15 @@
         public static class Trainee
         {
             public const int LevelMaxLength = 20;
+
+            public const int AgeMax = 60;
+            public const int AgeMin = 16;
+
+            public const double WeightMin = 30.00; 
+            public const double WeightMax = 200.00;
+
+            public const double HeightMin = 1.40;
+            public const double HeightMax = 3.00;
         }
     }
 }

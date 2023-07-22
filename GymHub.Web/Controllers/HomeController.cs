@@ -4,8 +4,9 @@
     using GymHub.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
     using System.Diagnostics;
+    using System.Security.Claims;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         
         public HomeController(ILogger<HomeController> logger)
@@ -18,7 +19,6 @@
             return View();
         }
 
-       
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -10,7 +10,7 @@ namespace GymHub.Data.Models
     public class TrainerCertification
     {
         [ForeignKey(nameof(Certification))]
-        public int CetrificationId { get; set; }
+        public Guid CetrificationId { get; set; }
         public Certification Certification { get; set; } = null!;
 
 

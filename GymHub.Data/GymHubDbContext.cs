@@ -31,9 +31,6 @@
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<ApplicationUser>()
-           .Property(u => u.PhoneNumber)
-            .IsRequired();
 
             builder.Entity<IndividualTrainingTrainer>().HasKey(itt => new
             {

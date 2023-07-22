@@ -7,6 +7,8 @@
         {
             public const int NameMinLength = 2;
             public const int NameMaxLength = 25;
+
+            public const int NumberMaxLength = 20;
         }
 
         public static class GroupActivity

@@ -8,5 +8,6 @@
         Task AddTraineeUser(MoreInfoTraineeViewModel model, Guid userId);
 
         Task AddTrainerUser(MoreInfoTrainerViewModel model, Guid userId);
+        Task<bool> CheckUserDivision(Guid userId);
     }
 }

@@ -5,6 +5,8 @@
     using Microsoft.AspNetCore.Mvc;
     using GymHub.Web.ViewModels.User;
     using GymHub.Services.Data.Interfaces;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.AspNetCore.Authentication;
 
     public class UserController : BaseController
     {
@@ -13,6 +15,7 @@
         private readonly IUserStore<ApplicationUser> userStore;
         private readonly IUserService userService;
 
+       
         public UserController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IUserStore<ApplicationUser> userStore, IUserService userService)
         {
             this.signInManager = signInManager;
@@ -131,5 +134,53 @@
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Login(string? returnUrl = null)
+        {
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
+            LoginViewModel model = new LoginViewModel()
+            {
+                ReturnUrl = returnUrl
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            Guid userId = GetUserId();
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var result =
+                await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError(string.Empty, "There was an error while logging you in! Please try again later or contact an administrator.");
+               
+                return View(model);
+            }
+            else
+            {
+                var user = await userService.CheckUserDivision(userId);
+
+                if (user)
+                {
+                    return Redirect(model.ReturnUrl ?? "/Home/Index");
+                }
+                else
+                {
+                    return Redirect(model.ReturnUrl ?? "/User/ProvideInfo");
+                }
+            }
+           
+        }
     }
 }
+

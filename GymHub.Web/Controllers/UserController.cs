@@ -15,7 +15,7 @@
         private readonly IUserStore<ApplicationUser> userStore;
         private readonly IUserService userService;
 
-       
+
         public UserController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IUserStore<ApplicationUser> userStore, IUserService userService)
         {
             this.signInManager = signInManager;
@@ -66,17 +66,50 @@
             return RedirectToAction("ProvideInfo", "User");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> CheckUserAccountTypeExists()
+        {
+            Guid userId = GetUserId();
+
+            if (await userService.CheckUserDivision(userId))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("ProvideInfo", "User");
+            }
+
+
+        }
 
         [HttpGet]
         public IActionResult ProvideInfo()
         {
-
             return View();
+           
         }
 
         [HttpGet]
-        public IActionResult InfoFormTrainee()
+        public async Task<IActionResult> InfoFormTrainee()
         {
+            //var userId = GetUserId();
+
+            //var userExists = await this.userService.CheckUserDivision(userId);
+
+            ////Checks if user has already picked account type and if yes, eliminates the possibility to enter information in the additional registration form again.
+            //if (userExists)
+            //{
+
+            //    if ()
+            //    {
+
+            //    }
+            //    //Returns view displaying the already provided info with option to edit.
+            //    return View("");
+            //}
+
+            //If account type is not selected, the additional registration form is loaded.
             return View();
         }
 
@@ -87,7 +120,7 @@
 
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("InfoFormTrainee", model);
             }
 
             try
@@ -97,7 +130,7 @@
             catch (Exception)
             {
                 ModelState.AddModelError(string.Empty, "Unexpected error while adding your post");
-                return View(model);
+                return View("InfoFormTrainee", model);
             }
 
             return RedirectToAction("Index", "Home");
@@ -150,7 +183,7 @@
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-            Guid userId = GetUserId();
+
 
             if (!ModelState.IsValid)
             {
@@ -163,23 +196,13 @@
             if (!result.Succeeded)
             {
                 ModelState.AddModelError(string.Empty, "There was an error while logging you in! Please try again later or contact an administrator.");
-               
+
                 return View(model);
             }
             else
             {
-                var user = await userService.CheckUserDivision(userId);
-
-                if (user)
-                {
-                    return Redirect(model.ReturnUrl ?? "/Home/Index");
-                }
-                else
-                {
-                    return Redirect(model.ReturnUrl ?? "/User/ProvideInfo");
-                }
+                return Redirect(model.ReturnUrl ?? "/User/CheckUserAccountTypeExists");
             }
-           
         }
     }
 }

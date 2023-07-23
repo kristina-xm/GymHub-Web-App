@@ -115,7 +115,7 @@
 
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("InfoFormTrainer", model);
             }
 
             try
@@ -124,8 +124,8 @@
             }
             catch (Exception)
             {
-                ModelState.AddModelError(string.Empty, "Unexpected error while adding your post");
-                return View(model);
+                ModelState.AddModelError(string.Empty, "Unexpected error. Try again later");
+                return View("InfoFormTrainer", model);
             }
 
             return RedirectToAction("Index", "Home");

@@ -4,6 +4,7 @@
     using GymHub.Data.Models;
     using GymHub.Services.Data.Interfaces;
     using GymHub.Web.ViewModels.User;
+    using Microsoft.EntityFrameworkCore;
 
     public class UserService : IUserService
     {
@@ -32,6 +33,20 @@
 
         public async Task AddTrainerUser(MoreInfoTrainerViewModel model, Guid userId)
         {
+            var trainer = new Trainer
+            {
+                UserId = userId,
+                Experience = model.Experience,
+                Bio = model.Bio,
+
+            };
+
+            await this.dbContext.Trainers.AddAsync(trainer);
+            await this.dbContext.SaveChangesAsync();
+
+            var addedTrainer = await this.dbContext.Trainers.FirstOrDefaultAsync(t => t.UserId == userId);
+
+
             if (model.Certificate != null)
             {
                 var certificate = new Certification
@@ -42,27 +57,16 @@
 
                 var certificateOfTrainer = new TrainerCertification
                 {
-                    TrainerId = userId,
+                    TrainerId = addedTrainer!.Id,
                     CetrificationId = certificate.Id,
                 };
 
                 await this.dbContext.Certifications.AddAsync(certificate);
                 await this.dbContext.TrainerCertifications.AddAsync(certificateOfTrainer);
-                
+
+                await this.dbContext.SaveChangesAsync();
             }
 
-            var trainer = new Trainer
-            {
-                UserId = userId,
-                Experience = model.Experience,
-                Bio = model.Bio,
-                
-            };
-           
-            
-
-            await this.dbContext.Trainers.AddAsync(trainer);
-            await this.dbContext.SaveChangesAsync();
         }
 
     }

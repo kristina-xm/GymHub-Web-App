@@ -205,7 +205,7 @@
             //Prevent user to access ProvideInfo Forms again if account type is already selected
             Guid userId = GetUserId();
 
-            var trainee = await userService.GetTrainee(userId);
+            var trainee = await userService.GetTraineeAsync(userId);
 
             //If user is trainee
             if (trainee != null)
@@ -218,7 +218,7 @@
             }
             else
             { 
-                var trainer = await userService.GetTrainer(userId);
+                var trainer = await userService.GetTrainerAsync(userId);
 
                 if (trainer != null)
                 {
@@ -235,6 +235,30 @@
 
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> EditTrainee(RegisteredTraineeViewModel model)
+        {
+            Guid userId = GetUserId();
+
+            if (!ModelState.IsValid)
+            {
+                return View("RegisteredTrainee", model);
+            }
+
+            try
+            {
+                await this.userService.EditTrainee(model, userId);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "Unexpected error. Try again later");
+                return View("InfoFormTrainer", model);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }
 

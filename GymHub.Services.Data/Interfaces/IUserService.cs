@@ -14,10 +14,12 @@
 
         Task<bool> CheckUserTypeExistance(Guid userId);
 
-        Task<Trainer?> GetTrainer(Guid userId);
-        Task<Trainee?> GetTrainee(Guid userId);
+        Task<Trainer?> GetTrainerAsync(Guid userId);
+        Task<Trainee?> GetTraineeAsync(Guid userId);
 
         Task<object> GetTrainerTypeInfoForEdit(Trainer trainer);
         Task<object> GetTraineeTypeInfoForEdit(Trainee trainee);
+
+        Task EditTrainee(RegisteredTraineeViewModel traineeModel, Guid userId);
     }
 }

@@ -1,3 +1,45 @@
 ﻿@model RegisteredTraineeViewModel
 
-<h1>you are already a trainee</h1>
+
+<h1>You are already a trainee</h1>
+<h3>You can edit your training info below:</h3>
+<form method="post" asp-controller="User" asp-action="EditTrainee">
+
+    <div class="mb-3">
+        <label asp-for="@Model.Age">Age</label>
+        <input asp-for="@Model.Age" min="16" class="form-control">
+        <div id="ageHelp" class="form-text">Trainee users should be at least 16 years old.</div>
+    </div>
+    <div class="form-check">
+        <input asp-for="@Model.Gender" class="form-check-input" type="radio" name="Gender" id="maleRadio" value="Male" checked>
+        <label asp-for="@Model.Gender" class="form-check-label" for="exampleRadios1">
+            Male
+        </label>
+    </div>
+    <div class="form-check">
+        <input asp-for="@Model.Gender" class="form-check-input" type="radio" name="Gender" id="femaleRadio" value="Female">
+        <label asp-for="@Model.Gender" class="form-check-label" for="exampleRadios2">
+            Female
+        </label>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.Weight">Weight</label>
+        <input asp-for="@Model.Weight" type="number" step="0.01" class="form-control" placeholder="Add your weight (optional)">
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.Height">Height</label>
+        <input asp-for="@Model.Height" type="number" step="0.01" class="form-control" placeholder="Add your height (optional)">
+    </div>
+    <div class="mb-3">
+        <label for="activityLevel" class="form-label">Activity Level</label>
+        <select class="form-select" asp-for="@Model.Level" id="activityLevel" name="Level" aria-label="Activity Level">
+            <option selected disabled>Choose Activity Level</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+        </select>
+    </div>
+
+    <button type="submit" id="traineeSubmitBtn" class="btn btn-primary">Edit</button>
+</form>

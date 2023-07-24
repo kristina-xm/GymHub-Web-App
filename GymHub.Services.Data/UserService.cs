@@ -78,23 +78,7 @@
 
         }
 
-        //public async Task<object?> GetUserType(Guid userId)
-        //{
-        //    var traineeUser = await dbContext.Trainees.FirstOrDefaultAsync(t => t.UserId == userId);
-        //    var trainerUser = await dbContext.Trainers.FirstOrDefaultAsync(t => t.UserId == userId);
-
-        //    if (trainerUser != null)
-        //    {
-        //        return trainerUser;
-        //    }
-        //    else
-        //    {
-        //        return traineeUser;
-        //    }
-
-        //}
-
-        public async Task<Trainer?> GetTrainer(Guid userId)
+        public async Task<Trainer?> GetTrainerAsync(Guid userId)
         {
 
             var trainerUser = await dbContext.Trainers.FirstOrDefaultAsync(t => t.UserId == userId);
@@ -103,10 +87,10 @@
 
         }
 
-        public async Task<Trainee?> GetTrainee(Guid userId)
+        public async Task<Trainee?> GetTraineeAsync(Guid userId)
         {
 
-            var traineeUser = await dbContext.Trainees.FirstOrDefaultAsync(t => t.UserId == userId);
+            var traineeUser = await this.dbContext.Trainees.FirstOrDefaultAsync(t => t.UserId == userId);
 
             return traineeUser;
 
@@ -114,10 +98,7 @@
 
         public async Task<object> GetTraineeTypeInfoForEdit(Trainee trainee)
         {
-            //var user = GetUserType(userId);
-
-
-
+            
             return new RegisteredTraineeViewModel()
             {
                 Age = trainee.Age,
@@ -126,8 +107,6 @@
                 Gender = trainee.Gender,
                 Level = trainee.Level
             };
-
-
         }
 
         public async Task<object> GetTrainerTypeInfoForEdit(Trainer trainer)
@@ -139,9 +118,22 @@
                 Experience = trainer.Experience
 
             };
-
-
-
         }
+
+        public async Task EditTrainee(RegisteredTraineeViewModel traineeModel, Guid userId)
+        {
+            
+            var trainee = await GetTraineeAsync(userId);
+
+            trainee.Age = traineeModel.Age;
+            trainee.Weight = traineeModel.Weight ?? null;
+            trainee.Height = traineeModel.Height ?? null;
+            trainee.Gender = traineeModel.Gender ?? null;
+            trainee.Level = traineeModel.Level;
+
+            await dbContext.SaveChangesAsync();
+        }
+
+       
     }
 }

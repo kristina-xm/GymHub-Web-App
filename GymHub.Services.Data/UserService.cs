@@ -120,7 +120,7 @@
             };
         }
 
-        public async Task EditTrainee(RegisteredTraineeViewModel traineeModel, Guid userId)
+        public async Task EditTraineeAsync(RegisteredTraineeViewModel traineeModel, Guid userId)
         {
             
             var trainee = await GetTraineeAsync(userId);
@@ -134,6 +134,15 @@
             await dbContext.SaveChangesAsync();
         }
 
-       
+        public async Task EditTrainerAsync(RegisteredTrainerViewModel trainerModel, Guid userId)
+        {
+            var trainer = await GetTrainerAsync(userId);
+
+            trainer.Bio = trainerModel.Bio;
+            trainer.Experience = trainerModel.Experience;
+
+            await dbContext.SaveChangesAsync();
+        }
+
     }
 }

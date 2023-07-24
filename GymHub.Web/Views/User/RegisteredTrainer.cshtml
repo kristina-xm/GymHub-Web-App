@@ -1,3 +1,30 @@
 ﻿@model RegisteredTrainerViewModel
 
 <h1>You are already a trainer</h1>
+
+<form method="post" asp-controller="User" asp-action="EditTrainer">
+    <div class="row">
+    </div>
+    <div class="mb-3 col-md-7">
+        <label asp-for="Experience" class="form-label">Professional Experience</label>
+        <input asp-for="Experience" class="form-control">
+    </div>
+    <label asp-for="Bio" class="form-label">Bio</label>
+    <div class="form-floating col-md-7">
+        <textarea asp-for="Bio" class="form-control" placeholder="Write a little bit about yourself!" id="floatingTextarea2"></textarea>
+        <label for="floatingTextarea2" class="fst-italic text-muted">Introduce yourself to the trainees...</label>
+    </div>
+   @* <div class="mb-3 col-md-7">
+        <label asp-for="Certificate" class="form-label">Certificate (Optinal)</label>
+        <div class="mb-3 col-md-7">
+            <label asp-for="@Model.Certificate.Name" class="form-label">Certificate Name</label>
+            <input asp-for="@Model.Certificate.Name" class="form-control">
+        </div>
+        <div class="mb-3 col-md-7">
+            <label asp-for="@Model.Certificate.IssueDate" class="form-label">Issue Date</label>
+            <input type="date" asp-for="@Model.Certificate.IssueDate" class="form-control">
+        </div>
+    </div>*@
+    
+    <button type="submit" id="trainerSubmitBtn" class="btn btn-primary">Edit</button>
+</form>

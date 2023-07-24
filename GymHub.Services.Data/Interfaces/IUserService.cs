@@ -20,6 +20,8 @@
         Task<object> GetTrainerTypeInfoForEdit(Trainer trainer);
         Task<object> GetTraineeTypeInfoForEdit(Trainee trainee);
 
-        Task EditTrainee(RegisteredTraineeViewModel traineeModel, Guid userId);
+        Task EditTraineeAsync(RegisteredTraineeViewModel traineeModel, Guid userId);
+        Task EditTrainerAsync(RegisteredTrainerViewModel trainerModel, Guid userId);
+
     }
 }

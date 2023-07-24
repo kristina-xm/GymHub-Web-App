@@ -248,7 +248,30 @@
 
             try
             {
-                await this.userService.EditTrainee(model, userId);
+                await this.userService.EditTraineeAsync(model, userId);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "Unexpected error. Try again later");
+                return View("RegisteredTrainee", model);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditTrainer(RegisteredTrainerViewModel model)
+        {
+            Guid userId = GetUserId();
+
+            if (!ModelState.IsValid)
+            {
+                return View("RegisteredTrainer", model);
+            }
+
+            try
+            {
+                await this.userService.EditTrainerAsync(model, userId);
             }
             catch (Exception)
             {

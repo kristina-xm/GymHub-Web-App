@@ -7,6 +7,7 @@
     using GymHub.Services.Data.Interfaces;
     using Microsoft.Extensions.Logging;
     using Microsoft.AspNetCore.Authentication;
+    using Microsoft.EntityFrameworkCore;
 
     public class UserController : BaseController
     {
@@ -71,12 +72,16 @@
         {
             Guid userId = GetUserId();
 
-            if (await userService.CheckUserDivision(userId))
+            //Check if the user has already chosen the account type
+            if (await userService.CheckUserTypeExistance(userId))
             {
+                //User is present in TRAINERS table OR TRAINEES table
                 return RedirectToAction("Index", "Home");
             }
             else
             {
+                //If the user did not choose account type after registration.
+                //Account type is required for normal functionality of the app!
                 return RedirectToAction("ProvideInfo", "User");
             }
 
@@ -86,31 +91,44 @@
         [HttpGet]
         public IActionResult ProvideInfo()
         {
+
             return View();
-           
+
         }
 
         [HttpGet]
         public async Task<IActionResult> InfoFormTrainee()
         {
-            //var userId = GetUserId();
+            //Prevent user to access ProvideInfo Forms again if account type is already selected
+            Guid userId = GetUserId();
 
-            //var userExists = await this.userService.CheckUserDivision(userId);
+            var trainee = await userService.GetTrainee(userId);
 
-            ////Checks if user has already picked account type and if yes, eliminates the possibility to enter information in the additional registration form again.
-            //if (userExists)
-            //{
+            if (trainee != null)
+            {
+                var model = await this.userService.GetTraineeTypeInfoForEdit(trainee);
 
-            //    if ()
-            //    {
 
-            //    }
-            //    //Returns view displaying the already provided info with option to edit.
-            //    return View("");
-            //}
+                return View("RegisteredTrainee", model);
 
-            //If account type is not selected, the additional registration form is loaded.
-            return View();
+            }
+            else
+            {
+                var trainer = await userService.GetTrainer(userId);
+
+                if (trainer != null)
+                {
+                    var model = await this.userService.GetTrainerTypeInfoForEdit(trainer);
+
+                    return View("RegisteredTrainer", model);
+                }
+                else
+                {
+
+                    return View();
+                }
+
+            }
         }
 
         [HttpPost]
@@ -138,9 +156,39 @@
 
 
         [HttpGet]
-        public IActionResult InfoFormTrainer()
+        public async Task<IActionResult> InfoFormTrainer()
         {
-            return View();
+
+            //Prevent user to access ProvideInfo Forms again if account type is already selected
+            Guid userId = GetUserId();
+
+            var trainee = await userService.GetTrainee(userId);
+
+            if (trainee != null)
+            {
+                var model = await this.userService.GetTraineeTypeInfoForEdit(trainee);
+
+
+                return View("RegisteredTrainee", model);
+
+            }
+            else
+            {
+                var trainer = await userService.GetTrainer(userId);
+
+                if (trainer != null)
+                {
+                    var model = await this.userService.GetTrainerTypeInfoForEdit(trainer);
+
+                    return View("RegisteredTrainer", model);
+                }
+                else
+                {
+
+                    return View();
+                }
+
+            }
         }
 
 

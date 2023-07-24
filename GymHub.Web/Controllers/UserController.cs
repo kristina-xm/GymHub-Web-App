@@ -68,6 +68,45 @@
         }
 
         [HttpGet]
+        public async Task<IActionResult> Login(string? returnUrl = null)
+        {
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
+            LoginViewModel model = new LoginViewModel()
+            {
+                ReturnUrl = returnUrl
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var result =
+                await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError(string.Empty, "There was an error while logging you in! Please try again later or contact an administrator.");
+
+                return View(model);
+            }
+            else
+            {
+                return Redirect(model.ReturnUrl ?? "/User/CheckUserAccountTypeExists");
+            }
+        }
+
+
+        [HttpGet]
         public async Task<IActionResult> CheckUserAccountTypeExists()
         {
             Guid userId = GetUserId();
@@ -84,8 +123,6 @@
                 //Account type is required for normal functionality of the app!
                 return RedirectToAction("ProvideInfo", "User");
             }
-
-
         }
 
         [HttpGet]
@@ -161,44 +198,7 @@
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Login(string? returnUrl = null)
-        {
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-
-            LoginViewModel model = new LoginViewModel()
-            {
-                ReturnUrl = returnUrl
-            };
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model)
-        {
-
-
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            var result =
-                await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
-
-            if (!result.Succeeded)
-            {
-                ModelState.AddModelError(string.Empty, "There was an error while logging you in! Please try again later or contact an administrator.");
-
-                return View(model);
-            }
-            else
-            {
-                return Redirect(model.ReturnUrl ?? "/User/CheckUserAccountTypeExists");
-            }
-        }
-
+        
 
         public async Task<ViewResult> GetAccordingViewForEdit()
         {

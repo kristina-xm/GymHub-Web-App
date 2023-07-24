@@ -100,35 +100,8 @@
         public async Task<IActionResult> InfoFormTrainee()
         {
             //Prevent user to access ProvideInfo Forms again if account type is already selected
-            Guid userId = GetUserId();
-
-            var trainee = await userService.GetTrainee(userId);
-
-            if (trainee != null)
-            {
-                var model = await this.userService.GetTraineeTypeInfoForEdit(trainee);
-
-
-                return View("RegisteredTrainee", model);
-
-            }
-            else
-            {
-                var trainer = await userService.GetTrainer(userId);
-
-                if (trainer != null)
-                {
-                    var model = await this.userService.GetTrainerTypeInfoForEdit(trainer);
-
-                    return View("RegisteredTrainer", model);
-                }
-                else
-                {
-
-                    return View();
-                }
-
-            }
+            var viewResult = await GetAccordingViewForEdit();
+            return viewResult;
         }
 
         [HttpPost]
@@ -160,35 +133,8 @@
         {
 
             //Prevent user to access ProvideInfo Forms again if account type is already selected
-            Guid userId = GetUserId();
-
-            var trainee = await userService.GetTrainee(userId);
-
-            if (trainee != null)
-            {
-                var model = await this.userService.GetTraineeTypeInfoForEdit(trainee);
-
-
-                return View("RegisteredTrainee", model);
-
-            }
-            else
-            {
-                var trainer = await userService.GetTrainer(userId);
-
-                if (trainer != null)
-                {
-                    var model = await this.userService.GetTrainerTypeInfoForEdit(trainer);
-
-                    return View("RegisteredTrainer", model);
-                }
-                else
-                {
-
-                    return View();
-                }
-
-            }
+            var viewResult = await GetAccordingViewForEdit();
+            return viewResult;
         }
 
 
@@ -250,6 +196,43 @@
             else
             {
                 return Redirect(model.ReturnUrl ?? "/User/CheckUserAccountTypeExists");
+            }
+        }
+
+
+        public async Task<ViewResult> GetAccordingViewForEdit()
+        {
+            //Prevent user to access ProvideInfo Forms again if account type is already selected
+            Guid userId = GetUserId();
+
+            var trainee = await userService.GetTrainee(userId);
+
+            //If user is trainee
+            if (trainee != null)
+            {
+                var model = await this.userService.GetTraineeTypeInfoForEdit(trainee);
+
+                //If the user is trainer return his/her data in a view for edit
+                return View("RegisteredTrainee", model);
+
+            }
+            else
+            { 
+                var trainer = await userService.GetTrainer(userId);
+
+                if (trainer != null)
+                {
+                    //If the user is trainer return his/her data in a view for edit
+                    var model = await this.userService.GetTrainerTypeInfoForEdit(trainer);
+
+                    return View("RegisteredTrainer", model);
+                }
+                else
+                {
+                    //If user is not a Trainee, neither Trainer -> return view for account select
+                    return View();
+                }
+
             }
         }
     }

@@ -1,0 +1,31 @@
+﻿@model ICollection<AllTrainerViewModel>
+
+
+<div class="container">
+    <h2 class="text-center mt-4" >Meet our trainers</h2>
+    <h3 class="text-center">If you want to book a training, just click on the Select button for more information</h3>
+    <div class="row mt-5 justify-content-center">
+        @foreach (var trainer in Model)
+        {
+            <div class="card text-center " style="width: 50rem;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h3 asp-for="Name" class="card-title p-3">@trainer.FirstName @trainer.LastName</h3>
+                            <p class="card-text">Experience: @trainer.YearsOfExperience years</p>
+                            <form method="post">
+                                <div class="col-md-12 d-flex justify-content-end align-items-center">
+                                    <a class="btn btn-primary" asp-action="TrainerDetails" asp-controller="Training" asp-route-id="@trainer.Id">Select</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>

@@ -1,13 +1,11 @@
 ﻿namespace GymHub.Web.Controllers
 {
     using GymHub.Data.Models;
+    using GymHub.Services.Data.Interfaces;
+    using GymHub.Web.ViewModels.User;
+    using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using GymHub.Web.ViewModels.User;
-    using GymHub.Services.Data.Interfaces;
-    using Microsoft.Extensions.Logging;
-    using Microsoft.AspNetCore.Authentication;
-    using Microsoft.EntityFrameworkCore;
 
     public class UserController : BaseController
     {
@@ -15,7 +13,6 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IUserStore<ApplicationUser> userStore;
         private readonly IUserService userService;
-
 
         public UserController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IUserStore<ApplicationUser> userStore, IUserService userService)
         {

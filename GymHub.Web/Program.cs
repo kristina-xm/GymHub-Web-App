@@ -32,6 +32,7 @@ namespace GymHub.Web
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<ITrainerService, TrainerService>();
 
             var app = builder.Build();
 

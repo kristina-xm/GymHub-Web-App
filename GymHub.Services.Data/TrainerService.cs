@@ -1,13 +1,13 @@
 ﻿namespace GymHub.Services.Data
 {
     using GymHub.Data;
+    using GymHub.Data.Models;
     using GymHub.Services.Data.Interfaces;
     using GymHub.Web.ViewModels.Trainer;
     using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     public class TrainerService : ITrainerService
@@ -35,6 +35,33 @@
                 .ToArrayAsync();
 
             return allTrainers;
+        }
+
+        public async Task<TrainerDetailsViewModel> GetTrainerByIdAsync(Guid id)
+        {
+            Trainer trainer = await this.dbContext.Trainers
+                .Include(t => t.User)
+                .FirstOrDefaultAsync(t => t.Id == id);
+
+            if (trainer != null)
+            {
+                var trainerModel = new TrainerDetailsViewModel
+                {
+                    Id = trainer.Id,
+                    FirstName = trainer.User.FirstName,
+                    LastName = trainer.User.LastName,
+                    PhoneNumber = trainer.User.PhoneNumber,
+                    Experience = trainer.Experience,
+                    Bio = trainer.Bio,
+                };
+
+                return trainerModel;
+
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

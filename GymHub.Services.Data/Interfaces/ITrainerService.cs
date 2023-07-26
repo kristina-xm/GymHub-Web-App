@@ -4,5 +4,7 @@
     public interface ITrainerService
     {
         Task<IEnumerable<AllTrainerViewModel>> AllTrainers();
+
+        Task<TrainerDetailsViewModel> GetTrainerByIdAsync(Guid id);
     }
 }

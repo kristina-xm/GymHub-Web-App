@@ -65,6 +65,7 @@
 
             builder.ApplyConfiguration(new CategoryEntityConfiguration());
             builder.ApplyConfiguration(new GroupActivityEntityConfiguration());
+            builder.ApplyConfiguration(new GroupSchedulesEntityConfiguration());
 
         }
     }

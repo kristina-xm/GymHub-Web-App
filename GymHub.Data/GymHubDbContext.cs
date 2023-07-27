@@ -1,5 +1,6 @@
 ﻿namespace GymHub.Data
 {
+    using GymHub.Data.Configurations;
     using GymHub.Data.Models;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -61,7 +62,10 @@
            .WithMany()
            .HasForeignKey(t => t.UserId)
            .OnDelete(DeleteBehavior.NoAction);
-           
+
+            builder.ApplyConfiguration(new CategoryEntityConfiguration());
+            builder.ApplyConfiguration(new GroupActivityEntityConfiguration());
+
         }
     }
 }

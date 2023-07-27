@@ -16,7 +16,7 @@
         [Key]
         public Guid Id { get; set; }
 
-        [Required]
+        [Required] 
         [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
 

@@ -13,7 +13,6 @@ namespace GymHub.Web.Controllers
         public TrainerController(ITrainerService trainerService)
         {
             this.trainerService = trainerService;
-            
         }
 
         [AllowAnonymous]
@@ -36,7 +35,6 @@ namespace GymHub.Web.Controllers
             {
                 return this.RedirectToAction("Index", "Home");
             }
-
 
             return View(viewModel);
 

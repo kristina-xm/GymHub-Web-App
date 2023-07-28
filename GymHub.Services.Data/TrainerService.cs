@@ -3,6 +3,7 @@
     using GymHub.Data;
     using GymHub.Data.Models;
     using GymHub.Services.Data.Interfaces;
+    using GymHub.ViewModels;
     using GymHub.Web.ViewModels.Trainer;
     using Microsoft.EntityFrameworkCore;
     using System;
@@ -43,25 +44,29 @@
                 .Include(t => t.User)
                 .FirstOrDefaultAsync(t => t.Id == id);
 
-            if (trainer != null)
-            {
-                var trainerModel = new TrainerDetailsViewModel
-                {
-                    Id = trainer.Id,
-                    FirstName = trainer.User.FirstName,
-                    LastName = trainer.User.LastName,
-                    PhoneNumber = trainer.User.PhoneNumber,
-                    Experience = trainer.Experience,
-                    Bio = trainer.Bio,
-                };
 
-                return trainerModel;
+            var trainerModel = await this.dbContext.Trainers
+                 .Where(t => t.Id == trainer.Id)
+                 .Select(t => new TrainerDetailsViewModel
+                 {
+                     Id = t.Id,
+                     FirstName = t.User.FirstName,
+                     LastName = t.User.LastName,
+                     PhoneNumber = t.User.PhoneNumber,
+                     Experience = t.Experience,
+                     Bio = t.Bio,
+                     DailySchedules = t.IndividualTrainingTrainer.Select(itt => new TrainerDailyScheduleViewModel
+                     {
+                         StartTime = itt.IndividualTraining.StartTime,
+                         EndTime = itt.IndividualTraining.EndTime
+                     })
+                     .OrderBy(d => d.StartTime)
+                     .ToArray()
 
-            }
-            else
-            {
-                return null;
-            }
+                 })
+                 .FirstOrDefaultAsync();
+
+            return trainerModel;
         }
     }
 }

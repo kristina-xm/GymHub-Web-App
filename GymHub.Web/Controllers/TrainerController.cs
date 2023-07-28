@@ -39,5 +39,18 @@ namespace GymHub.Web.Controllers
             return View(viewModel);
 
         }
+
+        public async Task<JsonResult> GetEvents(Guid id)
+        {
+            TrainerDetailsViewModel viewModel = await this.trainerService.GetTrainerByIdAsync(id);
+            if (viewModel == null)
+            {
+                return Json(new { error = "Trainer not found" });
+            }
+
+            var events = viewModel.DailySchedules.ToList();
+            return Json(events);
+        }
+
     }
 }

@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GymHub.Web.ViewModels.Trainer
+﻿namespace GymHub.Web.ViewModels.Trainer
 {
+    using GymHub.ViewModels;
+    using System;
+    using System.Collections.Generic;
     public class TrainerDetailsViewModel
     {
+        public TrainerDetailsViewModel()
+        {
+            this.DailySchedules = new HashSet<TrainerDailyScheduleViewModel>();
+        }
         public Guid Id { get; set; }
 
         public string FirstName { get; set; } = null!;
@@ -19,5 +20,7 @@ namespace GymHub.Web.ViewModels.Trainer
         public int Experience { get; set; }
 
         public string Bio { get; set; } = null!;
+
+        public ICollection<TrainerDailyScheduleViewModel> DailySchedules { get; set; }
     }
 }

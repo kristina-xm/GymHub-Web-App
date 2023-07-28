@@ -11,7 +11,7 @@ namespace GymHub.Data.Models
     {
         [ForeignKey(nameof(Certification))]
         public Guid CetrificationId { get; set; }
-        public Certification Certification { get; set; } = null!;
+        public Certification? Certification { get; set; }
 
 
         [ForeignKey(nameof(Trainer))]

@@ -4,6 +4,7 @@ using GymHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GymHub.Data.Migrations
 {
     [DbContext(typeof(GymHubDbContext))]
-    partial class GymHubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230728080701_SeedInfoAboutActivityAndTrainer")]
+    partial class SeedInfoAboutActivityAndTrainer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

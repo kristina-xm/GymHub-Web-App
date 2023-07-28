@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GymHub.ViewModels
+﻿namespace GymHub.ViewModels
 {
     public class TrainerDailyScheduleViewModel
     {

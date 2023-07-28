@@ -8,6 +8,7 @@
         public TrainerDetailsViewModel()
         {
             this.DailySchedules = new HashSet<TrainerDailyScheduleViewModel>();
+            this.DailyGroupSchedules = new HashSet<TrainerGroupScheduleViewModel>();
         }
         public Guid Id { get; set; }
 
@@ -22,5 +23,6 @@
         public string Bio { get; set; } = null!;
 
         public ICollection<TrainerDailyScheduleViewModel> DailySchedules { get; set; }
+        public ICollection<TrainerGroupScheduleViewModel> DailyGroupSchedules { get; set; }
     }
 }

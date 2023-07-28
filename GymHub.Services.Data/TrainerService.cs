@@ -59,12 +59,30 @@
                      {
                          StartTime = itt.IndividualTraining.StartTime,
                          EndTime = itt.IndividualTraining.EndTime
-                     })
-                     .OrderBy(d => d.StartTime)
+                     }).OrderBy(d => d.StartTime)
                      .ToArray()
 
                  })
                  .FirstOrDefaultAsync();
+
+            var dailyGroupSchedules = this.dbContext.Trainers.
+                 Where(t => t.Id == trainer.Id)
+                 .SelectMany(t => t.GroupActivitiesTrainers)
+                 .Include(t => t.GroupActivity)
+                 .ThenInclude(t => t.GroupSchedules)
+                 .Select(t => new TrainerGroupScheduleViewModel
+                 {
+                     ActivityName = t.GroupActivity.Name,
+                     StartTime = t.GroupActivity.GroupSchedules
+                                 .Select(gs => gs.StartTime)
+                                 .FirstOrDefault(),
+                     EndTime = t.GroupActivity.GroupSchedules
+                                 .Select(gs => gs.EndTime)
+                                 .FirstOrDefault()
+                 })
+                 .ToArray();
+
+            trainerModel.DailyGroupSchedules = dailyGroupSchedules;
 
             return trainerModel;
         }

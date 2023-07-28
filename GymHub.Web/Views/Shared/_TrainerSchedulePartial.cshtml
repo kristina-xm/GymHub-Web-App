@@ -6,29 +6,45 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
-            var events = [];
-        @foreach (var eventItem in Model.DailySchedules)
+            var individualEvents = [];
+            var groupEvents = [];
+        @foreach(var individualEvent in Model.DailySchedules)
         {
             <text>
-                var eventObject = {
+                        var eventObject = {
                     title: 'Individual Training',
-                    start: '@eventItem.StartTime.ToString("yyyy-MM-ddTHH:mm:ss")',
-                    end: '@eventItem.EndTime.ToString("yyyy-MM-ddTHH:mm:ss")'
+                    start: '@individualEvent.StartTime.ToString("yyyy-MM-ddTHH:mm:ss")',
+                    end: '@individualEvent.EndTime.ToString("yyyy-MM-ddTHH:mm:ss")'
                 };
-                events.push(eventObject);
+                individualEvents.push(eventObject);
             </text>
         }
 
+        @foreach (var eventItem in Model.DailyGroupSchedules)
+        {
+            <text>
+                    var eventObject = {
+                    title: '@eventItem.ActivityName',
+                    start: '@eventItem.StartTime.ToString("yyyy-MM-ddTHH:mm:ss")',
+                    end: '@eventItem.EndTime.ToString("yyyy-MM-ddTHH:mm:ss")'
+                };
+                groupEvents.push(eventObject);
+            </text>
+        }
+
+        var allEvents = individualEvents.concat(groupEvents);
+
+            //var allEvents = individualEvents.concat(groupEvents);
             var calendar = new FullCalendar.Calendar(calendarEl, {
+
 
                 initialView: 'timeGridWeek',
                 headerToolbar: {
                     left: 'title'
                 },
-                events: events
+                events: allEvents
 
             });
-
             calendar.render();
         });
 

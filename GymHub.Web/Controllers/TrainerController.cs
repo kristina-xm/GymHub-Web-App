@@ -3,6 +3,7 @@ using GymHub.Services.Data.Interfaces;
 using GymHub.Web.ViewModels.Trainer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace GymHub.Web.Controllers
 {
@@ -48,8 +49,16 @@ namespace GymHub.Web.Controllers
                 return Json(new { error = "Trainer not found" });
             }
 
-            var events = viewModel.DailySchedules.ToList();
-            return Json(events);
+            var indEvents = viewModel.DailySchedules.ToList();
+            var groupEvents = viewModel.DailyGroupSchedules.ToList();
+
+            var result = new
+            {
+                IndividualTrainingEvents = indEvents,
+                GroupTrainingEvents = groupEvents
+            };
+
+            return Json(result);
         }
 
     }

@@ -29,7 +29,7 @@
 
         public static class Trainer
         {
-            public const int BioMaxLength = 150;
+            public const int BioMaxLength = 250;
             public const int BioMinLength = 10;
 
 

@@ -96,7 +96,7 @@
 
         }
 
-        public async Task<object> GetTraineeTypeInfoForEdit(Trainee trainee)
+        public async Task<RegisteredTraineeViewModel> GetTraineeTypeInfoForEdit(Trainee trainee)
         {
             
             return new RegisteredTraineeViewModel()
@@ -109,7 +109,7 @@
             };
         }
 
-        public async Task<object> GetTrainerTypeInfoForEdit(Trainer trainer)
+        public async Task<RegisteredTrainerViewModel> GetTrainerTypeInfoForEdit(Trainer trainer)
         { 
 
             return new RegisteredTrainerViewModel()

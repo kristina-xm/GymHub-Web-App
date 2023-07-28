@@ -17,8 +17,8 @@
         Task<Trainer?> GetTrainerAsync(Guid userId);
         Task<Trainee?> GetTraineeAsync(Guid userId);
 
-        Task<object> GetTrainerTypeInfoForEdit(Trainer trainer);
-        Task<object> GetTraineeTypeInfoForEdit(Trainee trainee);
+        Task<RegisteredTrainerViewModel> GetTrainerTypeInfoForEdit(Trainer trainer);
+        Task<RegisteredTraineeViewModel> GetTraineeTypeInfoForEdit(Trainee trainee);
 
         Task EditTraineeAsync(RegisteredTraineeViewModel traineeModel, Guid userId);
         Task EditTrainerAsync(RegisteredTrainerViewModel trainerModel, Guid userId);

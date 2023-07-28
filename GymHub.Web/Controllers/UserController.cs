@@ -273,7 +273,7 @@
             catch (Exception)
             {
                 ModelState.AddModelError(string.Empty, "Unexpected error. Try again later");
-                return View("InfoFormTrainer", model);
+                return View("RegisteredTrainer", model);
             }
 
             return RedirectToAction("Index", "Home");

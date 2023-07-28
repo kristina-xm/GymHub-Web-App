@@ -67,6 +67,10 @@
             builder.ApplyConfiguration(new GroupActivityEntityConfiguration());
             builder.ApplyConfiguration(new GroupSchedulesEntityConfiguration());
             builder.ApplyConfiguration(new GroupActivitiesTrainersEntityConfiguration());
+            builder.ApplyConfiguration(new GroupEnrollmentsEntityConfiguration());
+            builder.ApplyConfiguration(new IndividualTrainingEntityConfiguration());
+            builder.ApplyConfiguration(new IndividualTrainingTrainerEntityConfiguration());
+            builder.ApplyConfiguration(new EnrollmentEntityConfiguration());
 
         }
     }

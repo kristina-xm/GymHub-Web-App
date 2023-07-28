@@ -4,6 +4,7 @@ using GymHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GymHub.Data.Migrations
 {
     [DbContext(typeof(GymHubDbContext))]
-    partial class GymHubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230728082239_SeedGroupEnrollmentsData")]
+    partial class SeedGroupEnrollmentsData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -199,38 +201,6 @@ namespace GymHub.Data.Migrations
                     b.HasIndex("TrainingId");
 
                     b.ToTable("Enrollments");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("fd2fa2eb-2bce-482e-9f28-08a2a705b6c9"),
-                            TraineeId = new Guid("efe69cd0-ff7a-4f5a-b038-18a62654c084"),
-                            TrainingId = new Guid("63d1f1d6-9348-4710-8082-20a1fbf189e2")
-                        },
-                        new
-                        {
-                            Id = new Guid("4ce3627a-7ed9-460f-8954-e84bdf978a18"),
-                            TraineeId = new Guid("efe69cd0-ff7a-4f5a-b038-18a62654c084"),
-                            TrainingId = new Guid("3e154226-2820-4837-81c8-247e4604cdd6")
-                        },
-                        new
-                        {
-                            Id = new Guid("a95ee763-73af-4f1e-9942-30004ccdb826"),
-                            TraineeId = new Guid("e89fc950-317b-454b-9c66-c082db3cbec2"),
-                            TrainingId = new Guid("66afc146-91e8-461f-a9c2-8b61419f6af3")
-                        },
-                        new
-                        {
-                            Id = new Guid("b903e948-dbb2-4177-b9f1-5d2feb46f1a6"),
-                            TraineeId = new Guid("f5c10860-7074-4121-ae6a-f8e6b832340b"),
-                            TrainingId = new Guid("a2b6df44-832f-4ae2-ae77-4f8bc89a66af")
-                        },
-                        new
-                        {
-                            Id = new Guid("e88db467-0004-4e11-9d80-648316f73a31"),
-                            TraineeId = new Guid("3ee69130-4ce4-450d-be65-0ab522760278"),
-                            TrainingId = new Guid("492b5886-64cf-4f0e-9fdb-2baed606e361")
-                        });
                 });
 
             modelBuilder.Entity("GymHub.Data.Models.GroupActivity", b =>
@@ -434,7 +404,7 @@ namespace GymHub.Data.Migrations
                         {
                             Id = new Guid("da220d33-5a34-46a2-9e95-415aaafbe7cd"),
                             ActivityId = new Guid("6ad5a4d2-11fa-4fee-89e6-a341a47bf527"),
-                            EndTime = new DateTime(2023, 8, 28, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2023, 9, 28, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             StartTime = new DateTime(2023, 8, 28, 10, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -462,48 +432,6 @@ namespace GymHub.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("IndividualTrainings");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("63d1f1d6-9348-4710-8082-20a1fbf189e2"),
-                            EndTime = new DateTime(2023, 8, 23, 13, 0, 0, 0, DateTimeKind.Unspecified),
-                            Intensity = "Low",
-                            IsCanceled = false,
-                            StartTime = new DateTime(2023, 8, 23, 10, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("3e154226-2820-4837-81c8-247e4604cdd6"),
-                            EndTime = new DateTime(2023, 8, 22, 15, 0, 0, 0, DateTimeKind.Unspecified),
-                            Intensity = "High",
-                            IsCanceled = false,
-                            StartTime = new DateTime(2023, 8, 22, 14, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("66afc146-91e8-461f-a9c2-8b61419f6af3"),
-                            EndTime = new DateTime(2023, 8, 15, 11, 0, 0, 0, DateTimeKind.Unspecified),
-                            Intensity = "High",
-                            IsCanceled = false,
-                            StartTime = new DateTime(2023, 8, 15, 10, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("a2b6df44-832f-4ae2-ae77-4f8bc89a66af"),
-                            EndTime = new DateTime(2023, 8, 17, 13, 0, 0, 0, DateTimeKind.Unspecified),
-                            Intensity = "Moderate",
-                            IsCanceled = false,
-                            StartTime = new DateTime(2023, 8, 17, 12, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("492b5886-64cf-4f0e-9fdb-2baed606e361"),
-                            EndTime = new DateTime(2023, 8, 18, 19, 30, 0, 0, DateTimeKind.Unspecified),
-                            Intensity = "Moderate",
-                            IsCanceled = false,
-                            StartTime = new DateTime(2023, 8, 18, 18, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("GymHub.Data.Models.IndividualTrainingTrainer", b =>
@@ -519,33 +447,6 @@ namespace GymHub.Data.Migrations
                     b.HasIndex("TrainingId");
 
                     b.ToTable("IndividualTrainingsTrainers");
-
-                    b.HasData(
-                        new
-                        {
-                            TrainerId = new Guid("ad716331-39a9-4ef2-88f2-0e69f7654ec1"),
-                            TrainingId = new Guid("63d1f1d6-9348-4710-8082-20a1fbf189e2")
-                        },
-                        new
-                        {
-                            TrainerId = new Guid("ad716331-39a9-4ef2-88f2-0e69f7654ec1"),
-                            TrainingId = new Guid("3e154226-2820-4837-81c8-247e4604cdd6")
-                        },
-                        new
-                        {
-                            TrainerId = new Guid("e4c6589b-afa8-49c0-8d78-119d3ee95269"),
-                            TrainingId = new Guid("66afc146-91e8-461f-a9c2-8b61419f6af3")
-                        },
-                        new
-                        {
-                            TrainerId = new Guid("0d61d878-2b3d-49bd-b4fb-ac482a7d9bda"),
-                            TrainingId = new Guid("a2b6df44-832f-4ae2-ae77-4f8bc89a66af")
-                        },
-                        new
-                        {
-                            TrainerId = new Guid("0d61d878-2b3d-49bd-b4fb-ac482a7d9bda"),
-                            TrainingId = new Guid("492b5886-64cf-4f0e-9fdb-2baed606e361")
-                        });
                 });
 
             modelBuilder.Entity("GymHub.Data.Models.Trainee", b =>

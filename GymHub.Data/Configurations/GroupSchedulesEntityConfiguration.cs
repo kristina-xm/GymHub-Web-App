@@ -107,7 +107,7 @@ namespace GymHub.Data.Configurations
             {
                 Id = Guid.Parse("da220d33-5a34-46a2-9e95-415aaafbe7cd"),
                 StartTime = new DateTime(2023, 08, 28, 10, 0, 0),
-                EndTime = new DateTime(2023, 09, 28, 12, 0, 0),
+                EndTime = new DateTime(2023, 08, 28, 12, 0, 0),
                 ActivityId = Guid.Parse("6ad5a4d2-11fa-4fee-89e6-a341a47bf527")
             };
 

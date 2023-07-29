@@ -1,0 +1,34 @@
+﻿@model BookIndividualTrainingViewModel
+
+@{
+    ViewData["Title"] = "Book individual training";
+}
+
+<h5>Book a training</h5>
+
+<form method="post" asp-action="BookTrainingWithTrainer" asp-controller="Training">
+    <div class="col-12">
+        <div class="col-sm-3 mt-3">
+            <label asp-for="Start">Day</label>
+            <input asp-for="Day" class="form-control" type="date">
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="col-sm-3 mt-3">
+            <label asp-for="Start">Start time</label>
+            <input asp-for="Start" class="form-control" type="time" value="@Model.Start.ToString("HH:mm")" id="timepickerStart" min="08:00" max="18:00">
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="col-sm-3 mt-3">
+            <label asp-for="End">End time</label>
+            <input asp-for="End" id="timepickerEnd" type="time" value="@Model.End.ToString("HH:mm")" class="form-control" min="09:00" max="19:00">
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="col-sm-3 mt-3">
+            <button type="submit" name="trainerId" class="btn btn-primary" value="@Model.TrainerId">Submit</button>
+        </div>
+    </div>
+</form>

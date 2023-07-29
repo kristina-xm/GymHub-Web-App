@@ -6,3 +6,8 @@
     <div class="col-10">
         <partial name="_TrainerSchedulePartial" />
     </div>
+
+    <div class="form-container">
+        <partial name="_BookIndividualTrainingPartial" model="new BookIndividualTrainingViewModel { TrainerId = Model.Id }" />
+    </div>
+</div>

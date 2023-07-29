@@ -1,12 +1,12 @@
 ﻿@model BookIndividualTrainingViewModel
 
 @{
-    ViewData["Title"] = "Book individual training";
+   
 }
 
 <h5>Book a training</h5>
 
-<form method="post" asp-action="BookTrainingWithTrainer" asp-controller="Training">
+<form method="post" asp-action="BookIndividualTraining" asp-controller="IndividualTraining">
     <div class="col-12">
         <div class="col-sm-3 mt-3">
             <label asp-for="Start">Day</label>
@@ -16,14 +16,23 @@
     <div class="col-12">
         <div class="col-sm-3 mt-3">
             <label asp-for="Start">Start time</label>
-            <input asp-for="Start" class="form-control" type="time" value="@Model.Start.ToString("HH:mm")" id="timepickerStart" min="08:00" max="18:00">
+            <input asp-for="Start" class="form-control" type="time" value="@Model.Start.ToString("HH:mm")" id="timepickerStart">
         </div>
     </div>
     <div class="col-12">
         <div class="col-sm-3 mt-3">
             <label asp-for="End">End time</label>
-            <input asp-for="End" id="timepickerEnd" type="time" value="@Model.End.ToString("HH:mm")" class="form-control" min="09:00" max="19:00">
+            <input asp-for="End" id="timepickerEnd" type="time" value="@Model.End.ToString("HH:mm")" class="form-control">
         </div>
+    </div>
+    <div class="mb-3">
+        <label for="activityLevel" class="form-label">Intensity</label>
+        <select class="form-select" id="intensity" name="Intensity">
+            <option selected disabled>Choose Intensity</option>
+            <option value="Low">Low</option>
+            <option value="Moderate">Moderate</option>
+            <option value="High">High</option>
+        </select>
     </div>
 
     <div class="col-12">

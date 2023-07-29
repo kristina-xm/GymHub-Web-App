@@ -19,6 +19,9 @@ namespace GymHub.Web.ViewModels.IndividualTraining
 
         [Required]
         public DateTime End { get; set; } = DateTime.Now.AddHours(1);
+
+        [Required]
+        public string Intensity { get; set; } = null!;
         public bool isCanceled { get; set; } = false;
     }
 }

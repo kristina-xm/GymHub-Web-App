@@ -33,6 +33,7 @@ namespace GymHub.Web
 
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<ITrainerService, TrainerService>();
+            builder.Services.AddScoped<IGroupActivityService, GroupActivityService>();
 
             var app = builder.Build();
 

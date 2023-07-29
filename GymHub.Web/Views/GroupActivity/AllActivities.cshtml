@@ -1,0 +1,18 @@
+﻿@model ICollection<AllActivitiesViewModel>
+
+
+@foreach (var activity in Model)
+{
+    <div class="card mt-3" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">@activity.Name</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Free spots: @activity.CountOfMaxSpots</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Level: @activity.TraineeLevel</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Intensity: @activity.Intensity</h6>
+            <p class="card-text">@activity.Description</p>
+            <button class="btn btn-primary mr-2">Book a place</button>
+           @* <a href="#" class="card-button">Book this training</a>*@
+            <button class="btn btn-primary">About</button>
+        </div>
+    </div>
+}

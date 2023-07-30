@@ -21,12 +21,17 @@ namespace GymHub.Services.Data
 
         public async Task<IEnumerable<AllActivitiesViewModel>> AllActivities()
         {
+
             IEnumerable<AllActivitiesViewModel> allActivities = await dbContext.GroupActivities
                 .Include(c => c.Category)
+                .Include(gta => gta.GroupActivitiesTrainers)
+                .ThenInclude(t => t.Trainer)
+                .ThenInclude(u => u.User)
                 .Select(ga => new AllActivitiesViewModel()
                 { 
                     Id = ga.Id,
                     Name = ga.Name,
+                    TrainerName = string.Join(", ", ga.GroupActivitiesTrainers.Select(gat => gat.Trainer.User.FirstName + " " + gat.Trainer.User.LastName)),
                     Intensity = ga.Category.Intensity,
                     TraineeLevel = ga.Category.TraineeLevel,
                     CountOfMaxSpots = ga.CountOfMaxSpots,

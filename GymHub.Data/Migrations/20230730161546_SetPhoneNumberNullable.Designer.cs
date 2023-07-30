@@ -4,6 +4,7 @@ using GymHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GymHub.Data.Migrations
 {
     [DbContext(typeof(GymHubDbContext))]
-    partial class GymHubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230730161546_SetPhoneNumberNullable")]
+    partial class SetPhoneNumberNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +44,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ActivitiesCategories", (string)null);
+                    b.ToTable("ActivitiesCategories");
 
                     b.HasData(
                         new
@@ -175,7 +177,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Certifications", (string)null);
+                    b.ToTable("Certifications");
                 });
 
             modelBuilder.Entity("GymHub.Data.Models.Enrollment", b =>
@@ -196,7 +198,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("TrainingId");
 
-                    b.ToTable("Enrollments", (string)null);
+                    b.ToTable("Enrollments");
 
                     b.HasData(
                         new
@@ -252,7 +254,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("GroupActivities", (string)null);
+                    b.ToTable("GroupActivities");
 
                     b.HasData(
                         new
@@ -283,7 +285,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("ActivityId");
 
-                    b.ToTable("GroupActivityTrainers", (string)null);
+                    b.ToTable("GroupActivityTrainers");
 
                     b.HasData(
                         new
@@ -316,7 +318,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("TraineeId");
 
-                    b.ToTable("GroupEnrollments", (string)null);
+                    b.ToTable("GroupEnrollments");
 
                     b.HasData(
                         new
@@ -379,7 +381,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("ActivityId");
 
-                    b.ToTable("GroupSchedules", (string)null);
+                    b.ToTable("GroupSchedules");
 
                     b.HasData(
                         new
@@ -470,7 +472,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("IndividualTrainings", (string)null);
+                    b.ToTable("IndividualTrainings");
 
                     b.HasData(
                         new
@@ -527,7 +529,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("TrainingId");
 
-                    b.ToTable("IndividualTrainingsTrainers", (string)null);
+                    b.ToTable("IndividualTrainingsTrainers");
 
                     b.HasData(
                         new
@@ -587,7 +589,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Trainees", (string)null);
+                    b.ToTable("Trainees");
                 });
 
             modelBuilder.Entity("GymHub.Data.Models.Trainer", b =>
@@ -614,7 +616,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Trainers", (string)null);
+                    b.ToTable("Trainers");
                 });
 
             modelBuilder.Entity("GymHub.Data.Models.TrainerCertification", b =>
@@ -629,7 +631,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("TrainerId");
 
-                    b.ToTable("TrainerCertifications", (string)null);
+                    b.ToTable("TrainerCertifications");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>

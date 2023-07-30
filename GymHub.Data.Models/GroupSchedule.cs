@@ -23,6 +23,8 @@
         [ForeignKey(nameof(GroupActivity))]
         public Guid ActivityId { get; set; }
 
+        public int CountOfTrainees { get; set; }
+
         public GroupActivity GroupActivity { get; set; } = null!;
     }
 }

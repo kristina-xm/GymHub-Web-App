@@ -11,6 +11,7 @@
         {
             this.Id = Guid.NewGuid();
             this.GroupSchedules = new HashSet<GroupSchedule>();
+            this.GroupActivitiesTrainers = new HashSet<GroupActivityTrainer>();
         }
 
         [Key]
@@ -34,5 +35,8 @@
 
         [Required]
         public ICollection<GroupSchedule> GroupSchedules { get; set; }
+
+        [Required]
+        public ICollection<GroupActivityTrainer> GroupActivitiesTrainers { get; set; }
     }
 }

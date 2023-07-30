@@ -15,10 +15,6 @@
         [MaxLength(NameMaxLength)]
         public string LastName { get; set; } = null!;
 
-        [Required]
-        [MaxLength(NumberMaxLength)]
-        public override string PhoneNumber { get; set; } = null!;
-
 
     }
 }

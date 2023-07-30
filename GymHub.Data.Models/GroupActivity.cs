@@ -29,9 +29,7 @@
         public int CountOfMaxSpots { get; set; }
 
         [Required]
-        [MaxLength(DescriptionMaxLength)]
-
-        public string Description = null!;
+        public string Description { get; set; } = null!;
 
         [Required]
         public ICollection<GroupSchedule> GroupSchedules { get; set; }

@@ -30,6 +30,7 @@ namespace GymHub.Services.Data
                 .Select(ga => new AllActivitiesViewModel()
                 { 
                     Id = ga.Id,
+                    TrainerId = ga.GroupActivitiesTrainers.Select(t => t.TrainerId).FirstOrDefault(),
                     Name = ga.Name,
                     TrainerName = string.Join(", ", ga.GroupActivitiesTrainers.Select(gat => gat.Trainer.User.FirstName + " " + gat.Trainer.User.LastName)),
                     Intensity = ga.Category.Intensity,

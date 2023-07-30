@@ -3,6 +3,7 @@
     public class AllActivitiesViewModel
     {
         public Guid Id { get; set; }
+        public Guid TrainerId { get; set; }
 
         public string Name { get; set; } = null!;
         public string TrainerName { get; set; } = null!;

@@ -61,8 +61,14 @@
                 <td>@item.EndHour.ToString("HH:mm")</td>
                 <td>@item.DayOfWeek</td>
                 <td>@item.RemainingSpots</td>
-               
-                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-@item.Id">Enroll</button></td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-@item.Id">Enroll</button></td>
+                }
+                else
+                {
+                    <td><a asp-controller="User" asp-action="Login" class="btn btn-primary">Log in to enroll</a></td>
+                }
             </tr>
 
             <div class="modal fade" id="exampleModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

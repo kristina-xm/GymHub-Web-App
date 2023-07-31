@@ -39,7 +39,16 @@
 
     <div class="col-12">
         <div class="col-sm-3 mt-3">
-            <button type="submit" name="trainerId" class="btn btn-primary" value="@Model.TrainerId">Submit</button>
+            @if(User.Identity.IsAuthenticated)
+            {
+                <button type="submit" name="trainerId" class="btn btn-primary" value="@Model.TrainerId">Submit</button>
+            }
+            else
+            {
+                <a asp-controller="User" asp-action="Login" class="btn btn-primary">Log in before Submit</a>
+            }
+            
+            
         </div>
     </div>
 </form>

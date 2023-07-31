@@ -10,11 +10,13 @@ namespace GymHub.Web.ViewModels.GroupActivity
     {
         public Guid Id { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } 
 
-        public string StartHour { get; set; } = null!;
+        public DateTime StartHour { get; set; }
 
-        public string EndHour { get; set; } = null!;
+        public DateTime EndHour { get; set; }
+
+        public DayOfWeek DayOfWeek { get; set; }
 
         public int RemainingSpots { get; set; }
 

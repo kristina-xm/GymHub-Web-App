@@ -43,7 +43,8 @@
             <th scope="col">Date</th>
             <th scope="col">Start Hour</th>
             <th scope="col">End Hour</th>
-            <th scope="col">Free spots remaining</th>
+            <th scope="col">Day</th>
+            <th scope="col">Remaining spots</th>
             <th scope="col">Options</th>
         </tr>
     </thead>
@@ -51,11 +52,12 @@
         @foreach (var item in Model.Schedules)
         {
             <tr>
-                <td>@item.Date</td>
-                <td>@item.StartHour</td>
-                <td>@item.EndHour</td>
+                <td>@item.Date.ToString("dd/MM/yyyy")</td>
+                <td>@item.StartHour.ToString("HH:mm")</td>
+                <td>@item.EndHour.ToString("HH:mm")</td>
+                <td>@item.DayOfWeek</td>
                 <td>@item.RemainingSpots</td>
-                <td><button class="btn btn-primary">Enroll</button></td>
+                <td><button class="btn btn-primary" asp-route-id="@item.Id">Enroll</button></td>
             </tr>
         }
     </tbody>

@@ -43,11 +43,8 @@
 
         public async Task<ActivityDetailsViewModel> GetActivityModelByIdAsync(Guid id)
         {
-            //var activity = await this.dbContext.GroupActivities
-            //            .Include(ga => ga.GroupActivityTrainers)
-            //            .ThenInclude(gat => gat.Trainer)
-                        
-            //            .FirstOrDefaultAsync(ga => ga.Id == id);
+            
+            DateTime currentDateTime = DateTime.Now;
 
             var activityModel = await this.dbContext.GroupActivities
                  .Include(c => c.Category)
@@ -65,15 +62,22 @@
                      TraineeLevel = ga.Category.TraineeLevel,
                      Description = ga.Description,
 
-                     Schedules = ga.GroupSchedules.Select(gs => new GroupScheduleViewModel
+                     Schedules = ga.GroupSchedules
+                     .Where(gs => gs.StartTime >= currentDateTime)
+                     .Select(gs => new GroupScheduleViewModel
                      {
                          Id = gs.Id,
                          Date = gs.StartTime.Date,
-                         StartHour = gs.StartTime.ToString("HH:mm"),
-                         EndHour = gs.EndTime.ToString("HH:mm"),
+                         StartHour = gs.StartTime,
+                         EndHour = gs.EndTime,
+                         DayOfWeek = gs.StartTime.DayOfWeek,
                          RemainingSpots = ga.CountOfMaxSpots
 
-                     }).ToList()
+                     })
+                     .OrderBy(gs => gs.Date)
+                     .ThenBy(gs => gs.StartHour)
+                     .ThenBy(gs => gs.EndHour)
+                     .ToList()
 
                  }).FirstOrDefaultAsync();
 

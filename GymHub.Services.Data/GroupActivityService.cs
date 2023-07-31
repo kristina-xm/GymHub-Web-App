@@ -43,25 +43,37 @@
 
         public async Task<ActivityDetailsViewModel> GetActivityModelByIdAsync(Guid id)
         {
-            var activity = await this.dbContext.GroupActivities
-                        .Include(ga => ga.GroupActivityTrainers)
-                        .ThenInclude(gat => gat.Trainer)
-                        .FirstOrDefaultAsync(ga => ga.Id == id);
+            //var activity = await this.dbContext.GroupActivities
+            //            .Include(ga => ga.GroupActivityTrainers)
+            //            .ThenInclude(gat => gat.Trainer)
+                        
+            //            .FirstOrDefaultAsync(ga => ga.Id == id);
 
             var activityModel = await this.dbContext.GroupActivities
                  .Include(c => c.Category)
                  .Include(ga => ga.GroupActivityTrainers)
                     .ThenInclude(gat => gat.Trainer)
+                 .Include(ga => ga.GroupSchedules)
                  .Where(ga => ga.Id == id)
                  .Select(ga => new ActivityDetailsViewModel
                  {
-                     Id = activity.Id,
+                     Id = ga.Id,
                      TrainerId = ga.GroupActivityTrainers.Select(t => t.TrainerId).FirstOrDefault(),
                      ActivityName = ga.Name,
                      TrainerName = string.Join(" ", ga.GroupActivityTrainers.Select(t => t.Trainer.User.FirstName + " " + t.Trainer.User.LastName)),
                      Intensity = ga.Category.Intensity,
                      TraineeLevel = ga.Category.TraineeLevel,
-                     Description = ga.Description
+                     Description = ga.Description,
+
+                     Schedules = ga.GroupSchedules.Select(gs => new GroupScheduleViewModel
+                     {
+                         Id = gs.Id,
+                         Date = gs.StartTime.Date,
+                         StartHour = gs.StartTime.ToString("HH:mm"),
+                         EndHour = gs.EndTime.ToString("HH:mm"),
+                         RemainingSpots = ga.CountOfMaxSpots
+
+                     }).ToList()
 
                  }).FirstOrDefaultAsync();
 

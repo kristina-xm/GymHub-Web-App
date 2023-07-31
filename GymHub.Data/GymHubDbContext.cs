@@ -39,11 +39,11 @@
                 itt.TrainingId
             });
 
-            builder.Entity<GroupActivityTrainer>().HasKey(gat => new
-            {
-                gat.TrainerId,
-                gat.ActivityId
-            });
+            //builder.Entity<GroupActivityTrainer>().HasKey(gat => new
+            //{
+            //    gat.TrainerId,
+            //    gat.ActivityId
+            //});
 
             builder.Entity<TrainerCertification>().HasKey(tc => new
             {
@@ -63,6 +63,7 @@
            .HasForeignKey(t => t.UserId)
            .OnDelete(DeleteBehavior.NoAction);
 
+            
             builder.ApplyConfiguration(new CategoryEntityConfiguration());
             builder.ApplyConfiguration(new GroupActivityEntityConfiguration());
             builder.ApplyConfiguration(new GroupSchedulesEntityConfiguration());

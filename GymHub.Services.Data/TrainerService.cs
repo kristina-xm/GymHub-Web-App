@@ -67,7 +67,7 @@
 
             var dailyGroupSchedules = this.dbContext.Trainers.
                  Where(t => t.Id == trainer.Id)
-                 .SelectMany(t => t.GroupActivitiesTrainers)
+                 .SelectMany(t => t.GroupActivityTrainers)
                  .Include(t => t.GroupActivity)
                  .ThenInclude(t => t.GroupSchedules)
                  .Select(t => new TrainerGroupScheduleViewModel

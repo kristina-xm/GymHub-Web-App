@@ -26,7 +26,6 @@ namespace GymHub.Web.Controllers
         }
 
         [HttpGet]
-        ////Should be corrected with asp-route-information
         public async Task<IActionResult> TrainerDetails(Guid id)
         {
 

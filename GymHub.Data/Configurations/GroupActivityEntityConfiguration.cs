@@ -9,10 +9,14 @@
     {
         public void Configure(EntityTypeBuilder<GroupActivity> builder)
         {
+            builder.HasMany(ga => ga.GroupActivityTrainers)
+              .WithOne(gat => gat.GroupActivity)
+              .HasForeignKey(gat => gat.ActivityId);
+
             builder.HasData(this.GenerateGroupActivities());
         }
 
-        private GroupActivity[] GenerateGroupActivities()
+        public GroupActivity[] GenerateGroupActivities()
         {
             ICollection<GroupActivity> groupActivities = new HashSet<GroupActivity>();
 
@@ -24,8 +28,8 @@
                 Name = "Cross Training",
                 CategoryId = 6,
                 CountOfMaxSpots = 20,
-                Description = "Cross training is a diverse workout approach that involves mixing various exercises and activities to enhance overall fitness and prevent workout plateaus. By combining cardio, strength training, and flexibility exercises, it targets multiple muscle groups and reduces the risk of overuse injuries."
-                
+                Description = "Cross training is a diverse workout approach that involves mixing various exercises and activities to enhance overall fitness and prevent workout plateaus. By combining cardio, strength training, and flexibility exercises, it targets multiple muscle groups and reduces the risk of overuse injuries.",
+              
             };
 
             groupActivities.Add(groupActivity);
@@ -37,7 +41,7 @@
                 CategoryId = 3,
                 CountOfMaxSpots = 20,
                 Description = "Kickboxing is a high-intensity martial art and cardio workout that combines punching, kicking, and knee strikes. It improves overall fitness, endurance, and self-defense skills while providing a fun and challenging way to burn calories and relieve stress.",
-               
+
             };
 
             groupActivities.Add(groupActivity);

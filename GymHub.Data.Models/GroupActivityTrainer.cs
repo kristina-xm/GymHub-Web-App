@@ -8,12 +8,10 @@ namespace GymHub.Data.Models
 
         [ForeignKey(nameof(Trainer))]
         public Guid TrainerId { get; set; }
-
         public Trainer Trainer { get; set; } = null!;
         
         [ForeignKey(nameof(GroupActivity))]
         public Guid ActivityId { get; set; }
-
         public GroupActivity GroupActivity { get; set; } = null!;
     }
 }

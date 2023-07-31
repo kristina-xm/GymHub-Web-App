@@ -42,7 +42,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ActivitiesCategories");
+                    b.ToTable("ActivitiesCategories", (string)null);
 
                     b.HasData(
                         new
@@ -175,7 +175,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Certifications");
+                    b.ToTable("Certifications", (string)null);
                 });
 
             modelBuilder.Entity("GymHub.Data.Models.Enrollment", b =>
@@ -196,7 +196,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("TrainingId");
 
-                    b.ToTable("Enrollments");
+                    b.ToTable("Enrollments", (string)null);
 
                     b.HasData(
                         new
@@ -256,7 +256,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("GroupActivities");
+                    b.ToTable("GroupActivities", (string)null);
 
                     b.HasData(
                         new
@@ -289,7 +289,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("ActivityId");
 
-                    b.ToTable("GroupActivityTrainers");
+                    b.ToTable("GroupActivityTrainers", (string)null);
 
                     b.HasData(
                         new
@@ -322,7 +322,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("TraineeId");
 
-                    b.ToTable("GroupEnrollments");
+                    b.ToTable("GroupEnrollments", (string)null);
 
                     b.HasData(
                         new
@@ -385,7 +385,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("ActivityId");
 
-                    b.ToTable("GroupSchedules");
+                    b.ToTable("GroupSchedules", (string)null);
 
                     b.HasData(
                         new
@@ -476,7 +476,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("IndividualTrainings");
+                    b.ToTable("IndividualTrainings", (string)null);
 
                     b.HasData(
                         new
@@ -533,7 +533,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("TrainingId");
 
-                    b.ToTable("IndividualTrainingsTrainers");
+                    b.ToTable("IndividualTrainingsTrainers", (string)null);
 
                     b.HasData(
                         new
@@ -593,7 +593,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Trainees");
+                    b.ToTable("Trainees", (string)null);
                 });
 
             modelBuilder.Entity("GymHub.Data.Models.Trainer", b =>
@@ -620,7 +620,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Trainers");
+                    b.ToTable("Trainers", (string)null);
                 });
 
             modelBuilder.Entity("GymHub.Data.Models.TrainerCertification", b =>
@@ -635,7 +635,7 @@ namespace GymHub.Data.Migrations
 
                     b.HasIndex("TrainerId");
 
-                    b.ToTable("TrainerCertifications");
+                    b.ToTable("TrainerCertifications", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>

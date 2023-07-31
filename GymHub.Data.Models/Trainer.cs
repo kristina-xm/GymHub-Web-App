@@ -12,7 +12,7 @@
         {
             this.Id = Guid.NewGuid();
             this.IndividualTrainingTrainer = new HashSet<IndividualTrainingTrainer>();
-            this.GroupActivitiesTrainers = new HashSet<GroupActivityTrainer>();
+            this.GroupActivityTrainers = new HashSet<GroupActivityTrainer>();
             this.TrainerCertifications = new HashSet<TrainerCertification>();
         }
 
@@ -34,7 +34,7 @@
         public int CountOfTrainees { get; set; }
 
         public ICollection<IndividualTrainingTrainer> IndividualTrainingTrainer { get; set; }
-        public ICollection<GroupActivityTrainer> GroupActivitiesTrainers { get; set; }
+        public ICollection<GroupActivityTrainer> GroupActivityTrainers { get; set; }
         public ICollection<TrainerCertification> TrainerCertifications { get; set; }
     }
 }

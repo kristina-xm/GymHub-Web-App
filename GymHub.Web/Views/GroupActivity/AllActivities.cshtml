@@ -9,7 +9,9 @@
             <h6 class="card-subtitle mb-2 text-muted">Trainer: @activity.TrainerName</h6>
             <h6 class="card-subtitle mb-2 text-muted">Level: @activity.TraineeLevel</h6>
             <h6 class="card-subtitle mb-2 text-muted">Intensity: @activity.Intensity</h6>
-            <button class="btn btn-primary mr-2">Book your place</button>
+            <form method="post">
+                <a class="btn btn-primary mr-2" asp-action="ActivityDetails" asp-controller="GroupActivity" asp-route-id="@activity.Id">Book your place</a>
+            </form>
             <a href="/Trainer/TrainerDetails/@activity.TrainerId" class="btn btn-primary">About the Trainer</a>
         </div>
     </div>

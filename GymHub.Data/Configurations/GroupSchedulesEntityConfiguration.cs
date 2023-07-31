@@ -17,7 +17,7 @@ namespace GymHub.Data.Configurations
             builder.HasData(this.GenerateKickBoxingSchedules());
         }
 
-        private GroupSchedule[] GenerateCrossTrainingSchedules()
+        public GroupSchedule[] GenerateCrossTrainingSchedules()
         {
             ICollection<GroupSchedule> crossTrainSchedules = new HashSet<GroupSchedule>();
 
@@ -67,7 +67,7 @@ namespace GymHub.Data.Configurations
 
         }
 
-        private GroupSchedule[] GenerateKickBoxingSchedules()
+        public GroupSchedule[] GenerateKickBoxingSchedules()
         {
             ICollection<GroupSchedule> kickBoxingSchedules = new HashSet<GroupSchedule>();
 

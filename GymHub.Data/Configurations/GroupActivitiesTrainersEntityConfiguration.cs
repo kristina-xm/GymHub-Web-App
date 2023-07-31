@@ -13,6 +13,18 @@ namespace GymHub.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<GroupActivityTrainer> builder)
         {
+            builder.HasKey(gat => new { gat.TrainerId, gat.ActivityId });
+
+           
+            builder.HasOne(gat => gat.GroupActivity)
+                   .WithMany(ga => ga.GroupActivityTrainers)
+                   .HasForeignKey(gat => gat.ActivityId);
+
+            
+            builder.HasOne(gat => gat.Trainer)
+                   .WithMany(t => t.GroupActivityTrainers)
+                   .HasForeignKey(gat => gat.TrainerId);
+
             builder.HasData(this.GenerateActivityTrainer());
         }
 

@@ -9,10 +9,12 @@
 
     public class GymHubDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
+      
+       
         public GymHubDbContext(DbContextOptions<GymHubDbContext> options)
             : base(options)
         {
-
+            
         }
 
         public DbSet<Trainee> Trainees { get; set; } = null!;
@@ -63,7 +65,7 @@
            .HasForeignKey(t => t.UserId)
            .OnDelete(DeleteBehavior.NoAction);
 
-            
+            builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
             builder.ApplyConfiguration(new CategoryEntityConfiguration());
             builder.ApplyConfiguration(new GroupActivityEntityConfiguration());
             builder.ApplyConfiguration(new GroupSchedulesEntityConfiguration());

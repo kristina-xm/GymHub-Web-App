@@ -24,40 +24,40 @@ namespace GymHub.Data.Configurations
 
             trainingTrainer = new IndividualTrainingTrainer()
             {
-                TrainerId = Guid.Parse("AD716331-39A9-4EF2-88F2-0E69F7654EC1"),
-                TrainingId = Guid.Parse("63d1f1d6-9348-4710-8082-20a1fbf189e2"),
+                TrainerId = Guid.Parse("7b785253-5315-49fe-9d0c-39a8935c6902"),
+                TrainingId = Guid.Parse("88034cb7-c971-4520-a3a1-d48099502562"),
             };
 
             trainingTrainers.Add(trainingTrainer);
 
             trainingTrainer = new IndividualTrainingTrainer()
             {
-                TrainerId = Guid.Parse("AD716331-39A9-4EF2-88F2-0E69F7654EC1"),
-                TrainingId = Guid.Parse("3e154226-2820-4837-81c8-247e4604cdd6"),
+                TrainerId = Guid.Parse("7b785253-5315-49fe-9d0c-39a8935c6902"),
+                TrainingId = Guid.Parse("17e17c3c-ba43-44bb-9fe3-8ec50c4a8dca"),
             };
 
             trainingTrainers.Add(trainingTrainer);
 
             trainingTrainer = new IndividualTrainingTrainer()
             {
-                TrainerId = Guid.Parse("E4C6589B-AFA8-49C0-8D78-119D3EE95269"),
-                TrainingId = Guid.Parse("66afc146-91e8-461f-a9c2-8b61419f6af3"),
+                TrainerId = Guid.Parse("d1079610-d657-4cea-bf9b-0fc1053a6ee8"),
+                TrainingId = Guid.Parse("5bd931f9-f5ca-472c-8c81-9f011118c0e5"),
             };
 
             trainingTrainers.Add(trainingTrainer);
 
             trainingTrainer = new IndividualTrainingTrainer()
             {
-                TrainerId = Guid.Parse("0D61D878-2B3D-49BD-B4FB-AC482A7D9BDA"),
-                TrainingId = Guid.Parse("a2b6df44-832f-4ae2-ae77-4f8bc89a66af"),
+                TrainerId = Guid.Parse("1495c1e6-c21d-4b6f-b64d-a47d0226f4fc"),
+                TrainingId = Guid.Parse("82a1b1c7-1b12-4973-a8c0-9720fe4255fc"),
             };
 
             trainingTrainers.Add(trainingTrainer);
 
             trainingTrainer = new IndividualTrainingTrainer()
             {
-                TrainerId = Guid.Parse("0D61D878-2B3D-49BD-B4FB-AC482A7D9BDA"),
-                TrainingId = Guid.Parse("492b5886-64cf-4f0e-9fdb-2baed606e361"),
+                TrainerId = Guid.Parse("1495c1e6-c21d-4b6f-b64d-a47d0226f4fc"),
+                TrainingId = Guid.Parse("922bf694-a4e1-4fbe-b508-8cbfa836600f"),
             };
 
             trainingTrainers.Add(trainingTrainer);

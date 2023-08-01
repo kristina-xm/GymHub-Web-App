@@ -29,7 +29,7 @@ namespace GymHub.Data.Configurations
             //Begginers do not have high intensive trainings
             category = new ActivityCategory()
             {
-                Id =2, 
+                Id = 2, 
                 Intensity = "Moderate",
                 TraineeLevel = "Beginner"
             };

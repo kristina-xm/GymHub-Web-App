@@ -4,6 +4,7 @@ using GymHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GymHub.Data.Migrations
 {
     [DbContext(typeof(GymHubDbContext))]
-    partial class GymHubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230801221501_UpdateWithSeededUsers")]
+    partial class UpdateWithSeededUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -656,8 +658,8 @@ namespace GymHub.Data.Migrations
                             Id = new Guid("296e3b96-8ad1-4ceb-847c-331444d36016"),
                             ActivityId = new Guid("436818ef-d86c-4e43-88ca-29ff34ad5850"),
                             CountOfTrainees = 0,
-                            EndTime = new DateTime(2023, 8, 22, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            StartTime = new DateTime(2023, 8, 22, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                            EndTime = new DateTime(2023, 8, 28, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartTime = new DateTime(2023, 8, 28, 10, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -672,16 +674,16 @@ namespace GymHub.Data.Migrations
                             Id = new Guid("c4d374b1-c657-4f03-a46c-2c725f630375"),
                             ActivityId = new Guid("436818ef-d86c-4e43-88ca-29ff34ad5850"),
                             CountOfTrainees = 0,
-                            EndTime = new DateTime(2023, 8, 29, 16, 0, 0, 0, DateTimeKind.Unspecified),
-                            StartTime = new DateTime(2023, 8, 29, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            EndTime = new DateTime(2023, 8, 28, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartTime = new DateTime(2023, 8, 28, 10, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = new Guid("a8ba6cc6-2e6d-4709-ab9b-bc4c4024e29b"),
                             ActivityId = new Guid("436818ef-d86c-4e43-88ca-29ff34ad5850"),
                             CountOfTrainees = 0,
-                            EndTime = new DateTime(2023, 8, 30, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            StartTime = new DateTime(2023, 8, 30, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                            EndTime = new DateTime(2023, 8, 28, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartTime = new DateTime(2023, 8, 28, 10, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 

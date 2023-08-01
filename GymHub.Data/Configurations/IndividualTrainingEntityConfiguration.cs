@@ -24,7 +24,7 @@ namespace GymHub.Data.Configurations
 
             training = new IndividualTraining()
             {
-                Id = Guid.Parse("63d1f1d6-9348-4710-8082-20a1fbf189e2"),
+                Id = Guid.Parse("88034cb7-c971-4520-a3a1-d48099502562"),
                 StartTime = new DateTime(2023, 08, 23, 10, 0, 0),
                 EndTime = new DateTime(2023, 08, 23, 13, 0, 0),
                 Intensity = "Low",
@@ -34,7 +34,7 @@ namespace GymHub.Data.Configurations
             result.Add(training);
             training = new IndividualTraining()
             {
-                Id = Guid.Parse("3e154226-2820-4837-81c8-247e4604cdd6"),
+                Id = Guid.Parse("17e17c3c-ba43-44bb-9fe3-8ec50c4a8dca"),
                 StartTime = new DateTime(2023, 08, 22, 14, 0, 0),
                 EndTime = new DateTime(2023, 08, 22, 15, 0, 0),
                 Intensity = "High",
@@ -45,7 +45,7 @@ namespace GymHub.Data.Configurations
 
             training = new IndividualTraining()
             {
-                Id = Guid.Parse("66afc146-91e8-461f-a9c2-8b61419f6af3"),
+                Id = Guid.Parse("5bd931f9-f5ca-472c-8c81-9f011118c0e5"),
                 StartTime = new DateTime(2023, 08, 15, 10, 0, 0),
                 EndTime = new DateTime(2023, 08, 15, 11, 0, 0),
                 Intensity = "High",
@@ -56,7 +56,7 @@ namespace GymHub.Data.Configurations
 
             training = new IndividualTraining()
             {
-                Id = Guid.Parse("a2b6df44-832f-4ae2-ae77-4f8bc89a66af"),
+                Id = Guid.Parse("82a1b1c7-1b12-4973-a8c0-9720fe4255fc"),
                 StartTime = new DateTime(2023, 08, 17, 12, 0, 0),
                 EndTime = new DateTime(2023, 08, 17, 13, 0, 0),
                 Intensity = "Moderate",
@@ -67,7 +67,7 @@ namespace GymHub.Data.Configurations
 
             training = new IndividualTraining()
             {
-                Id = Guid.Parse("492b5886-64cf-4f0e-9fdb-2baed606e361"),
+                Id = Guid.Parse("922bf694-a4e1-4fbe-b508-8cbfa836600f"),
                 StartTime = new DateTime(2023, 08, 18, 18, 0, 0),
                 EndTime = new DateTime(2023, 08, 18, 19, 30, 0),
                 Intensity = "Moderate",

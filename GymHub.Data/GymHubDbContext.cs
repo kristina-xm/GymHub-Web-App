@@ -66,6 +66,8 @@
            .OnDelete(DeleteBehavior.NoAction);
 
             builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
+            builder.ApplyConfiguration(new TraineeEntityConfiguration());
+            builder.ApplyConfiguration(new TrainerEntityConfiguration());
             builder.ApplyConfiguration(new CategoryEntityConfiguration());
             builder.ApplyConfiguration(new GroupActivityEntityConfiguration());
             builder.ApplyConfiguration(new GroupSchedulesEntityConfiguration());

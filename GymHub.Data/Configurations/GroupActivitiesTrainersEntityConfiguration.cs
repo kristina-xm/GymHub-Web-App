@@ -36,8 +36,8 @@ namespace GymHub.Data.Configurations
 
             groupActivityTrainer = new GroupActivityTrainer()
             {
-                TrainerId = Guid.Parse("AD716331-39A9-4EF2-88F2-0E69F7654EC1"),
-                ActivityId= Guid.Parse("0bb32c51-d799-4004-915f-91ccea62ce11"),
+                TrainerId = Guid.Parse("7b785253-5315-49fe-9d0c-39a8935c6902"),
+                ActivityId = Guid.Parse("25b00a8d-13b9-4c33-a145-96b89264d699"),
             };
             
             trainersActivities.Add(groupActivityTrainer);
@@ -45,8 +45,16 @@ namespace GymHub.Data.Configurations
 
             groupActivityTrainer = new GroupActivityTrainer()
             {
-                TrainerId = Guid.Parse("5B86293B-856F-47B8-8B93-63A3C7A965E1"),
-                ActivityId = Guid.Parse("6ad5a4d2-11fa-4fee-89e6-a341a47bf527"),
+                TrainerId = Guid.Parse("d1079610-d657-4cea-bf9b-0fc1053a6ee8"),
+                ActivityId = Guid.Parse("6d6ee926-6fa3-43a7-8bac-dc86632094a5"),
+            };
+
+            trainersActivities.Add(groupActivityTrainer);
+
+            groupActivityTrainer = new GroupActivityTrainer()
+            {
+                TrainerId = Guid.Parse("1495c1e6-c21d-4b6f-b64d-a47d0226f4fc"),
+                ActivityId = Guid.Parse("436818ef-d86c-4e43-88ca-29ff34ad5850"),
             };
 
             trainersActivities.Add(groupActivityTrainer);

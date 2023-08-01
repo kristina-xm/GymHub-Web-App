@@ -65,22 +65,19 @@
                  })
                  .FirstOrDefaultAsync();
 
-            var dailyGroupSchedules = this.dbContext.Trainers.
-                 Where(t => t.Id == trainer.Id)
-                 .SelectMany(t => t.GroupActivityTrainers)
-                 .Include(t => t.GroupActivity)
-                 .ThenInclude(t => t.GroupSchedules)
-                 .Select(t => new TrainerGroupScheduleViewModel
-                 {
-                     ActivityName = t.GroupActivity.Name,
-                     StartTime = t.GroupActivity.GroupSchedules
-                                 .Select(gs => gs.StartTime)
-                                 .FirstOrDefault(),
-                     EndTime = t.GroupActivity.GroupSchedules
-                                 .Select(gs => gs.EndTime)
-                                 .FirstOrDefault()
-                 })
-                 .ToArray();
+            var dailyGroupSchedules = this.dbContext.Trainers
+                 .Where(t => t.Id == trainer.Id)
+                .SelectMany(t => t.GroupActivityTrainers)
+                .Include(t => t.GroupActivity)
+                .ThenInclude(t => t.GroupSchedules)
+                .SelectMany(t => t.GroupActivity.GroupSchedules)
+                .Select(gs => new TrainerGroupScheduleViewModel
+                {
+                    ActivityName = gs.GroupActivity.Name,
+                    StartTime = gs.StartTime,
+                    EndTime = gs.EndTime
+                })
+                .ToArray();
 
             trainerModel.DailyGroupSchedules = dailyGroupSchedules;
 

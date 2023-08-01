@@ -26,7 +26,7 @@ namespace GymHub.Data.Configurations
 
             crossTrainSchedule = new GroupSchedule()
             {
-                Id = Guid.Parse("5ea2a2d0-10f6-4fff-a4a5-28ce33c5a5ec"),
+                Id = Guid.Parse("47d1b94a-1e4b-4ae4-986d-60298849b1c7"),
                 StartTime = new DateTime(2023, 08, 08, 16, 0, 0),
                 EndTime = new DateTime(2023, 08, 08, 17, 30, 0),
                 ActivityId = Guid.Parse("25b00a8d-13b9-4c33-a145-96b89264d699")
@@ -36,7 +36,7 @@ namespace GymHub.Data.Configurations
 
             crossTrainSchedule = new GroupSchedule()
             {
-                Id = Guid.Parse("a9a81c48-7e25-469e-8f61-75b4669c1b4a"),
+                Id = Guid.Parse("ae048160-36c5-4dbb-ba0d-83854fa3f338"),
                 StartTime = new DateTime(2023, 08, 22, 16, 0, 0),
                 EndTime = new DateTime(2023, 08, 22, 17, 30, 0),
                 ActivityId = Guid.Parse("25b00a8d-13b9-4c33-a145-96b89264d699")
@@ -46,7 +46,7 @@ namespace GymHub.Data.Configurations
 
             crossTrainSchedule = new GroupSchedule()
             {
-                Id = Guid.Parse("8d827ef7-962b-4a01-a391-88663ecac213"),
+                Id = Guid.Parse("44312107-bbbd-422b-b54b-25a0db36f3b5"),
                 StartTime = new DateTime(2023, 08, 11, 16, 0, 0),
                 EndTime = new DateTime(2023, 08, 11, 17, 30, 0),
                 ActivityId = Guid.Parse("25b00a8d-13b9-4c33-a145-96b89264d699")
@@ -66,7 +66,7 @@ namespace GymHub.Data.Configurations
 
             crossTrainSchedule = new GroupSchedule()
             {
-                Id = Guid.Parse("b3a5cc92-fd09-4fe0-89a9-f6bd98bf90e1"),
+                Id = Guid.Parse("3526d1c6-f63a-42c6-ae60-1dd97e3434a0"),
                 StartTime = new DateTime(2023, 08, 25, 16, 0, 0),
                 EndTime = new DateTime(2023, 08, 25, 17, 30, 0),
                 ActivityId = Guid.Parse("25b00a8d-13b9-4c33-a145-96b89264d699")
@@ -86,7 +86,7 @@ namespace GymHub.Data.Configurations
 
             kickBoxingSchedule = new GroupSchedule()
             {
-                Id = Guid.Parse("f1f607d8-e1e2-4ca8-9bda-caa1cfd0c31f"),
+                Id = Guid.Parse("6d88f805-232d-4ce4-a05f-a62da3a02474"),
                 StartTime = new DateTime(2023, 08, 07, 10, 0, 0),
                 EndTime = new DateTime(2023, 08, 07, 12, 00, 0),
                 ActivityId = Guid.Parse("6d6ee926-6fa3-43a7-8bac-dc86632094a5")
@@ -96,7 +96,7 @@ namespace GymHub.Data.Configurations
 
             kickBoxingSchedule = new GroupSchedule()
             {
-                Id = Guid.Parse("6104ae44-7737-4bfe-9146-969c78f8664b"),
+                Id = Guid.Parse("abd78db4-0a0d-466c-a14d-4f1c6da8bfb0"),
                 StartTime = new DateTime(2023, 08, 10, 10, 0, 0),
                 EndTime = new DateTime(2023, 08, 10, 12, 0, 0),
                 ActivityId = Guid.Parse("6d6ee926-6fa3-43a7-8bac-dc86632094a5")
@@ -116,7 +116,7 @@ namespace GymHub.Data.Configurations
 
             kickBoxingSchedule = new GroupSchedule()
             {
-                Id = Guid.Parse("539d5620-f636-439c-a7d5-94f3b3654f70"),
+                Id = Guid.Parse("e499d6b0-a852-4b37-9334-fc5f8c4aa69c"),
                 StartTime = new DateTime(2023, 08, 21, 10, 0, 0),
                 EndTime = new DateTime(2023, 08, 21, 12, 0, 0),
                 ActivityId = Guid.Parse("6d6ee926-6fa3-43a7-8bac-dc86632094a5")
@@ -126,7 +126,7 @@ namespace GymHub.Data.Configurations
 
             kickBoxingSchedule = new GroupSchedule()
             {
-                Id = Guid.Parse("da220d33-5a34-46a2-9e95-415aaafbe7cd"),
+                Id = Guid.Parse("7c8030e8-e724-4470-adbf-e343a80566a2"),
                 StartTime = new DateTime(2023, 08, 28, 10, 0, 0),
                 EndTime = new DateTime(2023, 08, 28, 12, 0, 0),
                 ActivityId = Guid.Parse("6d6ee926-6fa3-43a7-8bac-dc86632094a5")

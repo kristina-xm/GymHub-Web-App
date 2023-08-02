@@ -4,12 +4,14 @@
     using GymHub.Web.ViewModels.GroupActivity;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    public class GroupActivityController : Controller
+    public class GroupActivityController : BaseController
     {
         private readonly IGroupActivityService groupActivityService;
-        public GroupActivityController(IGroupActivityService groupActivityService)
+        private readonly IUserService userService;
+        public GroupActivityController(IGroupActivityService groupActivityService, IUserService userService)
         {
             this.groupActivityService = groupActivityService;
+            this.userService = userService;
         }
 
         [AllowAnonymous]
@@ -33,6 +35,32 @@
             }
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EnrollForActivtiy(Guid id)
+        {
+            var userId = GetUserId();
+
+            if (!ModelState.IsValid)
+            {
+                return View("ActivityDetails");
+            }
+
+            try
+            {
+                var trainee = await this.userService.GetTraineeAsync(userId);
+
+                await this.groupActivityService.CreateGroupEnrollement(trainee, id);
+
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "Unexpected error occured while saving your group activity registration. Please try again later");
+                return View("ActivityDetails");
+            }
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

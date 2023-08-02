@@ -1,6 +1,7 @@
 ﻿namespace GymHub.Services.Data
 {
     using GymHub.Data;
+    using GymHub.Data.Models;
     using GymHub.Services.Data.Interfaces;
     using GymHub.Web.ViewModels.GroupActivity;
     using Microsoft.EntityFrameworkCore;
@@ -71,7 +72,7 @@
                          StartHour = gs.StartTime,
                          EndHour = gs.EndTime,
                          DayOfWeek = gs.StartTime.DayOfWeek,
-                         RemainingSpots = ga.CountOfMaxSpots
+                         RemainingSpots = ga.CountOfMaxSpots - gs.CountOfTrainees
 
                      })
                      .OrderBy(gs => gs.Date)
@@ -82,6 +83,27 @@
                  }).FirstOrDefaultAsync();
 
             return activityModel;
+        }
+
+        public async Task CreateGroupEnrollement(Trainee trainee, Guid scheduleId)
+        {
+            var groupSchedule = await this.dbContext.GroupSchedules.FirstOrDefaultAsync(gs => gs.Id == scheduleId);
+
+            GroupEnrollment groupEnrollement = new GroupEnrollment()
+            {
+                TraineeId = trainee.Id,
+                ScheduleId = scheduleId,
+            };
+
+            await this.dbContext.GroupEnrollments.AddAsync(groupEnrollement);
+            await this.dbContext.SaveChangesAsync();
+
+
+            groupSchedule.GroupEnrollments.Add(groupEnrollement);
+            groupSchedule.CountOfTrainees++;
+
+            await this.dbContext.SaveChangesAsync();
+
         }
     }
 }

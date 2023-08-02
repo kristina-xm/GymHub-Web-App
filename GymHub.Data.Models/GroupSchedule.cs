@@ -9,6 +9,7 @@
         public GroupSchedule()
         { 
             this.Id = Guid.NewGuid();
+            this.GroupEnrollments = new HashSet<GroupEnrollment>();
         }
 
         [Key]
@@ -26,5 +27,7 @@
         public int CountOfTrainees { get; set; }
 
         public GroupActivity GroupActivity { get; set; } = null!;
+
+        public ICollection<GroupEnrollment> GroupEnrollments { get; set; }
     }
 }

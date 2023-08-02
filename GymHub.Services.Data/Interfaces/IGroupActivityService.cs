@@ -1,4 +1,5 @@
-﻿using GymHub.Web.ViewModels.GroupActivity;
+﻿using GymHub.Data.Models;
+using GymHub.Web.ViewModels.GroupActivity;
 using GymHub.Web.ViewModels.Trainer;
 using System.Threading.Tasks;
 
@@ -8,5 +9,6 @@ namespace GymHub.Services.Data.Interfaces
     {
         Task<IEnumerable<AllActivitiesViewModel>> AllActivities();
         Task<ActivityDetailsViewModel> GetActivityModelByIdAsync(Guid activityId);
+        Task CreateGroupEnrollement(Trainee trainee, Guid scheduleId);
     }
 }

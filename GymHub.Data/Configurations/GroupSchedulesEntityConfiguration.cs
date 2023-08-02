@@ -29,7 +29,9 @@ namespace GymHub.Data.Configurations
                 Id = Guid.Parse("47d1b94a-1e4b-4ae4-986d-60298849b1c7"),
                 StartTime = new DateTime(2023, 08, 08, 16, 0, 0),
                 EndTime = new DateTime(2023, 08, 08, 17, 30, 0),
-                ActivityId = Guid.Parse("25b00a8d-13b9-4c33-a145-96b89264d699")
+                ActivityId = Guid.Parse("25b00a8d-13b9-4c33-a145-96b89264d699"),
+                CountOfTrainees = 1
+                
             };
 
             crossTrainSchedules.Add(crossTrainSchedule);
@@ -89,7 +91,8 @@ namespace GymHub.Data.Configurations
                 Id = Guid.Parse("6d88f805-232d-4ce4-a05f-a62da3a02474"),
                 StartTime = new DateTime(2023, 08, 07, 10, 0, 0),
                 EndTime = new DateTime(2023, 08, 07, 12, 00, 0),
-                ActivityId = Guid.Parse("6d6ee926-6fa3-43a7-8bac-dc86632094a5")
+                ActivityId = Guid.Parse("6d6ee926-6fa3-43a7-8bac-dc86632094a5"),
+                CountOfTrainees = 1
             };
 
             kickBoxingSchedules.Add(kickBoxingSchedule);
@@ -99,7 +102,8 @@ namespace GymHub.Data.Configurations
                 Id = Guid.Parse("abd78db4-0a0d-466c-a14d-4f1c6da8bfb0"),
                 StartTime = new DateTime(2023, 08, 10, 10, 0, 0),
                 EndTime = new DateTime(2023, 08, 10, 12, 0, 0),
-                ActivityId = Guid.Parse("6d6ee926-6fa3-43a7-8bac-dc86632094a5")
+                ActivityId = Guid.Parse("6d6ee926-6fa3-43a7-8bac-dc86632094a5"),
+                CountOfTrainees = 1
             };
 
             kickBoxingSchedules.Add(kickBoxingSchedule);
@@ -159,7 +163,8 @@ namespace GymHub.Data.Configurations
                 Id = Guid.Parse("1452eef9-d47f-48ce-bea6-8bc0ec775f5e"),
                 StartTime = new DateTime(2023, 08, 28, 10, 0, 0),
                 EndTime = new DateTime(2023, 08, 28, 12, 0, 0),
-                ActivityId = Guid.Parse("436818ef-d86c-4e43-88ca-29ff34ad5850")
+                ActivityId = Guid.Parse("436818ef-d86c-4e43-88ca-29ff34ad5850"),
+                CountOfTrainees = 2
             };
 
             groupSchedules.Add(schedule);
@@ -169,7 +174,8 @@ namespace GymHub.Data.Configurations
                 Id = Guid.Parse("c4d374b1-c657-4f03-a46c-2c725f630375"),
                 StartTime = new DateTime(2023, 08, 29, 14, 0, 0),
                 EndTime = new DateTime(2023, 08, 29, 16, 0, 0),
-                ActivityId = Guid.Parse("436818ef-d86c-4e43-88ca-29ff34ad5850")
+                ActivityId = Guid.Parse("436818ef-d86c-4e43-88ca-29ff34ad5850"),
+                CountOfTrainees = 2
             };
 
             groupSchedules.Add(schedule);

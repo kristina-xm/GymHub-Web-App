@@ -49,6 +49,7 @@ namespace GymHub.Data.Configurations
                 Id = Guid.Parse("139c5fce-bf05-47e3-8fd3-9bb4f338aeb6"),
                 TraineeId = Guid.Parse("5546a97c-3ed4-48b7-90c7-2c0d70159e28"),
                 ScheduleId = Guid.Parse("1452eef9-d47f-48ce-bea6-8bc0ec775f5e"),
+                
             };
 
             groupEnrollments.Add(groupEnrollment);

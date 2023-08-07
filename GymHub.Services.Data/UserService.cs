@@ -98,9 +98,13 @@
 
         public async Task<RegisteredTraineeViewModel> GetTraineeTypeInfoForEdit(Trainee trainee)
         {
-            
+            var user = this.dbContext.Users.First(u => u.Id == trainee.UserId);
+
             return new RegisteredTraineeViewModel()
             {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber,
                 Age = trainee.Age,
                 Weight = trainee.Weight,
                 Height = trainee.Height,
@@ -124,6 +128,12 @@
         {
             
             var trainee = await GetTraineeAsync(userId);
+
+            var user = this.dbContext.Users.First(u => u.Id == trainee.UserId);
+
+            user.FirstName = traineeModel.FirstName;
+            user.LastName = traineeModel.LastName;
+            user.PhoneNumber = traineeModel.PhoneNumber;
 
             trainee.Age = traineeModel.Age;
             trainee.Weight = traineeModel.Weight ?? null;

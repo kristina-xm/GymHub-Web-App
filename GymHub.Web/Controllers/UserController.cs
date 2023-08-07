@@ -209,7 +209,7 @@
             {
                 var model = await this.userService.GetTraineeTypeInfoForEdit(trainee);
 
-                //If the user is trainer return his/her data in a view for edit
+                //If the user is trainee return his/her data in a view for edit
                 return View("RegisteredTrainee", model);
 
             }

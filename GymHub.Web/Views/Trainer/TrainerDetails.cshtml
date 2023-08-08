@@ -3,12 +3,47 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @inject IUserService UserService
+@inject ITraineeService TraineeService
+
+<h3>Trainer @Model.FirstName @Model.LastName</h3>
+<h4>General Infromation</h4>
+<h6>Experience: @Model.Experience years</h6>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    var user = await UserManager.GetUserAsync(User);
+    var isUserTrainee = await UserService.GetTraineeAsync(user.Id);
+
+
+    bool hasTrainingWithTrainer = this.TraineeService.CheckTraineeHasTrainingWithTrainer(isUserTrainee!, Model.Id);
+
+    if (hasTrainingWithTrainer)
+    {
+        <h6>Phone number: +@Model.PhoneNumber</h6>
+    }
+    else
+    {
+        <h6>Phone number: You should book a training to see the trainer's phone number</h6>
+    }
+
+
+}
+else
+{
+    <h6>Phone number: You should log in AND book a training to see the trainer's phone number</h6>
+}
+
+<br />
+<h4>More information</h4>
+<p>@Model.Bio</p>
+
+<h2>Trainer's schedule</h2>
 
 <div class="container">
-            <div class="col-10">
-                <partial name="_TrainerSchedulePartial" />
-            </div>
-        </div>
+    <div class="col-10">
+        <partial name="_TrainerSchedulePartial" />
+    </div>
+</div>
 
 @if (SignInManager.IsSignedIn(User))
 {

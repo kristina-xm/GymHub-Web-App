@@ -4,9 +4,10 @@ namespace GymHub.Web
     using GymHub.Data.Models;
     using GymHub.Services.Data;
     using GymHub.Services.Data.Interfaces;
+    using GymHub.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
-
+    using static GymHub.Common.GeneralApplicationConstants;
     public class Program
     {
         public static void Main(string[] args)
@@ -29,6 +30,7 @@ namespace GymHub.Web
                 options.Password.RequireNonAlphanumeric = builder.Configuration.GetValue<bool>("Identity:Password:RequireNonAlphanumeric");
                 options.Password.RequiredLength = builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
             })
+                .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<GymHubDbContext>();
             builder.Services.AddControllersWithViews();
 
@@ -59,6 +61,11 @@ namespace GymHub.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            if (app.Environment.IsDevelopment())
+            {
+                app.SeedAdministrator(AdminUser.AdminEmail);
+            }
 
             app.MapControllerRoute(
                 name: "default",

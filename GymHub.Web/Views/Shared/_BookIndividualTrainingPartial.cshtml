@@ -3,6 +3,9 @@
 @{
 
 }
+<head>
+    
+</head>
 
 <h5>Book a training</h5>
 
@@ -16,13 +19,13 @@
     <div class="col-12">
         <div class="col-sm-3 mt-3">
             <label asp-for="Start">Start time</label>
-            <input asp-for="Start" class="form-control" type="time" value="@Model.Start.ToString("HH:mm")" id="timepickerStart">
+            <input asp-for="Start" class="form-control" type="time" value="@Model.Start.ToString("HH:mm")" id="timepickerStart" min="07:00" max="22:00">
         </div>
     </div>
     <div class="col-12">
         <div class="col-sm-3 mt-3">
             <label asp-for="End">End time</label>
-            <input asp-for="End" id="timepickerEnd" type="time" value="@Model.End.ToString("HH:mm")" class="form-control">
+            <input asp-for="End" id="timepickerEnd" type="time" value="@Model.End.ToString("HH:mm")" class="form-control" min="07:00" max="22:00">
         </div>
     </div>
     <div class="col-12">
@@ -52,3 +55,9 @@
         </div>
     </div>
 </form>
+
+
+
+
+
+

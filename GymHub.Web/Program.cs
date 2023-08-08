@@ -4,6 +4,7 @@ namespace GymHub.Web
     using GymHub.Data.Models;
     using GymHub.Services.Data;
     using GymHub.Services.Data.Interfaces;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
 
     public class Program

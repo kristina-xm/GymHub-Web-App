@@ -3,25 +3,55 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
+using GymHub.Data.Models;
 
 public class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ApplicationUser>
 {
    
     public void Configure(EntityTypeBuilder<ApplicationUser> builder)
     {
-        
+
+        builder.HasData(this.SeedAdmin());
         builder.HasData(this.GenerateUsers());
+      
     }
 
-    
+    private ApplicationUser SeedAdmin()
+    {
+        ApplicationUser adminUser;
+
+        var hasher = new PasswordHasher<ApplicationUser>();
+
+        adminUser = new ApplicationUser()
+        {
+            Id = Guid.Parse("ba3a5230-8e32-4d72-bc27-def1a8ab665a"),
+            FirstName = "Martin",
+            LastName = "Stoyanov",
+            PhoneNumber = "359892334456",
+            Email = AdminUser.AdminEmail,
+            NormalizedEmail = AdminUser.AdminEmail.ToUpper(),
+            UserName = AdminUser.AdminEmail,
+            NormalizedUserName = AdminUser.AdminEmail.ToUpper(),
+            SecurityStamp = "2a1a3367-022d-4969-a374-63b39b19ad3f",
+            EmailConfirmed = false,
+
+        };
+
+        adminUser.PasswordHash = hasher.HashPassword(adminUser, "admin1234");
+       
+
+        return adminUser;
+
+    }
+
     private ApplicationUser[] GenerateUsers()
     {
         ICollection<ApplicationUser> users = new HashSet<ApplicationUser>();
 
         ApplicationUser user;
         //Password for testing all users is 123456
-       
 
+        
         user = new ApplicationUser()
         {
             Id = Guid.Parse("0fa5eb44-0f0b-455c-bc32-ed60a57f875e"),

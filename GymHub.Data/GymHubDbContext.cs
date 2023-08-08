@@ -9,8 +9,9 @@
 
     public class GymHubDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
-      
-       
+        private ApplicationUser AdminUser { get; set; }
+        private Trainer AdminTrainer { get; set; }
+
         public GymHubDbContext(DbContextOptions<GymHubDbContext> options)
             : base(options)
         {

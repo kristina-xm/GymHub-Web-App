@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GymHub.Data.Configurations;
 
 namespace GymHub.Data.Configurations
 {
@@ -14,8 +15,22 @@ namespace GymHub.Data.Configurations
         public void Configure(EntityTypeBuilder<Trainer> builder)
         {
             builder.HasData(this.GenerateTrainers());
+            builder.HasData(this.SeedAdminTrainer());
         }
+        
+        private Trainer SeedAdminTrainer()
+        {
+            Trainer adminTrainer = new Trainer()
+            {
+                Id = Guid.Parse("3fcaa2a4-59e1-4af4-9146-6f30716f836c"),
+                UserId = Guid.Parse("ba3a5230-8e32-4d72-bc27-def1a8ab665a"),
+                Bio = "General trainer in this gym",
+                Experience = 8
+            };
 
+            return adminTrainer;
+
+        }
         private Trainer[] GenerateTrainers()
         {
             ICollection<Trainer> trainers = new HashSet<Trainer>();

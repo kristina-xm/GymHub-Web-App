@@ -1,13 +1,41 @@
 ﻿@model TrainerDetailsViewModel
 
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject IUserService UserService
 
 <div class="container">
+            <div class="col-10">
+                <partial name="_TrainerSchedulePartial" />
+            </div>
+        </div>
 
-    <div class="col-10">
-        <partial name="_TrainerSchedulePartial" />
-    </div>
+@if (SignInManager.IsSignedIn(User))
+{
+    var user = await UserManager.GetUserAsync(User);
+    var isUserTrainer = await UserService.GetTrainerAsync(user.Id);
 
-    <div class="form-container">
-        <partial name="_BookIndividualTrainingPartial" model=" new BookIndividualTrainingViewModel{ TrainerId = Model.Id }" />
-    </div>
-</div>
+    if (isUserTrainer != null)
+    {
+        <div class="container">
+            <div class="col-10">
+                <partial name="_TrainerSchedulePartial" />
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="container">
+
+            <div class="col-10">
+                <partial name="_TrainerSchedulePartial" />
+            </div>
+
+
+            <div class="form-container">
+                <partial name="_BookIndividualTrainingPartial" model=" new BookIndividualTrainingViewModel{ TrainerId = Model.Id }" />
+            </div>
+        </div>
+    }
+}
+

@@ -14,18 +14,24 @@
     var user = await UserManager.GetUserAsync(User);
     var isUserTrainee = await UserService.GetTraineeAsync(user.Id);
 
-
-    bool hasTrainingWithTrainer = this.TraineeService.CheckTraineeHasTrainingWithTrainer(isUserTrainee!, Model.Id);
-
-    if (hasTrainingWithTrainer)
+    if (isUserTrainee != null)
     {
-        <h6>Phone number: +@Model.PhoneNumber</h6>
+        bool hasTrainingWithTrainer = this.TraineeService.CheckTraineeHasTrainingWithTrainer(isUserTrainee!, Model.Id);
+
+        if (hasTrainingWithTrainer)
+        {
+            <h6>Phone number: +@Model.PhoneNumber</h6>
+        }
+        else
+        {
+            <h6>Phone number: You should book a training to see the trainer's phone number</h6>
+        }
     }
     else
     {
-        <h6>Phone number: You should book a training to see the trainer's phone number</h6>
+        //Other Trainers can see phone numbers of their colleagues
+        <h6>Phone number: +@Model.PhoneNumber</h6>
     }
-
 
 }
 else

@@ -22,7 +22,7 @@
 
         public async Task<AccountDashboardViewModel> GetDashboardData(Guid userId)
         {
-            //var trainer = this.dbContext.Trainers.Where(t => t.User.Id == userId).FirstOrDefault();
+            var trainer = this.dbContext.Trainers.Where(t => t.User.Id == userId).FirstOrDefault();
 
             var model = new AccountDashboardViewModel();
 
@@ -43,9 +43,19 @@
                 .SelectMany(gat => gat.GroupActivity.GroupSchedules)
                 .Count(schedule => schedule.StartTime > DateTime.UtcNow);
 
+            var dailyGroupSchedules = await GetGroupActivitiesSchedule(trainer.Id);
+            var dailySchedules = await GetIndividualTrainingsSchedule(trainer.Id);
+
+
             model.UpcomingIndividualTrainings = upcomingIndividualTrainingsCount;
             model.CountOfManagedGroupActivities = groupActivityCount;
             model.UpcomingGroupTrainings = upcomingGroupActivities;
+            model.TrainerSchedule = new TrainerScheduleViewModel 
+            { 
+                DailyGroupSchedules = dailyGroupSchedules,
+                DailySchedules = dailySchedules
+            };
+
             return model;
 
         }

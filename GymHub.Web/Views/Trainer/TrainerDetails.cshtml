@@ -64,7 +64,8 @@ else
     {
         <div class="container">
             <div class="col-10">
-                <partial name="_TrainerSchedulePartial" />
+                <partial name="_TrainerSchedulePartial" model="new TrainerScheduleViewModel {DailyGroupSchedules = Model.TrainerSchedule.DailyGroupSchedules,
+           DailySchedules = Model.TrainerSchedule.DailySchedules}" />
             </div>
         </div>
     }

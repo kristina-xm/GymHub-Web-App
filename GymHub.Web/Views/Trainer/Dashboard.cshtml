@@ -16,9 +16,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="text-center">
-                    <h5 class="card-title" style="font-size: 40px;">@Model.UpcomingIndividualTrainings</h5>
+                        <h5 class="card-title" style="font-size: 40px;">@Model.UpcomingIndividualTrainings</h5>
                         <p class="card-text">Upcoming <b>Individual</b> trainings</p>
-                    <a href="#" class="btn btn-primary">View your Trainees</a>
+                        <a href="#" class="btn btn-primary">View your Trainees</a>
                     </div>
                 </div>
             </div>
@@ -27,9 +27,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="text-center">
-                    <h5 class="card-title" style="font-size: 40px;">@Model.CountOfManagedGroupActivities</h5>
-                    <p class="card-text">Number of Group activities you are responsible for</p>
-                    <a href="#" class="btn btn-primary">Manage</a>
+                        <h5 class="card-title" style="font-size: 40px;">@Model.CountOfManagedGroupActivities</h5>
+                        <p class="card-text">Number of Group activities you are responsible for</p>
+                        <a href="#" class="btn btn-primary">Manage</a>
                     </div>
                 </div>
             </div>
@@ -38,15 +38,21 @@
             <div class="card">
                 <div class="card-body">
                     <div class="text-center">
-                    <h5 class="card-title" style="font-size: 40px;">@Model.UpcomingGroupTrainings</h5>
-                    <p class="card-text">Upcoming Group activities</p>
-                    <a href="#" class="btn btn-primary">Manage Upcoming</a>
+                        <h5 class="card-title" style="font-size: 40px;">@Model.UpcomingGroupTrainings</h5>
+                        <p class="card-text">Upcoming Group activities</p>
+                        <a href="#" class="btn btn-primary">Manage Upcoming</a>
                     </div>
                 </div>
             </div>
         </div>
+        <hr />
+        <h3>Your schedule</h3>
+
+        <div class="col-10">
+            <partial name="_TrainerSchedulePartial" model="new TrainerScheduleViewModel {DailyGroupSchedules = Model.TrainerSchedule.DailyGroupSchedules,
+                DailySchedules = Model.TrainerSchedule.DailySchedules}" />
+        </div>
+
     </div>
 </div>
-<div class="col-10">
-    <partial name="_TrainerSchedulePartial" />
-</div>
+

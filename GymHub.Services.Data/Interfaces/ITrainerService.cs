@@ -6,5 +6,7 @@
         Task<IEnumerable<AllTrainerViewModel>> AllTrainers();
 
         Task<TrainerDetailsViewModel> GetTrainerByIdAsync(Guid id);
+
+        Task<AccountDashboardViewModel> GetDashboardData(Guid trainerId);
     }
 }

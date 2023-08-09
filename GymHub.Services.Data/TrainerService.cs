@@ -11,7 +11,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using GymHub.Web.ViewModels.User;
-
     public class TrainerService : ITrainerService
     {
         private readonly GymHubDbContext dbContext;
@@ -20,6 +19,24 @@
             this.dbContext = context;
         }
 
+        public async Task<AccountDashboardViewModel> GetDashboardData(Guid userId)
+        {
+            //var trainer = this.dbContext.Trainers.Where(t => t.User.Id == userId).FirstOrDefault();
+
+            var model = new AccountDashboardViewModel();
+
+            var traineesCount = dbContext.Trainers
+                .Where(t => t.User.Id == userId)
+                .SelectMany(t => t.IndividualTrainingTrainer)
+                    .SelectMany(itt => itt.IndividualTraining.Enrollments)
+                    .Count();
+
+           
+
+            model.CountOfTraineesForIndividualTrainings = traineesCount;
+            return model;
+
+        }
         public async Task<IEnumerable<AllTrainerViewModel>> AllTrainers()
         {
             IEnumerable<AllTrainerViewModel> allTrainers = await dbContext.Trainers

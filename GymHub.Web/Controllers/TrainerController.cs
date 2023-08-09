@@ -63,7 +63,11 @@ namespace GymHub.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Account()
         {
-            return View("Dashboard");
+            var user = GetUserId();
+
+            var viewModel = await this.trainerService.GetDashboardData(user);
+
+            return View("Dashboard", viewModel);
         }
     }
 }

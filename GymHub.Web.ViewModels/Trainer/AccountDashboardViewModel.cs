@@ -12,6 +12,6 @@ namespace GymHub.Web.ViewModels.Trainer
 
         public int CountOfManagedGroupActivities { get; set; }
 
-        public int Certifications { get; set; }
+        public int UpcomingTrainingsAndActivities { get; set; }
     }
 }

@@ -11,6 +11,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using GymHub.Web.ViewModels.User;
+
     public class TrainerService : ITrainerService
     {
         private readonly GymHubDbContext dbContext;
@@ -67,7 +68,43 @@
             return allTrainers;
         }
 
-        public async Task<TrainerDetailsViewModel> GetTrainerByIdAsync(Guid id)
+        public async Task<ICollection<TrainerDailyScheduleViewModel>> GetIndividualTrainingsSchedule(Guid trainerId)
+        {
+            var individualSchedules = await this.dbContext.Trainers
+                 .Where(t => t.Id == trainerId)
+                 .Include(t => t.IndividualTrainingTrainer)
+                 .ThenInclude(it => it.IndividualTraining)
+                 .SelectMany(t => t.IndividualTrainingTrainer)
+                 .Select(it => new TrainerDailyScheduleViewModel
+                 {
+                    StartTime = it.IndividualTraining.StartTime,
+                    EndTime = it.IndividualTraining.EndTime
+                 })
+                 .ToArrayAsync();
+
+            return individualSchedules;
+        }
+
+        public async Task<ICollection<TrainerGroupScheduleViewModel>> GetGroupActivitiesSchedule(Guid trainerId)
+        {
+            var dailyGroupSchedules = await this.dbContext.Trainers
+                 .Where(t => t.Id == trainerId)
+                .SelectMany(t => t.GroupActivityTrainers)
+                .Include(t => t.GroupActivity)
+                .ThenInclude(t => t.GroupSchedules)
+                .SelectMany(t => t.GroupActivity.GroupSchedules)
+                .Select(gs => new TrainerGroupScheduleViewModel
+                {
+                    ActivityName = gs.GroupActivity.Name,
+                    StartTime = gs.StartTime,
+                    EndTime = gs.EndTime
+                })
+                .ToArrayAsync();
+
+            return dailyGroupSchedules;
+        }
+
+         public async Task<TrainerDetailsViewModel> GetTrainerByIdAsync(Guid id)
         {
             Trainer? trainer = await this.dbContext.Trainers
                 .Include(t => t.User)
@@ -86,40 +123,20 @@
                      PhoneNumber = t.User.PhoneNumber,
                      Experience = t.Experience,
                      Bio = t.Bio,
-                     DailySchedules = t.IndividualTrainingTrainer.Select(itt => new TrainerDailyScheduleViewModel
-                     {
-                         StartTime = itt.IndividualTraining.StartTime,
-                         EndTime = itt.IndividualTraining.EndTime
-                     }).OrderBy(d => d.StartTime)
-                     .ToArray(),
                      Certificate = new TrainerCertificateViewModel 
                      {
                          Name = t.TrainerCertifications.FirstOrDefault()!.Certification.Name,
                          IssueDate = t.TrainerCertifications.FirstOrDefault()!.Certification.IssueDate,
                          IssuingOrganization = t.TrainerCertifications.FirstOrDefault()!.Certification.IssuingOrganization
                      }
-
-
                  })
                  .FirstOrDefaultAsync();
 
-            var dailyGroupSchedules = this.dbContext.Trainers
-                 .Where(t => t.Id == trainer.Id)
-                .SelectMany(t => t.GroupActivityTrainers)
-                .Include(t => t.GroupActivity)
-                .ThenInclude(t => t.GroupSchedules)
-                .SelectMany(t => t.GroupActivity.GroupSchedules)
-                .Select(gs => new TrainerGroupScheduleViewModel
-                {
-                    ActivityName = gs.GroupActivity.Name,
-                    StartTime = gs.StartTime,
-                    EndTime = gs.EndTime
-                })
-                .ToArray();
+            var dailyGroupSchedules = await GetGroupActivitiesSchedule(trainer.Id);
+            var dailySchedules = await GetIndividualTrainingsSchedule(trainer.Id);
 
             trainerModel.DailyGroupSchedules = dailyGroupSchedules;
-
-           
+            trainerModel.DailySchedules = dailySchedules;
 
             return trainerModel;
         }

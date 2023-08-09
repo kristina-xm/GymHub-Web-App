@@ -25,11 +25,11 @@
 
             var model = new AccountDashboardViewModel();
 
-            var upcomingIndividualTrainings = dbContext.Trainers
-                .Where(t => t.User.Id == userId)
-                .SelectMany(t => t.IndividualTrainingTrainer)
-                    .SelectMany(itt => itt.IndividualTraining.Enrollments)
-                    .Count();
+            var upcomingIndividualTrainingsCount = dbContext.Trainers
+             .Where(t => t.User.Id == userId)
+             .SelectMany(t => t.IndividualTrainingTrainer)
+             .SelectMany(itt => itt.IndividualTraining.Enrollments)
+             .Count(enrollment => enrollment.IndividualTraining.StartTime > DateTime.UtcNow);
 
             var groupActivityCount = dbContext.Trainers
                 .Include(t => t.GroupActivityTrainers)
@@ -40,9 +40,9 @@
                 .Where(t => t.UserId == userId)
                 .SelectMany(t => t.GroupActivityTrainers)
                 .SelectMany(gat => gat.GroupActivity.GroupSchedules)
-                .Count();
+                .Count(schedule => schedule.StartTime > DateTime.UtcNow);
 
-            model.UpcomingIndividualTrainings = upcomingIndividualTrainings;
+            model.UpcomingIndividualTrainings = upcomingIndividualTrainingsCount;
             model.CountOfManagedGroupActivities = groupActivityCount;
             model.UpcomingGroupTrainings = upcomingGroupActivities;
             return model;

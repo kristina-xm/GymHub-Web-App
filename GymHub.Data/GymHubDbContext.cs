@@ -42,15 +42,10 @@
                 itt.TrainingId
             });
 
-            //builder.Entity<GroupActivityTrainer>().HasKey(gat => new
-            //{
-            //    gat.TrainerId,
-            //    gat.ActivityId
-            //});
 
             builder.Entity<TrainerCertification>().HasKey(tc => new
             {
-                tc.CetrificationId,
+                tc.CertificationId,
                 tc.TrainerId
             });
 
@@ -77,6 +72,8 @@
             builder.ApplyConfiguration(new IndividualTrainingEntityConfiguration());
             builder.ApplyConfiguration(new IndividualTrainingTrainerEntityConfiguration());
             builder.ApplyConfiguration(new EnrollmentEntityConfiguration());
+            builder.ApplyConfiguration(new CertificationEntityConfiguration());
+            builder.ApplyConfiguration(new CertificationTrainerEntityConfiguration());
 
         }
     }

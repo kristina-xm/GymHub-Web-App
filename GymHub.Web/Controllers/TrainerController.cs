@@ -61,9 +61,9 @@ namespace GymHub.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> TrainerDashboard()
+        public async Task<IActionResult> Account()
         {
-            return View("TrainerAccountDashboard");
+            return View("Dashboard");
         }
     }
 }

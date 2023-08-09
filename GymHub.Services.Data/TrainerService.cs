@@ -10,6 +10,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using GymHub.Web.ViewModels.User;
 
     public class TrainerService : ITrainerService
     {
@@ -40,13 +41,15 @@
 
         public async Task<TrainerDetailsViewModel> GetTrainerByIdAsync(Guid id)
         {
-            Trainer trainer = await this.dbContext.Trainers
+            Trainer? trainer = await this.dbContext.Trainers
                 .Include(t => t.User)
                 .FirstOrDefaultAsync(t => t.Id == id);
 
 
             var trainerModel = await this.dbContext.Trainers
                  .Where(t => t.Id == trainer.Id)
+                 .Include(t => t.TrainerCertifications)
+                    .ThenInclude(tc => tc.Certification)
                  .Select(t => new TrainerDetailsViewModel
                  {
                      Id = t.Id,
@@ -60,7 +63,14 @@
                          StartTime = itt.IndividualTraining.StartTime,
                          EndTime = itt.IndividualTraining.EndTime
                      }).OrderBy(d => d.StartTime)
-                     .ToArray()
+                     .ToArray(),
+                     Certificate = new TrainerCertificateViewModel 
+                     {
+                         Name = t.TrainerCertifications.FirstOrDefault()!.Certification.Name,
+                         IssueDate = t.TrainerCertifications.FirstOrDefault()!.Certification.IssueDate,
+                         IssuingOrganization = t.TrainerCertifications.FirstOrDefault()!.Certification.IssuingOrganization
+                     }
+
 
                  })
                  .FirstOrDefaultAsync();
@@ -80,6 +90,8 @@
                 .ToArray();
 
             trainerModel.DailyGroupSchedules = dailyGroupSchedules;
+
+           
 
             return trainerModel;
         }

@@ -58,7 +58,7 @@
                 var certificateOfTrainer = new TrainerCertification
                 {
                     TrainerId = addedTrainer!.Id,
-                    CetrificationId = certificate.Id,
+                    CertificationId = certificate.Id,
                 };
 
                 await this.dbContext.Certifications.AddAsync(certificate);

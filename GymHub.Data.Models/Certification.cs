@@ -19,6 +19,10 @@
         public string Name { get; set; } = null!;
 
         [Required]
+        [MaxLength(OrganizationMaxLength)]
+        public string IssuingOrganization { get; set; } = null!;
+
+        [Required]
         public DateTime IssueDate { get; set; }
 
         [Required]

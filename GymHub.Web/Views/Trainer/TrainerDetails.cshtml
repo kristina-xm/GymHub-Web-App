@@ -43,6 +43,12 @@ else
 <h4>More information</h4>
 <p>@Model.Bio</p>
 
+<h4>Professional Qualification</h4>
+
+<p>Certificate: @Model.Certificate.Name</p>
+<p>Issue Date: @Model.Certificate.IssueDate.ToString("dd.MM.yyyy")</p>
+<p>Issued by: @Model.Certificate.IssuingOrganization</p>
+
 <h2>Trainer's schedule</h2>
 
 <div class="container">

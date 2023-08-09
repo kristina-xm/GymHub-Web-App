@@ -10,6 +10,7 @@ namespace GymHub.Web.ViewModels.User
 {
     public class MoreInfoTrainerViewModel
     {
+        
 
         [Required]
         [StringLength(BioMaxLength, MinimumLength = BioMinLength, ErrorMessage = "You should introduce yourself to the trainees! Bio should be between {0} and {1} caracters.")]
@@ -19,6 +20,6 @@ namespace GymHub.Web.ViewModels.User
         [Range(ExperienceMin, ExperienceMax)]
         public int Experience { get; set; }
 
-        public TrainerCertificateViewModel? Certificate { get; set; }
+        public TrainerCertificateViewModel Certificate { get; set; } 
     }
 }

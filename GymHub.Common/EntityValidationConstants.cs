@@ -39,8 +39,10 @@
 
         public static class Certification
         {
-            public const int NameMaxLength = 50;
+            public const int NameMaxLength = 60;
             public const int NameMinLength = 3;
+            public const int OrganizationMaxLength = 60;
+            public const int OrganizationMinLength = 2;
         }
 
         public static class IndividualTraining

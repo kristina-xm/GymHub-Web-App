@@ -6,12 +6,7 @@
     using System.Collections.Generic;
     public class TrainerDetailsViewModel
     {
-        public TrainerDetailsViewModel()
-        {
-            this.DailySchedules = new HashSet<TrainerDailyScheduleViewModel>();
-            this.DailyGroupSchedules = new HashSet<TrainerGroupScheduleViewModel>();
-          
-        }
+        
         public Guid Id { get; set; }
 
         public string FirstName { get; set; } = null!;
@@ -24,8 +19,8 @@
 
         public string Bio { get; set; } = null!;
 
-        public ICollection<TrainerDailyScheduleViewModel> DailySchedules { get; set; }
-        public ICollection<TrainerGroupScheduleViewModel> DailyGroupSchedules { get; set; }
+        public TrainerScheduleViewModel TrainerSchedule { get; set; }
+
         public TrainerCertificateViewModel Certificate { get; set; }
     }
 }

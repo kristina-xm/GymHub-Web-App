@@ -48,8 +48,8 @@ namespace GymHub.Web.Controllers
                 return Json(new { error = "Trainer not found" });
             }
 
-            var indEvents = viewModel.DailySchedules.ToList();
-            var groupEvents = viewModel.DailyGroupSchedules.ToList();
+            var indEvents = viewModel.TrainerSchedule.DailySchedules.ToList();
+            var groupEvents = viewModel.TrainerSchedule.DailyGroupSchedules.ToList();
 
             var result = new
             {

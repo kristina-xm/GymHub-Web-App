@@ -110,6 +110,8 @@
                 .Include(t => t.User)
                 .FirstOrDefaultAsync(t => t.Id == id);
 
+            var dailyGroupSchedules = await GetGroupActivitiesSchedule(trainer.Id);
+            var dailySchedules = await GetIndividualTrainingsSchedule(trainer.Id);
 
             var trainerModel = await this.dbContext.Trainers
                  .Where(t => t.Id == trainer.Id)
@@ -123,6 +125,11 @@
                      PhoneNumber = t.User.PhoneNumber,
                      Experience = t.Experience,
                      Bio = t.Bio,
+                     TrainerSchedule = new TrainerScheduleViewModel
+                     {
+                         DailyGroupSchedules = dailyGroupSchedules,
+                         DailySchedules = dailySchedules
+                     },
                      Certificate = new TrainerCertificateViewModel 
                      {
                          Name = t.TrainerCertifications.FirstOrDefault()!.Certification.Name,
@@ -132,11 +139,7 @@
                  })
                  .FirstOrDefaultAsync();
 
-            var dailyGroupSchedules = await GetGroupActivitiesSchedule(trainer.Id);
-            var dailySchedules = await GetIndividualTrainingsSchedule(trainer.Id);
-
-            trainerModel.DailyGroupSchedules = dailyGroupSchedules;
-            trainerModel.DailySchedules = dailySchedules;
+            
 
             return trainerModel;
         }

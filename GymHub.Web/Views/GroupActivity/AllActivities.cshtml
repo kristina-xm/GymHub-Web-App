@@ -1,5 +1,9 @@
 ﻿@model ICollection<AllActivitiesViewModel>
 
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject IUserService UserService
+
 
 @foreach (var activity in Model)
 {
@@ -9,9 +13,30 @@
             <h6 class="card-subtitle mb-2 text-muted">Trainer: @activity.TrainerName</h6>
             <h6 class="card-subtitle mb-2 text-muted">Level: @activity.TraineeLevel</h6>
             <h6 class="card-subtitle mb-2 text-muted">Intensity: @activity.Intensity</h6>
-            <form method="post">
-                <a class="btn btn-primary mr-2" asp-area="" asp-action="ActivityDetails" asp-controller="GroupActivity" asp-route-id="@activity.Id">Book your place</a>
-            </form>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                var user = await UserManager.GetUserAsync(User);
+                var isUserTrainee = await UserService.GetTraineeAsync(user.Id);
+
+                if (isUserTrainee != null)
+                {
+                    <form method="post">
+                        <a class="btn btn-primary mr-2" asp-area="" asp-action="ActivityDetails" asp-controller="GroupActivity" asp-route-id="@activity.Id">Book your place</a>
+                    </form>
+                }
+                else
+                {
+                    <form method="post">
+                        <a class="btn btn-primary mr-2" asp-area="" asp-action="ActivityDetails" asp-controller="GroupActivity" asp-route-id="@activity.Id">Activity Details</a>
+                    </form>
+                }
+            }
+            else
+            {
+                <form method="post">
+                    <a class="btn btn-primary mr-2" asp-area="" asp-action="ActivityDetails" asp-controller="GroupActivity" asp-route-id="@activity.Id">Activity Details</a>
+                </form>
+            }
             <a href="/Trainer/TrainerDetails/@activity.TrainerId" class="btn btn-primary">About the Trainer</a>
         </div>
     </div>

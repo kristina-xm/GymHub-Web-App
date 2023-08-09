@@ -1,5 +1,10 @@
 ﻿@model ActivityDetailsViewModel
 
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject IUserService UserService
+
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -48,7 +53,7 @@
             <th scope="col">End Hour</th>
             <th scope="col">Day</th>
             <th scope="col">Remaining spots</th>
-            <th scope="col">Options</th>
+            <th scope="col" id="options">Options</th>
         </tr>
     </thead>
     <tbody>
@@ -60,9 +65,23 @@
                 <td>@item.EndHour.ToString("HH:mm")</td>
                 <td>@item.DayOfWeek</td>
                 <td>@item.RemainingSpots</td>
-                @if (User.Identity.IsAuthenticated)
+
+                @if (SignInManager.IsSignedIn(User))
                 {
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-@item.Id">Enroll</button></td>
+                    var user = await UserManager.GetUserAsync(User);
+                    var isTrainer = await UserService.GetTrainerAsync(user.Id);
+
+                    if (isTrainer != null)
+                    {
+                        //If user is Trainer should not be able to book spots for training.
+                        <td><button type="button" class="btn btn-primary" disabled>Only Trainees can Enroll</button></td>
+                    }
+                    else
+                    {
+                        //If user is Trainee can book a spot for training
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-@item.Id">Enroll</button></td>
+                    }
+
                 }
                 else
                 {

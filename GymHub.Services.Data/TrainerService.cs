@@ -25,15 +25,26 @@
 
             var model = new AccountDashboardViewModel();
 
-            var traineesCount = dbContext.Trainers
+            var upcomingIndividualTrainings = dbContext.Trainers
                 .Where(t => t.User.Id == userId)
                 .SelectMany(t => t.IndividualTrainingTrainer)
                     .SelectMany(itt => itt.IndividualTraining.Enrollments)
                     .Count();
 
-           
+            var groupActivityCount = dbContext.Trainers
+                .Include(t => t.GroupActivityTrainers)
+                .Where(t => t.UserId == userId)
+                .Count();
 
-            model.CountOfTraineesForIndividualTrainings = traineesCount;
+            var upcomingGroupActivities = dbContext.Trainers
+                .Where(t => t.UserId == userId)
+                .SelectMany(t => t.GroupActivityTrainers)
+                .SelectMany(gat => gat.GroupActivity.GroupSchedules)
+                .Count();
+
+            model.UpcomingIndividualTrainings = upcomingIndividualTrainings;
+            model.CountOfManagedGroupActivities = groupActivityCount;
+            model.UpcomingGroupTrainings = upcomingGroupActivities;
             return model;
 
         }

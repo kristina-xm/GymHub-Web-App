@@ -8,10 +8,10 @@ namespace GymHub.Web.ViewModels.Trainer
 {
     public class AccountDashboardViewModel
     {
-        public int CountOfTraineesForIndividualTrainings { get; set; }
+        public int UpcomingIndividualTrainings { get; set; }
 
         public int CountOfManagedGroupActivities { get; set; }
 
-        public int UpcomingTrainingsAndActivities { get; set; }
+        public int UpcomingGroupTrainings { get; set; }
     }
 }

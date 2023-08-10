@@ -14,6 +14,6 @@ namespace GymHub.Web.ViewModels.Trainer
 
         public int UpcomingGroupTrainings { get; set; }
 
-        public TrainerScheduleViewModel TrainerSchedule { get; set; }
+        public TrainerScheduleViewModel? TrainerSchedule { get; set; }
     }
 }

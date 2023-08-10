@@ -114,7 +114,7 @@
             return dailyGroupSchedules;
         }
 
-         public async Task<TrainerDetailsViewModel> GetTrainerByIdAsync(Guid id)
+        public async Task<TrainerDetailsViewModel> GetTrainerWithScheduleByIdAsync(Guid id)
         {
             Trainer? trainer = await this.dbContext.Trainers
                 .Include(t => t.User)

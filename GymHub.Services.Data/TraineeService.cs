@@ -36,16 +36,6 @@ namespace GymHub.Services.Data
             bool hasEnrollmentWithTrainer = traineeWithEnrollments.Enrollments
                 .Any(enrollment => trainingsByTrainer.Any(training => enrollment.IndividualTraining.Id == training.Id));
 
-            //var enrollment = this.dbContext
-            //    .Enrollments
-            //    .Where(e => e.TraineeId == trainee.Id)
-            //    .FirstOrDefault();
-
-         
-            //bool hasEnrollmentWithTrainer = trainee.Enrollments
-            //    .Any(enrollment => trainingsByTrainer.Any(training => enrollment.IndividualTraining.Id == training.Id));
-
-
             return hasEnrollmentWithTrainer;
         }
     }

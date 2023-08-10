@@ -29,7 +29,7 @@ namespace GymHub.Web.Controllers
         public async Task<IActionResult> TrainerDetails(Guid id)
         {
 
-            TrainerDetailsViewModel viewModel = await this.trainerService.GetTrainerByIdAsync(id);
+            TrainerDetailsViewModel viewModel = await this.trainerService.GetTrainerWithScheduleByIdAsync(id);
 
             if (viewModel == null)
             {
@@ -42,7 +42,7 @@ namespace GymHub.Web.Controllers
 
         public async Task<JsonResult> GetEvents(Guid id)
         {
-            TrainerDetailsViewModel viewModel = await this.trainerService.GetTrainerByIdAsync(id);
+            TrainerDetailsViewModel viewModel = await this.trainerService.GetTrainerWithScheduleByIdAsync(id);
             if (viewModel == null)
             {
                 return Json(new { error = "Trainer not found" });

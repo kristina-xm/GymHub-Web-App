@@ -73,7 +73,6 @@
         {
             bool userExists = dbContext.Trainees.Any(t => t.UserId == userId) || dbContext.Trainers.Any(tr => tr.UserId == userId);
 
-
             return userExists;
 
         }

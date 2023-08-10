@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
-using GymHub.Data.Models;
 
 public class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ApplicationUser>
 {

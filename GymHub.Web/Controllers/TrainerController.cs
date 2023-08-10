@@ -4,6 +4,7 @@ using GymHub.Web.ViewModels.Trainer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using static GymHub.Common.NotificationConstants;
 
 namespace GymHub.Web.Controllers
 {
@@ -33,6 +34,7 @@ namespace GymHub.Web.Controllers
 
             if (viewModel == null)
             {
+                TempData[ErrorMessage] = "Something went wrong. Please try again later";
                 return this.RedirectToAction("Index", "Home");
             }
 

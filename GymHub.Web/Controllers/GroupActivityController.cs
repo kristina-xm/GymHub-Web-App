@@ -18,7 +18,7 @@
         [HttpGet]
         public async Task<IActionResult> AllActivities()
         {
-            //Try catch here because there is a possibility for server error
+           
             var model = await groupActivityService.AllActivities();
             return View(model);
         }

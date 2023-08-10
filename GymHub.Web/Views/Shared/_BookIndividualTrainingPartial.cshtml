@@ -4,7 +4,12 @@
 
 }
 <head>
+
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/2.0.4/css/bootstrap-datepicker.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/2.0.4/js/bootstrap-datepicker.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 
 <h5>Book a training</h5>
@@ -13,19 +18,19 @@
     <div class="col-12">
         <div class="col-sm-3 mt-3">
             <label asp-for="Start">Day</label>
-            <input asp-for="Day" class="form-control" type="date">
+            <input asp-for="Day" class="form-control" id="datepicker" type="date">
         </div>
     </div>
     <div class="col-12">
         <div class="col-sm-3 mt-3">
             <label asp-for="Start">Start time</label>
-            <input asp-for="Start" class="form-control" type="time" value="@Model.Start.ToString("HH:mm")" id="timepickerStart" min="07:00" max="22:00">
+            <input asp-for="Start" class="form-control" type="time" value="@Model.Start.ToString("HH:mm")" id="datetimepicker">
         </div>
     </div>
     <div class="col-12">
         <div class="col-sm-3 mt-3">
             <label asp-for="End">End time</label>
-            <input asp-for="End" id="timepickerEnd" type="time" value="@Model.End.ToString("HH:mm")" class="form-control" min="07:00" max="22:00">
+            <input asp-for="End" id="datetimepicker" type="time" value="@Model.End.ToString("HH:mm")" class="form-control" min="07:00" max="22:00">
         </div>
     </div>
     <div class="col-12">
@@ -55,6 +60,18 @@
         </div>
     </div>
 </form>
+
+<script>
+    // Function to set the min attribute of the date picker to the current date
+    function setMinDate() {
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementById("datepicker").min = today;
+    }
+
+    // Call the setMinDate function to disable past dates on page load
+    setMinDate();
+</script>
+
 
 
 

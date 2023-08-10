@@ -7,6 +7,8 @@
     using GymHub.Web.ViewModels.User;
     using Microsoft.EntityFrameworkCore;
     using System;
+    using static GymHub.Common.EntityValidationConstants;
+
     public class UserServiceTests
     {
         private DbContextOptions<GymHubDbContext> dbOptions;
@@ -137,11 +139,17 @@
 
             var expectedTrainee = dbContext.Trainees.First(trainee => trainee.UserId == userIdTrainee);
 
+           
             //Act
             var resultTrainee = await userService.GetTraineeAsync(userIdTrainee);
 
             //Assert
-            Assert.That(resultTrainee, Is.EqualTo(expectedTrainee));
+            Assert.IsNotNull(resultTrainee);
+            Assert.That(expectedTrainee.Level, Is.EqualTo(resultTrainee.Level));
+            Assert.That(expectedTrainee.Age, Is.EqualTo(resultTrainee.Age));
+            Assert.That(expectedTrainee.Weight, Is.EqualTo(resultTrainee.Weight));
+            Assert.That(expectedTrainee.Height, Is.EqualTo(resultTrainee.Height));
+            Assert.That(expectedTrainee.UserId, Is.EqualTo(resultTrainee.UserId));
         }
 
         [Test]
@@ -191,5 +199,143 @@
             //Assert
             Assert.IsNull(resultTrainer);
         }
+
+        [Test]
+        public async Task GetTraineeUserDataCorrectly()
+        {
+            // Arrange
+
+            var userIdTrainee = Guid.Parse("74e67149-8b9d-40e4-a648-8088dff336a4");
+
+            var trainee = dbContext.Trainees.First(trainee => trainee.UserId == userIdTrainee);
+           
+            var dataModelExpected = new RegisteredTraineeViewModel
+            {
+                FirstName = trainee.User.FirstName,
+                LastName = trainee.User.LastName,
+                PhoneNumber = trainee.User.PhoneNumber,
+                Age = trainee.Age,
+                Weight = trainee.Weight,
+                Height = trainee.Height,
+                Gender = trainee.Gender,
+                Level = trainee.Level
+            };
+
+            //Act
+            var resultTrainee = await userService.GetTraineeTypeInfoForEdit(trainee);
+
+            Assert.IsNotNull(resultTrainee);
+
+            var dataModelResult = new RegisteredTraineeViewModel
+            {
+                FirstName = resultTrainee.FirstName,
+                LastName = resultTrainee.LastName,
+                PhoneNumber = resultTrainee.PhoneNumber,
+                Age = resultTrainee.Age,
+                Weight = resultTrainee.Weight,
+                Height = resultTrainee.Height,
+                Gender = resultTrainee.Gender,
+                Level = resultTrainee.Level
+            };
+
+            
+            //Assert
+            Assert.That(dataModelResult.FirstName, Is.EqualTo(dataModelExpected.FirstName));
+            Assert.That(dataModelResult.LastName, Is.EqualTo(dataModelExpected.LastName));
+            Assert.That(dataModelResult.PhoneNumber, Is.EqualTo(dataModelExpected.PhoneNumber));
+            Assert.That(dataModelResult.Age, Is.EqualTo(dataModelExpected.Age));
+            Assert.That(dataModelResult.Weight, Is.EqualTo(dataModelExpected.Weight));
+            Assert.That(dataModelResult.Height, Is.EqualTo(dataModelExpected.Height));
+            Assert.That(dataModelResult.Level, Is.EqualTo(dataModelExpected.Level));
+        }
+
+        [Test]
+        public async Task GetTrainerUserDataCorrectly()
+        {
+            // Arrange
+
+            var userIdTrainer = Guid.Parse("72abbcd0-db58-4e6d-a3b4-58e09947e667");
+
+            var trainer = dbContext.Trainers.First(trainee => trainee.UserId == userIdTrainer);
+
+            var dataModelExpected = new RegisteredTrainerViewModel
+            {
+                Bio = trainer.Bio,
+                Experience = trainer.Experience,
+            };
+
+            //Act
+            var resultTrainee = await userService.GetTrainerTypeInfoForEdit(trainer);
+
+            Assert.IsNotNull(resultTrainee);
+
+            var dataModelResult = new RegisteredTrainerViewModel
+            {
+                Bio = resultTrainee.Bio,
+                Experience = resultTrainee.Experience
+            };
+
+            //Assert
+            Assert.That(dataModelResult.Bio, Is.EqualTo(dataModelExpected.Bio));
+            Assert.That(dataModelResult.Experience, Is.EqualTo(dataModelExpected.Experience));
+           
+        }
+
+        [Test]
+        public async Task EditTraineeUserDataCorrectly()
+        {
+            // Arrange
+
+            var userIdTrainee = Guid.Parse("74e67149-8b9d-40e4-a648-8088dff336a4");
+
+            var trainee = dbContext.Trainees.First(trainee => trainee.UserId == userIdTrainee);
+            int newTraineeWeigth = 67;
+
+            var traineeModel = new RegisteredTraineeViewModel()
+            {
+                FirstName = "Yana",
+                LastName = "Georgieva",
+                PhoneNumber = "35987227744",
+                Age = 24,
+                Weight = newTraineeWeigth,
+                Height = 1.70,
+                Level = "Intermediate"
+            };
+
+            //Act
+            await userService.EditTraineeAsync(traineeModel, userIdTrainee);
+
+            //Assert
+            Assert.That(trainee.Weight, Is.EqualTo(newTraineeWeigth));
+       
+        }
+
+        [Test]
+        public async Task EditTrainerUserDataCorrectly()
+        {
+            // Arrange
+
+            var userIdTrainer = Guid.Parse("72abbcd0-db58-4e6d-a3b4-58e09947e667");
+
+            var trainer = dbContext.Trainers.First(trainer => trainer.UserId == userIdTrainer);
+           
+            string newBio = "New bio";
+            int newExperience = 4;
+
+            var traineeModel = new RegisteredTrainerViewModel()
+            {
+                Bio = newBio,
+                Experience = newExperience
+            };
+
+            //Act
+            await userService.EditTrainerAsync(traineeModel, userIdTrainer);
+
+            //Assert
+            Assert.That(trainer.Bio, Is.EqualTo(newBio));
+            Assert.That(trainer.Experience, Is.EqualTo(newExperience));
+
+        }
+
     }
 }

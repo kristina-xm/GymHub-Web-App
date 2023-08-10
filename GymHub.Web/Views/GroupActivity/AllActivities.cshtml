@@ -4,9 +4,14 @@
 @inject UserManager<ApplicationUser> UserManager
 @inject IUserService UserService
 
-
+<h2 class="text-center mt-4">Group activities in our gym</h2>
+<br />
+<h4 class="text-center">If you want to book a spot for practice, click on <br /> Book your place button</h4>
+<br />
+<div class="row">
 @foreach (var activity in Model)
 {
+     <div class="col-md-4">
     <div class="card mt-3" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">@activity.Name</h5>
@@ -40,4 +45,6 @@
             <a href="/Trainer/TrainerDetails/@activity.TrainerId" class="btn btn-primary">About the Trainer</a>
         </div>
     </div>
+    </div>
 }
+</div>

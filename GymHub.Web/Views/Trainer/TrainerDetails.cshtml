@@ -5,6 +5,10 @@
 @inject IUserService UserService
 @inject ITraineeService TraineeService
 
+<head>
+    <link rel="stylesheet" href="C:\Users\Krisitina Manolova\source\repos\GymHub-Web-App\GymHub.Web\wwwroot\css\TrainersDetails.css">
+</head>
+
 <h3>Trainer @Model.FirstName @Model.LastName</h3>
 <h4>General Infromation</h4>
 <h6>Experience: @Model.Experience years</h6>
@@ -45,7 +49,7 @@ else
 <div class="row">
     <!-- Left column for "Bio" -->
     <div class="col-md-6 border margin-right">
-        <h4>More information</h4>
+        <h4>Trainer's message for you</h4>
         <p>@Model.Bio</p>
     </div>
 

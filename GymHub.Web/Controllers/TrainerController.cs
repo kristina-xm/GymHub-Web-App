@@ -29,13 +29,17 @@ namespace GymHub.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> TrainerDetails(Guid id)
         {
-
+            
             TrainerDetailsViewModel viewModel = await this.trainerService.GetTrainerWithScheduleByIdAsync(id);
 
             if (viewModel == null)
             {
                 TempData[ErrorMessage] = "Something went wrong. Please try again later";
                 return this.RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                TempData[InformationMessage] = "Make sure to check Trainer's schedule before booking an Individual Training.";
             }
 
             return View(viewModel);
@@ -45,6 +49,7 @@ namespace GymHub.Web.Controllers
         public async Task<JsonResult> GetEvents(Guid id)
         {
             TrainerDetailsViewModel viewModel = await this.trainerService.GetTrainerWithScheduleByIdAsync(id);
+
             if (viewModel == null)
             {
                 return Json(new { error = "Trainer not found" });
@@ -68,6 +73,11 @@ namespace GymHub.Web.Controllers
             var user = GetUserId();
 
             var viewModel = await this.trainerService.GetDashboardData(user);
+
+            if (viewModel == null)
+            {
+                TempData[ErrorMessage] = "Unexpected error. Please try again later".
+            }
 
             return View("Dashboard", viewModel);
         }

@@ -79,25 +79,29 @@ else
         <div class="form-container">
             <br/>
             <h2>Book a time for training</h2>
+            <h5>You can refer to the schedule below for Trainer's availability or <a href="#trainerSchedule">click here</a>.</h5>
             <partial name="_BookIndividualTrainingPartial" model="new BookIndividualTrainingViewModel{ TrainerId = Model.Id }" />
         </div>
         <br />
         <div class="col-10">
             <br />
-            <h2>Trainer's schedule</h2>
+            <h2 id="trainerSchedule">Trainer's schedule</h2>
             <partial name="_TrainerSchedulePartial" model="new TrainerScheduleViewModel {DailyGroupSchedules = Model.TrainerSchedule.DailyGroupSchedules,
                 DailySchedules = Model.TrainerSchedule.DailySchedules}" />
         </div>
-       
+
 
     }
 }
-
-<br />
-<h2>Trainer's schedule</h2>
-
-<div class="col-10">
-    <partial name="_TrainerSchedulePartial" model="new TrainerScheduleViewModel {DailyGroupSchedules = Model.TrainerSchedule.DailyGroupSchedules,
+else
+{
+    <br />
+    <h2>Trainer's schedule</h2>
+    <div class="col-10">
+        <partial name="_TrainerSchedulePartial" model="new TrainerScheduleViewModel {DailyGroupSchedules = Model.TrainerSchedule.DailyGroupSchedules,
            DailySchedules = Model.TrainerSchedule.DailySchedules}" />
-</div>
+    </div>
+}
+
+
 

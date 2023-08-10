@@ -4,6 +4,7 @@
     using GymHub.Web.ViewModels.GroupActivity;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using static GymHub.Common.NotificationConstants;
     public class GroupActivityController : BaseController
     {
         private readonly IGroupActivityService groupActivityService;
@@ -51,7 +52,16 @@
             {
                 var trainee = await this.userService.GetTraineeAsync(userId);
 
-                await this.groupActivityService.CreateGroupEnrollement(trainee, id);
+                if (trainee == null)
+                {
+                    TempData[ErrorMessage] = "An error occured. Please try again";
+                    return View("ActivityDetails");
+                }
+                else
+                {
+                    await this.groupActivityService.CreateGroupEnrollement(trainee, id);
+                    TempData[SuccessMessage] = "You have enrolled successfully";
+                }
 
             }
             catch (Exception)

@@ -23,7 +23,6 @@
         {
             var userId = GetUserId();
 
-            
 
             if (model.Day < DateTime.Today)
             {
@@ -47,11 +46,13 @@
             {
                 await this.trainingService.CreateTraining(model, trainerId, userId);
 
+                TempData["SuccessMessage"] = "Individual training was created successfully!";
+
             }
             catch (Exception)
             {
-                ModelState.AddModelError(string.Empty, "Unexpected error while adding your post");
-                return View(model);
+                ModelState.AddModelError(string.Empty, "Unexpected error while booking a training");
+                return View("_BookIndividualTrainingPartial", model);
             }
 
             return RedirectToAction("Index", "Home");

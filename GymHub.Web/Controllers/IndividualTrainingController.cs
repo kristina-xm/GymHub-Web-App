@@ -23,6 +23,8 @@
         {
             var userId = GetUserId();
 
+            
+
             if (model.Day < DateTime.Today)
             {
                 TempData[ErrorMessage] = "Day should not be in the past. Enter a valid day";

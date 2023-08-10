@@ -39,21 +39,25 @@ else
 }
 
 <br />
-<h4>More information</h4>
-<p>@Model.Bio</p>
 
-<h4>Professional Qualification</h4>
 
-<p>Certificate: @Model.Certificate.Name</p>
-<p>Issue Date: @Model.Certificate.IssueDate.ToString("dd.MM.yyyy")</p>
-<p>Issued by: @Model.Certificate.IssuingOrganization</p>
 
-<h2>Trainer's schedule</h2>
+<div class="row">
+    <!-- Left column for "Bio" -->
+    <div class="col-md-6 border margin-right">
+        <h4>More information</h4>
+        <p>@Model.Bio</p>
+    </div>
 
-<div class="col-10">
-    <partial name="_TrainerSchedulePartial" model="new TrainerScheduleViewModel {DailyGroupSchedules = Model.TrainerSchedule.DailyGroupSchedules,
-           DailySchedules = Model.TrainerSchedule.DailySchedules}" />
+    <!-- Right column for "Certificate" details -->
+    <div class="col-md-6 border margin-left">
+        <h4>Professional Qualification</h4>
+        <p><b>Certificate</b>: @Model.Certificate.Name</p>
+        <p><b>Issue Date:</b> @Model.Certificate.IssueDate.ToString("dd.MM.yyyy")</p>
+        <p><b>Issued by:</b> @Model.Certificate.IssuingOrganization</p>
+    </div>
 </div>
+
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -62,24 +66,38 @@ else
 
     if (isUserTrainer != null)
     {
-        <div class="container">
-            <div class="col-10">
-                <partial name="_TrainerSchedulePartial" model="new TrainerScheduleViewModel {DailyGroupSchedules = Model.TrainerSchedule.DailyGroupSchedules,
+
+        <div class="col-10">
+            <partial name="_TrainerSchedulePartial" model="new TrainerScheduleViewModel {DailyGroupSchedules = Model.TrainerSchedule.DailyGroupSchedules,
            DailySchedules = Model.TrainerSchedule.DailySchedules}" />
-            </div>
         </div>
+
     }
     else
     {
-        <div class="container">
-            <div class="col-10">
-                <partial name="_TrainerSchedulePartial" model="new TrainerScheduleViewModel {DailyGroupSchedules = Model.TrainerSchedule.DailyGroupSchedules,
-                DailySchedules = Model.TrainerSchedule.DailySchedules}" />
-            </div>
-            <div class="form-container">
-                <partial name="_BookIndividualTrainingPartial" model="new BookIndividualTrainingViewModel{ TrainerId = Model.Id }" />
-            </div>
+
+        <div class="form-container">
+            <br/>
+            <h2>Book a time for training</h2>
+            <partial name="_BookIndividualTrainingPartial" model="new BookIndividualTrainingViewModel{ TrainerId = Model.Id }" />
         </div>
+        <br />
+        <div class="col-10">
+            <br />
+            <h2>Trainer's schedule</h2>
+            <partial name="_TrainerSchedulePartial" model="new TrainerScheduleViewModel {DailyGroupSchedules = Model.TrainerSchedule.DailyGroupSchedules,
+                DailySchedules = Model.TrainerSchedule.DailySchedules}" />
+        </div>
+       
+
     }
 }
+
+<br />
+<h2>Trainer's schedule</h2>
+
+<div class="col-10">
+    <partial name="_TrainerSchedulePartial" model="new TrainerScheduleViewModel {DailyGroupSchedules = Model.TrainerSchedule.DailyGroupSchedules,
+           DailySchedules = Model.TrainerSchedule.DailySchedules}" />
+</div>
 

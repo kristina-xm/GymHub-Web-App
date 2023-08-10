@@ -12,7 +12,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 
-<h5>Book a training</h5>
+<h5>You can refer to the schedule above for Trainer's availability.</h5>
 
 <form method="post" asp-action="BookIndividualTraining" asp-controller="IndividualTraining">
     <div class="col-12">
@@ -24,13 +24,13 @@
     <div class="col-12">
         <div class="col-sm-3 mt-3">
             <label asp-for="Start">Start time</label>
-            <input asp-for="Start" class="form-control" type="time" value="@Model.Start.ToString("HH:mm")" id="datetimepicker">
+            <input asp-for="Start" id="startTimePicker" class="form-control" type="time" value="@Model.Start.ToString("HH:mm")" min="07:00" max="22:00" step="900">
         </div>
     </div>
     <div class="col-12">
         <div class="col-sm-3 mt-3">
             <label asp-for="End">End time</label>
-            <input asp-for="End" id="datetimepicker" type="time" value="@Model.End.ToString("HH:mm")" class="form-control" min="07:00" max="22:00">
+            <input asp-for="End" id="endTimePicker" type="time" value="@Model.End.ToString("HH:mm")" class="form-control" min="07:00" max="22:00" step="900">
         </div>
     </div>
     <div class="col-12">
@@ -71,6 +71,7 @@
     // Call the setMinDate function to disable past dates on page load
     setMinDate();
 </script>
+
 
 
 

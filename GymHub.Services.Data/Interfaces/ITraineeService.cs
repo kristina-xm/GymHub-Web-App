@@ -1,4 +1,5 @@
 ﻿using GymHub.Data.Models;
+using GymHub.Web.ViewModels.Trainee;
 using GymHub.Web.ViewModels.Trainer;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,7 @@ namespace GymHub.Services.Data.Interfaces
     public interface ITraineeService
     {
         bool CheckTraineeHasTrainingWithTrainer(Trainee trainee, Guid TrainerId);
+
+        Task<MyUpcomingTrainingsViewModel> GetAllUpcomingTrainings(Guid userId);
     }
 }

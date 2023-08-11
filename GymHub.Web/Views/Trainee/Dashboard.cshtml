@@ -1,0 +1,81 @@
+﻿@model MyUpcomingTrainingsViewModel
+@{
+    ViewData["Title"] = "Account Dashboard";
+}
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+
+<br />
+<div class="container mt-4 pt-2">
+    <h3>Welcome to your dashboard!</h3>
+    <div class="row">
+        <div class="col">
+            <h6>Here you can manage your schedule and see upcoming trainings.</h6>
+        </div>
+    </div>
+</div>
+<br />
+
+<h3 class="mt-5">Upcoming trainings and activities</h3>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Day</th>
+            <th scope="col">Start hour</th>
+            <th scope="col">End hour</th>
+            <th scope="col">Trainer</th>
+            <th scope="col" id="options">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Activities)
+        {
+            <tr>
+                <td>@item.ActivityName</td>
+                <td>@item.ActivityDay.ToString("dd/MM/yyyy")</td>
+                <td>@item.StartHour.ToString("HH:mm")</td>
+                <td>@item.EndHour.ToString("HH:mm")</td>
+
+
+               @* <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal-@item.TrainingId">Cancel</button></td>*@
+
+            </tr>
+
+
+        }
+    </tbody>
+</table>
+
+@*Display confirmation window for every table row*@
+@*@foreach (var item in Model.Activities)
+{
+    <div class="modal fade" id="exampleModal-@item.TrainingId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cancel this training?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to <b>cancel</b> the individual training with @item.TraineeFirstName @item.TraineeLastName on @item.TrainingDate.ToString("dd/MM/yyyy")
+                    from @item.TrainingStart.ToString("HH:mm") to @item.TrainingEnd.ToString("HH:mm")?
+                </div>
+                <form method="post" asp-controller="Trainer" asp-action="CancelIndividualTraining" asp-route-TrainingId="@item.TrainingId">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Cancel training</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>*@
+}

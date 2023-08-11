@@ -132,5 +132,20 @@ namespace GymHub.Web.Controllers
 
             return RedirectToAction("Account", "Trainer");
         }
+
+        //[HttpGet]
+        //public async Task<IActionResult> UpcomingGroupTrainings()
+        //{
+        //    var userId = GetUserId();
+
+            //var viewModel = await this.trainerService.GetUpcomingGroupTrainings(userId);
+
+            //if (viewModel == null)
+            //{
+            //    TempData[ErrorMessage] = "Unexpected error. Please try again later";
+            //}
+
+            //return View("MyGroupSchedules", viewModel);
+        //}
     }
 }

@@ -22,6 +22,7 @@
         public Guid ScheduleId { get; set; }
         public GroupSchedule Schedule { get; set; } = null!;
 
+        public bool IsCanceled { get; set; } = false;
 
     }
 

@@ -44,18 +44,35 @@ namespace GymHub.Services.Data
 
             scheduleModel.Trainings = upcomingIndividualSchedules;
 
+            //IEnumerable<TraineeGroupScheduleViewModel> upcomingGroupSchedules = await dbContext.Trainees
+            //    .Where(trainee => trainee.User.Id == userId)
+            //    .SelectMany(trainee => trainee.GroupEnrollments)
+            //    .Where(ge => ge.IsCanceled == false)
+            //    .Select(enrollment => enrollment.Schedule)
+            //    .Where(schedule => schedule.StartTime > DateTime.UtcNow)
+            //    .Select(schedule => new TraineeGroupScheduleViewModel
+            //    {
+            //        EnrollmentId = schedule.GroupEnrollments.Where(schedule => schedule.Id == Enrollment.).First().Id,
+            //        ActivityId = schedule.Id,
+            //        ActivityName = schedule.GroupActivity.Name,
+            //        ActivityDay = schedule.StartTime.Date,
+            //        StartHour = schedule.StartTime,
+            //        EndHour = schedule.EndTime,
+            //    })
+            //    .ToArrayAsync();
+
             IEnumerable<TraineeGroupScheduleViewModel> upcomingGroupSchedules = await dbContext.Trainees
                 .Where(trainee => trainee.User.Id == userId)
                 .SelectMany(trainee => trainee.GroupEnrollments)
-                .Select(enrollment => enrollment.Schedule)
-                .Where(schedule => schedule.StartTime > DateTime.UtcNow)
-                .Select(schedule => new TraineeGroupScheduleViewModel
+                .Where(ge => !ge.IsCanceled)
+                .Where(ge => ge.Schedule.StartTime > DateTime.UtcNow)
+                .Select(enrollment => new TraineeGroupScheduleViewModel
                 {
-                    ActivityId = schedule.Id,
-                    ActivityName = schedule.GroupActivity.Name,
-                    ActivityDay = schedule.StartTime.Date,
-                    StartHour = schedule.StartTime,
-                    EndHour = schedule.EndTime,
+                    EnrollmentId = enrollment.Id,
+                    ActivityName = enrollment.Schedule.GroupActivity.Name,
+                    ActivityDay = enrollment.Schedule.StartTime.Date,
+                    StartHour = enrollment.Schedule.StartTime,
+                    EndHour = enrollment.Schedule.EndTime,
                 })
                 .ToArrayAsync();
 

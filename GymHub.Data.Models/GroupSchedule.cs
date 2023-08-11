@@ -28,6 +28,7 @@
 
         public GroupActivity GroupActivity { get; set; } = null!;
 
+
         public ICollection<GroupEnrollment> GroupEnrollments { get; set; }
     }
 }

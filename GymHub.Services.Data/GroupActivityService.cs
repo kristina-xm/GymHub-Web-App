@@ -44,7 +44,7 @@
 
         public async Task<ActivityDetailsViewModel> GetActivityModelByIdAsync(Guid id)
         {
-            
+
             DateTime currentDateTime = DateTime.Now;
 
             var activityModel = await this.dbContext.GroupActivities
@@ -105,5 +105,24 @@
             await this.dbContext.SaveChangesAsync();
 
         }
+
+        public async Task<GroupEnrollment?> GetEnrollmentById(Guid enrollmentId)
+        {
+            var enrollment = this.dbContext.GroupEnrollments.FirstOrDefault(ge => ge.Id == enrollmentId);
+
+            return enrollment;
+        }
+
+        public async Task CancelEnrollment(GroupEnrollment groupEnrollment)
+        {
+            groupEnrollment.IsCanceled = true;
+
+            var accordingSchedule = this.dbContext.GroupSchedules.FirstOrDefault(gs => gs.Id == groupEnrollment.ScheduleId);
+
+            accordingSchedule.CountOfTrainees--;
+
+             this.dbContext.SaveChanges();
+        }
+
     }
 }

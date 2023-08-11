@@ -9,6 +9,11 @@ namespace GymHub.Services.Data.Interfaces
     {
         Task<IEnumerable<AllActivitiesViewModel>> AllActivities();
         Task<ActivityDetailsViewModel> GetActivityModelByIdAsync(Guid activityId);
+
         Task CreateGroupEnrollement(Trainee trainee, Guid scheduleId);
+
+        Task<GroupEnrollment?> GetEnrollmentById(Guid scheduleId);
+
+        Task CancelEnrollment(GroupEnrollment groupEnrollment);
     }
 }

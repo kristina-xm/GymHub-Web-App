@@ -42,7 +42,7 @@
                 <td>@item.StartHour.ToString("HH:mm")</td>
                 <td>@item.EndHour.ToString("HH:mm")</td>
 
-                <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal-@item.ActivityId">Remove</button></td>
+                <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal-@item.EnrollmentId">Remove</button></td>
 
             </tr>
 
@@ -67,7 +67,7 @@
 
 @foreach (var item in Model.Activities)
 {
-    <div class="modal fade" id="exampleModal-@item.ActivityId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal-@item.EnrollmentId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -80,7 +80,7 @@
                     Are you sure you want to cancel your enrollment in @item.ActivityName on @item.ActivityDay.ToString("dd/MM/yyyy")
                     from @item.StartHour.ToString("HH:mm") to @item.EndHour.ToString("HH:mm")?
                 </div>
-                <form method="post" asp-controller="Trainee" asp-action="CancelIndividualTraining" asp-route-ActivityId="@item.ActivityId">
+                <form method="post" asp-controller="Trainee" asp-action="CancelGroupEnrollment" asp-route-EnrollmentId="@item.EnrollmentId">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-danger">Remove enrollment</button>

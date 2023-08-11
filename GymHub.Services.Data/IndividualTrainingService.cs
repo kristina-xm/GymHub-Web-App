@@ -15,6 +15,20 @@
             this.dbContext = context;
             this.userService = userService;
         }
+
+        public async Task CancelTraining(IndividualTraining training)
+        {
+            training.IsCanceled = true;
+
+            await this.dbContext.SaveChangesAsync();    
+        }
+
+        public async Task<IndividualTraining?> GetTrainingById(Guid trainingId)
+        {
+            var training = this.dbContext.IndividualTrainings.FirstOrDefault(t => t.Id == trainingId);
+
+            return training;
+        }
         public async Task CreateTraining(BookIndividualTrainingViewModel model, Guid trainerId, Guid traineeId)
         {
             IndividualTraining newTraining = new IndividualTraining()
@@ -30,7 +44,7 @@
             
             var trainer = await this.dbContext.Trainers.FirstOrDefaultAsync(t => t.Id == trainerId);
 
-            var training = await GetTrainigIdAsync(newTraining);
+            var training = await GetTrainingAsync(newTraining);
 
             await CreateEnrollement(traineeId, training.Id);
 
@@ -45,7 +59,7 @@
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<IndividualTraining> GetTrainigIdAsync(IndividualTraining trn)
+        public async Task<IndividualTraining> GetTrainingAsync(IndividualTraining trn)
         {
             var training = await this.dbContext.IndividualTrainings.FindAsync(trn.Id);
 

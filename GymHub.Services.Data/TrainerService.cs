@@ -20,6 +20,29 @@
             this.dbContext = context;
         }
 
+        public async Task<IEnumerable<MyTraineesViewModel>> GetUpcomingIndividualTrainings(Guid userId)
+        {
+            IEnumerable<MyTraineesViewModel> allUpcoming = await dbContext.Trainers
+             .Where(t => t.User.Id == userId)
+             .SelectMany(t => t.IndividualTrainingTrainer)
+             .SelectMany(itt => itt.IndividualTraining.Enrollments)
+             .Where(enrollment => enrollment.IndividualTraining.StartTime > DateTime.UtcNow && enrollment.IndividualTraining.IsCanceled == false)
+             .Select(e => new MyTraineesViewModel
+             {
+                 TraineeFirstName = e.Trainee.User.FirstName,
+                 TraineeLastName = e.Trainee.User.LastName,
+                 TraineePhoneNumber = e.Trainee.User.PhoneNumber,
+                 TrainingDate = e.IndividualTraining.StartTime.Date,
+                 TrainingStart = e.IndividualTraining.StartTime,
+                 TrainingEnd = e.IndividualTraining.EndTime,
+                 TraineeId = e.Trainee.Id,
+                 TrainingId = e.IndividualTraining.Id
+
+             }).ToArrayAsync();
+
+            return allUpcoming;
+        }
+
         public async Task<AccountDashboardViewModel> GetDashboardData(Guid userId)
         {
             var trainer = this.dbContext.Trainers.Where(t => t.User.Id == userId).FirstOrDefault();

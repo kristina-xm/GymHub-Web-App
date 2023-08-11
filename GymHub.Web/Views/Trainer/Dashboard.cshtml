@@ -5,7 +5,7 @@
 @model AccountDashboardViewModel
 
 
-<div class="container">
+<div class="container mt-4 pt-2">
     <h3>Welcome to your dashboard!</h3>
     <div class="row">
         <div class="col">
@@ -22,7 +22,7 @@
                     <div class="text-center">
                         <h5 class="card-title" style="font-size: 40px;">@Model.UpcomingIndividualTrainings</h5>
                         <p class="card-text">Upcoming <b>Individual</b> trainings</p>
-                        <a href="#" class="btn btn-primary">View your Trainees</a>
+                        <a href="/Trainer/UpcomingIndividualTrainings" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <h5 class="card-title" style="font-size: 40px;">@Model.CountOfManagedGroupActivities</h5>
-                        <p class="card-text">Number of Group activities you are responsible for</p>
+                        <p class="card-text">Group activities you are responsible for</p>
                         <a href="#" class="btn btn-primary">Manage</a>
                     </div>
                 </div>

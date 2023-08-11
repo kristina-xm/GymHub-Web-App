@@ -12,10 +12,12 @@
     {
 
         private readonly IIndividualTrainingService trainingService;
+        private readonly IUserService userService;
 
-        public IndividualTrainingController(IIndividualTrainingService trainingService)
+        public IndividualTrainingController(IIndividualTrainingService trainingService, IUserService userService)
         {
             this.trainingService = trainingService;
+            this.userService = userService;
         }
 
         [HttpPost]
@@ -57,5 +59,8 @@
 
             return RedirectToAction("Index", "Home");
         }
+
+
     }
 }
+

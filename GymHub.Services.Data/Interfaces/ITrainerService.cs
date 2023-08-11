@@ -13,5 +13,7 @@
         Task<ICollection<TrainerDailyScheduleViewModel>> GetIndividualTrainingsSchedule(Guid trainerId);
 
         Task<ICollection<TrainerGroupScheduleViewModel>> GetGroupActivitiesSchedule(Guid trainerId);
+
+        Task<IEnumerable<MyTraineesViewModel>> GetUpcomingIndividualTrainings(Guid userId);
     }
 }

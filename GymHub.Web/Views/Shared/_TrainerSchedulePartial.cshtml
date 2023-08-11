@@ -2,68 +2,71 @@
 
 <head>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
-    <script>
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var individualEvents = [];
-            var groupEvents = [];
-        @foreach (var individualEvent in Model.DailySchedules)
-        {
-            <text>
-                    var eventObject = {
-                    title: 'Individual Training',
-                    start: '@individualEvent.StartTime.ToString("yyyy-MM-ddTHH:mm:ss")',
-                    end: '@individualEvent.EndTime.ToString("yyyy-MM-ddTHH:mm:ss")'
-                };
-                individualEvents.push(eventObject);
-            </text>
-        }
-
-        @foreach (var eventItem in Model.DailyGroupSchedules)
-        {
-            <text>
-                    var eventObject = {
-                    title: '@eventItem.ActivityName',
-                    start: '@eventItem.StartTime.ToString("yyyy-MM-ddTHH:mm:ss")',
-                    end: '@eventItem.EndTime.ToString("yyyy-MM-ddTHH:mm:ss")'
-                };
-                groupEvents.push(eventObject);
-            </text>
-        }
-
-                var allEvents = individualEvents.concat(groupEvents);
-
-            //var allEvents = individualEvents.concat(groupEvents);
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-               
-                initialView: 'timeGridWeek',
-                headerToolbar: {
-                    left: 'title'
-                },
-                events: allEvents,
-                slotLabelFormat: {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: false // Use 24-hour format
-                },
-                titleFormat: {
-                    // Format for the calendar title
-                    month: 'short',
-                    year: 'numeric',
-                    day: 'numeric',
-                },
-                slotMinTime: '07:00',
-                slotMaxTime: '23:00',
-                firstDay: 1 // Monday is the first day of the week
-
-            });
-
-            calendar.render();
-        });
-
-    </script>
+    
 </head>
 <body>
     <div id='calendar'></div>
 </body>
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var individualEvents = [];
+        var groupEvents = [];
+    @foreach (var individualEvent in Model.DailySchedules)
+    {
+        <text>
+                            var eventObject = {
+                title: 'Individual Training',
+                start: '@individualEvent.StartTime.ToString("yyyy-MM-ddTHH:mm:ss")',
+                end: '@individualEvent.EndTime.ToString("yyyy-MM-ddTHH:mm:ss")'
+            };
+            individualEvents.push(eventObject);
+        </text>
+    }
+
+    @foreach (var eventItem in Model.DailyGroupSchedules)
+    {
+        <text>
+                            var eventObject = {
+                title: '@eventItem.ActivityName',
+                start: '@eventItem.StartTime.ToString("yyyy-MM-ddTHH:mm:ss")',
+                end: '@eventItem.EndTime.ToString("yyyy-MM-ddTHH:mm:ss")'
+            };
+            groupEvents.push(eventObject);
+        </text>
+    }
+
+                    var allEvents = individualEvents.concat(groupEvents);
+
+        //var allEvents = individualEvents.concat(groupEvents);
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+
+            initialView: 'timeGridWeek',
+            headerToolbar: {
+                left: 'title'
+            },
+            events: allEvents,
+            eventBackgroundColor: 'rgba(0, 0, 255, 0.7)',
+            slotLabelFormat: {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false // Use 24-hour format
+            },
+            titleFormat: {
+                // Format for the calendar title
+                month: 'short',
+                year: 'numeric',
+                day: 'numeric',
+            },
+            slotMinTime: '07:00',
+            slotMaxTime: '23:00',
+            firstDay: 1 // Monday is the first day of the week
+
+        });
+
+        calendar.render();
+    });
+
+</script>

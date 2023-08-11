@@ -8,8 +8,12 @@
     {
         Task CreateTraining(BookIndividualTrainingViewModel model, Guid trainerId, Guid traineeId);
 
-        Task<IndividualTraining> GetTrainigIdAsync(IndividualTraining trn);
+        Task<IndividualTraining> GetTrainingAsync(IndividualTraining trn);
 
         Task CreateEnrollement(Guid traineeId, Guid trainingId);
+
+        Task<IndividualTraining?> GetTrainingById(Guid trainingId);
+
+        Task CancelTraining(IndividualTraining training);
     }
 }

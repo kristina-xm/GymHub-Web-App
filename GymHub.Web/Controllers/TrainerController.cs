@@ -11,10 +11,12 @@ namespace GymHub.Web.Controllers
     public class TrainerController : BaseController
     {
         private readonly ITrainerService trainerService;
+        private readonly IIndividualTrainingService individualTrainingService;
 
-        public TrainerController(ITrainerService trainerService)
+        public TrainerController(ITrainerService trainerService, IIndividualTrainingService individualTrainingService)
         {
             this.trainerService = trainerService;
+            this.individualTrainingService = individualTrainingService;
         }
 
         [AllowAnonymous]
@@ -29,7 +31,7 @@ namespace GymHub.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> TrainerDetails(Guid id)
         {
-            
+
             TrainerDetailsViewModel viewModel = await this.trainerService.GetTrainerWithScheduleByIdAsync(id);
 
             if (viewModel == null)
@@ -80,6 +82,55 @@ namespace GymHub.Web.Controllers
             }
 
             return View("Dashboard", viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UpcomingIndividualTrainings()
+        {
+            var userId = GetUserId();
+
+            var viewModel = await this.trainerService.GetUpcomingIndividualTrainings(userId);
+
+            if (viewModel == null)
+            {
+                TempData[ErrorMessage] = "Unexpected error. Please try again later";
+            }
+
+            return View("MyTrainees", viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CancelIndividualTraining(Guid TrainingId)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View("");
+            }
+
+            try
+            {
+                var training = await this.individualTrainingService.GetTrainingById(TrainingId);
+
+                if (training == null)
+                {
+                    TempData[ErrorMessage] = "An error occured. Please try again";
+                    return RedirectToAction("UpcomingIndividualTrainings", "Trainer");
+                }
+                else
+                {
+                    await this.individualTrainingService.CancelTraining(training);
+                    TempData[SuccessMessage] = "You have successfully cancelled this training";
+                }
+
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "Unexpected error occured while saving your group activity registration. Please try again later");
+                return View("");
+            }
+
+            return RedirectToAction("Account", "Trainer");
         }
     }
 }

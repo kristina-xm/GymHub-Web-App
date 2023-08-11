@@ -7,7 +7,6 @@
     using GymHub.Web.ViewModels.User;
     using Microsoft.EntityFrameworkCore;
     using System;
-    using static GymHub.Common.EntityValidationConstants;
 
     public class UserServiceTests
     {

@@ -42,6 +42,7 @@ namespace GymHub.Web.Controllers
             else
             {
                 TempData[InformationMessage] = "Make sure to check Trainer's schedule before booking an Individual Training.";
+
             }
 
             return View(viewModel);

@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymHub.Web.Infrastructure",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{901D0933-F2DA-4F3B-828A-672F7DDD54E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymHub.Services.Tests", "GymHub.Services.Tests\GymHub.Services.Tests.csproj", "{B8F0DEA1-1B3E-413A-9402-E8D880880CB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymHub.Services.Tests", "GymHub.Services.Tests\GymHub.Services.Tests.csproj", "{B8F0DEA1-1B3E-413A-9402-E8D880880CB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymHub.Controllers.Tests", "GymHub.Controllers.Tests\GymHub.Controllers.Tests.csproj", "{23B03754-4495-4946-9F35-712A78D89491}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,10 @@ Global
 		{B8F0DEA1-1B3E-413A-9402-E8D880880CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8F0DEA1-1B3E-413A-9402-E8D880880CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8F0DEA1-1B3E-413A-9402-E8D880880CB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23B03754-4495-4946-9F35-712A78D89491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23B03754-4495-4946-9F35-712A78D89491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23B03754-4495-4946-9F35-712A78D89491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23B03754-4495-4946-9F35-712A78D89491}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +83,7 @@ Global
 		{33B3F07E-B584-4F3D-B338-A660010325A5} = {7BFF80F7-13DC-47BE-A56F-C184B1EA8386}
 		{E48538A5-32B0-4A19-8EDE-36FA5458FAE8} = {2E4E31DA-E4B3-40A6-B342-B5C2477EC34B}
 		{B8F0DEA1-1B3E-413A-9402-E8D880880CB0} = {901D0933-F2DA-4F3B-828A-672F7DDD54E6}
+		{23B03754-4495-4946-9F35-712A78D89491} = {901D0933-F2DA-4F3B-828A-672F7DDD54E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86C692EB-7210-4CB0-832D-3A4171612CDF}

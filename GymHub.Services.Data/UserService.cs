@@ -113,13 +113,16 @@
         }
 
         public async Task<RegisteredTrainerViewModel> GetTrainerTypeInfoForEdit(Trainer trainer)
-        { 
+        {
+            var user = this.dbContext.Users.First(u => u.Id == trainer.UserId);
 
             return new RegisteredTrainerViewModel()
             {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber,
                 Bio = trainer.Bio,
-                Experience = trainer.Experience
-
+                Experience = trainer.Experience,
             };
         }
 
@@ -146,6 +149,10 @@
         public async Task EditTrainerAsync(RegisteredTrainerViewModel trainerModel, Guid userId)
         {
             var trainer = await GetTrainerAsync(userId);
+
+            trainer.User.FirstName = trainerModel.FirstName;
+            trainer.User.LastName = trainerModel.LastName;
+            trainer.User.PhoneNumber = trainerModel.PhoneNumber;
 
             trainer.Bio = trainerModel.Bio;
             trainer.Experience = trainerModel.Experience;

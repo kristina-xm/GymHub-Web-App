@@ -9,9 +9,16 @@ namespace GymHub.Web.ViewModels.User
 {
     public class RegisteredTrainerViewModel
     {
+        public string FirstName { get; set; } = null!;
+
+        public string LastName { get; set; } = null!;
+
+        public string? PhoneNumber { get; set; }
+
         public string Bio { get; set; } = null!;
 
         public int Experience { get; set; }
+
 
     }
 }

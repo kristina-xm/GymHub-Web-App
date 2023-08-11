@@ -53,6 +53,7 @@
              .Where(t => t.User.Id == userId)
              .SelectMany(t => t.IndividualTrainingTrainer)
              .SelectMany(itt => itt.IndividualTraining.Enrollments)
+             .Where(t => t.IndividualTraining.IsCanceled == false)
              .Count(enrollment => enrollment.IndividualTraining.StartTime > DateTime.UtcNow);
 
             var groupActivityCount = dbContext.Trainers

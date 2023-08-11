@@ -12,12 +12,12 @@
     {
 
         private readonly IIndividualTrainingService trainingService;
-        private readonly IUserService userService;
+        private readonly ITrainerService trainerService;
 
-        public IndividualTrainingController(IIndividualTrainingService trainingService, IUserService userService)
+        public IndividualTrainingController(IIndividualTrainingService trainingService, ITrainerService trainerService)
         {
             this.trainingService = trainingService;
-            this.userService = userService;
+            this.trainerService = trainerService;
         }
 
         [HttpPost]

@@ -99,7 +99,7 @@
             await this.dbContext.SaveChangesAsync();
 
 
-            groupSchedule.GroupEnrollments.Add(groupEnrollement);
+            //groupSchedule.GroupEnrollments.Add(groupEnrollement);
             groupSchedule.CountOfTrainees++;
 
             await this.dbContext.SaveChangesAsync();

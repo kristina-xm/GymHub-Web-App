@@ -34,7 +34,7 @@ namespace GymHub.Services.Data
                 .Where(training => training.StartTime > DateTime.UtcNow && !training.IsCanceled)
                 .Select(training => new TraineeDailyScheduleViewModel
                 {
-                    
+                    TrainingId = training.Id,
                     Date = training.StartTime.Date,
                     StartTime = training.StartTime,
                     EndTime = training.EndTime,
@@ -47,15 +47,15 @@ namespace GymHub.Services.Data
             IEnumerable<TraineeGroupScheduleViewModel> upcomingGroupSchedules = await dbContext.Trainees
                 .Where(trainee => trainee.User.Id == userId)
                 .SelectMany(trainee => trainee.GroupEnrollments)
-                .SelectMany(enrollment => enrollment.Schedule.GroupActivity.GroupSchedules)
+                .Select(enrollment => enrollment.Schedule)
                 .Where(schedule => schedule.StartTime > DateTime.UtcNow)
                 .Select(schedule => new TraineeGroupScheduleViewModel
                 {
+                    ActivityId = schedule.Id,
                     ActivityName = schedule.GroupActivity.Name,
                     ActivityDay = schedule.StartTime.Date,
                     StartHour = schedule.StartTime,
                     EndHour = schedule.EndTime,
-                    // Add other properties as needed
                 })
                 .ToArrayAsync();
 

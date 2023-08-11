@@ -103,10 +103,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to cancel your @item.Name on @item.TrainingId.ToString("dd/MM/yyyy")
+                    Are you sure you want to cancel your @item.Name on @item.Date.ToString("dd/MM/yyyy")
                     from @item.StartTime.ToString("HH:mm") to @item.EndTime.ToString("HH:mm")?
                 </div>
-                <form method="post" asp-controller="Trainer" asp-action="CancelIndividualTraining" asp-route-TrainingId="@item.TrainingId">
+                <form method="post" asp-controller="Trainee" asp-action="CancelIndividualTraining" asp-route-TrainingId="@item.TrainingId">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-danger">Remove enrollment</button>

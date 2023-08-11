@@ -150,9 +150,11 @@
         {
             var trainer = await GetTrainerAsync(userId);
 
-            trainer.User.FirstName = trainerModel.FirstName;
-            trainer.User.LastName = trainerModel.LastName;
-            trainer.User.PhoneNumber = trainerModel.PhoneNumber;
+            var user = this.dbContext.Users.First(u => u.Id == trainer.UserId);
+
+            user.FirstName = trainerModel.FirstName;
+            user.LastName = trainerModel.LastName;
+            user.PhoneNumber = trainerModel.PhoneNumber;
 
             trainer.Bio = trainerModel.Bio;
             trainer.Experience = trainerModel.Experience;

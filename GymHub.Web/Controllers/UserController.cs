@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using static GymHub.Common.NotificationConstants;
 
     public class UserController : BaseController
     {
@@ -240,15 +241,18 @@
 
             if (!ModelState.IsValid)
             {
+                TempData[ErrorMessage] = "Error! Please review the info you are providing";
                 return View("RegisteredTrainee", model);
             }
 
             try
             {
                 await this.userService.EditTraineeAsync(model, userId);
+                TempData[SuccessMessage] = "You have successfully edited your information";
             }
             catch (Exception)
             {
+                TempData[ErrorMessage] = "An error occurred. Please try again later!";
                 ModelState.AddModelError(string.Empty, "Unexpected error. Try again later");
                 return View("RegisteredTrainee", model);
             }
@@ -263,15 +267,18 @@
 
             if (!ModelState.IsValid)
             {
+                TempData[ErrorMessage] = "Error! Please review the info you are providing";
                 return View("RegisteredTrainer", model);
             }
 
             try
             {
                 await this.userService.EditTrainerAsync(model, userId);
+                TempData[SuccessMessage] = "You have successfully edited your information";
             }
             catch (Exception)
             {
+                TempData[ErrorMessage] = "An error occurred. Please try again later!";
                 ModelState.AddModelError(string.Empty, "Unexpected error. Try again later");
                 return View("RegisteredTrainer", model);
             }

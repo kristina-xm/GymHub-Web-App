@@ -11,28 +11,28 @@
     <div class="row">
     </div>
     <div class="mb-3 col-md-7">
-        <label asp-for="FirstName" class="form-label">First Name</label>
-        <input asp-for="FirstName" class="form-control">
+        <label asp-for="@Model.FirstName" class="form-label">First Name</label>
+        <input asp-for="@Model.FirstName" class="form-control">
     </div>
    
     <div class="mb-3 col-md-7">
-        <label asp-for="LastName" class="form-label">Last Name</label>
-        <input asp-for="LastName" class="form-control">
+        <label asp-for="@Model.LastName" class="form-label">Last Name</label>
+        <input asp-for="@Model.LastName" class="form-control">
     </div>
    
     <div class="mb-3 col-md-7">
-        <label asp-for="PhoneNumber" class="form-label">Phone number</label>
-        <input asp-for="PhoneNumber" class="form-control">
+        <label asp-for="@Model.PhoneNumber" class="form-label">Phone number</label>
+        <input asp-for="@Model.PhoneNumber" class="form-control">
     </div>
   
     <div class="mb-3 col-md-7">
-        <label asp-for="Experience" class="form-label">Professional Experience</label>
-        <input asp-for="Experience" class="form-control">
+        <label asp-for="@Model.Experience" class="form-label">Professional Experience</label>
+        <input asp-for="@Model.Experience" class="form-control">
     </div>
    
-    <label asp-for="Bio" class="form-label">Bio</label>
+    <label asp-for="@Model.Bio" class="form-label">Bio</label>
     <div class="form-floating col-md-7">
-        <textarea asp-for="Bio" class="form-control" placeholder="Write a little bit about yourself!" id="floatingTextarea2"></textarea>
+        <textarea asp-for="@Model.Bio" class="form-control" placeholder="Write a little bit about yourself!" id="floatingTextarea2"></textarea>
         <label for="floatingTextarea2" class="fst-italic text-muted">Introduce yourself to the trainees...</label>
     </div>
  

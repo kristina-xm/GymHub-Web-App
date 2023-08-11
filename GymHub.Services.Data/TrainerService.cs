@@ -108,6 +108,7 @@
                  .Include(t => t.IndividualTrainingTrainer)
                  .ThenInclude(it => it.IndividualTraining)
                  .SelectMany(t => t.IndividualTrainingTrainer)
+                 .Where(it => it.IndividualTraining.IsCanceled == false)
                  .Select(it => new TrainerDailyScheduleViewModel
                  {
                     StartTime = it.IndividualTraining.StartTime,

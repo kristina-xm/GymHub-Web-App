@@ -7,6 +7,7 @@ namespace GymHub.Web
     using GymHub.Web.Areas.Admin.Controllers;
     using GymHub.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using static GymHub.Common.GeneralApplicationConstants;
     public class Program
@@ -40,6 +41,13 @@ namespace GymHub.Web
             builder.Services.AddScoped<IGroupActivityService, GroupActivityService>();
             builder.Services.AddScoped<IIndividualTrainingService, IndividualTrainingService>();
             builder.Services.AddScoped<ITraineeService, TraineeService>();
+
+            builder.Services
+               .AddControllersWithViews()
+               .AddMvcOptions(options =>
+               {
+                   options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+               });
 
             var app = builder.Build();
 

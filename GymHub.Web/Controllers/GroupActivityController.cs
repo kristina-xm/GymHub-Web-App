@@ -19,7 +19,7 @@
         [HttpGet]
         public async Task<IActionResult> AllActivities()
         {
-           
+            ViewData["Title"] = "Group Activities";
             var model = await groupActivityService.AllActivities();
             return View(model);
         }

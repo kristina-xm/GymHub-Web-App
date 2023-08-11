@@ -1,4 +1,8 @@
-﻿@model ICollection<AllActivitiesViewModel>
+﻿@{
+    ViewData["Title"] = "Group Activities"; 
+}
+
+@model ICollection<AllActivitiesViewModel>
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager

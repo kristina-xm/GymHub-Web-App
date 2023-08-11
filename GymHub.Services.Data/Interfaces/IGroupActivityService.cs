@@ -15,5 +15,7 @@ namespace GymHub.Services.Data.Interfaces
         Task<GroupEnrollment?> GetEnrollmentById(Guid scheduleId);
 
         Task CancelEnrollment(GroupEnrollment groupEnrollment);
+
+        Task<bool> CheckIfTraineeEnrolled(Guid scheduleId);
     }
 }

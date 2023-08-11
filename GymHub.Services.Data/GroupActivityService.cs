@@ -124,5 +124,14 @@
              this.dbContext.SaveChanges();
         }
 
+        public async Task<bool> CheckIfTraineeEnrolled(Guid scheduleId)
+        {
+            var isEnrolled = await dbContext.Trainees
+                .AnyAsync(trainee => trainee.GroupEnrollments
+                .Any(ge => ge.ScheduleId == scheduleId));
+
+            return isEnrolled;
+        }
+
     }
 }

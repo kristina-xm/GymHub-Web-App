@@ -34,7 +34,7 @@
         [MaxLength(LevelMaxLength)]
         public string Level { get; set; } = null!;
         
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public virtual ICollection<Enrollment> Enrollments { get; set; }
         public ICollection<GroupEnrollment> GroupEnrollments { get; set; }
     }
 }

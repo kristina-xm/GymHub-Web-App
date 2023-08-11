@@ -42,25 +42,26 @@
         public async Task<IActionResult> EnrollForActivtiy(Guid id)
         {
             var userId = GetUserId();
-
-            if (!ModelState.IsValid)
-            {
-                return View("ActivityDetails");
-            }
-
             try
             {
                 var trainee = await this.userService.GetTraineeAsync(userId);
 
+                var result = await this.groupActivityService.CheckIfTraineeEnrolled(id);
+
                 if (trainee == null)
                 {
                     TempData[ErrorMessage] = "An error occured. Please try again";
-                    return View("ActivityDetails");
+              
+                }
+                else if(result)
+                {
+                    TempData[ErrorMessage] = "You are already enrolled for this class!";
                 }
                 else
                 {
                     await this.groupActivityService.CreateGroupEnrollement(trainee, id);
                     TempData[SuccessMessage] = "You have enrolled successfully";
+                    return RedirectToAction("Account", "Trainee");
                 }
 
             }

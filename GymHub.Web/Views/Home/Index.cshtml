@@ -2,10 +2,46 @@
     ViewData["Title"] = "Home Page";
 }
 
+<head>
+    <title>Gym Hub</title>
+    <style>
+        body {
+            background-image: url('https://static.vecteezy.com/system/resources/previews/022/653/988/original/treadmill-in-modern-gym-toned-image-3d-rendering-generative-ai-free-photo.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .text-container {
+            padding: 4rem 3rem;
+            color: white;
+            text-align: left;
+        }
+
+            .text-container h1 {
+                font-size: 2.5rem;
+                font-weight: bold;
+            }
+
+            .text-container h3 {
+                font-size: 1.5rem;
+            }
+
+            .text-container p {
+                font-size: 1rem;
+            }
+    </style>
+</head>
+
 <div class="text-left pt-4 pl-3">
-    <h1 class="display-4 fw-bold">Gym Hub</h1>
-    <h3>Next generation gyms for your personal and group trainings.</h3>
+    <h1 class="display-4 fw-bold text-light">Gym Hub</h1>
+    <h3 class="text-light p-2">
+        <span class="bg-primary">
+           Next generation gyms for your personal and group trainings.
+        </span>
+    </h3>
     <div style="width: 500px; border: none; font-size: 20px">
-        <p style="overflow-wrap: break-word;">Join us for your better experience in training. Our system provides you with activity tracking technology!</p>
+        <p class="text-light bg-primary p-2" style="overflow-wrap: break-word;">Join us for your better experience in training. Our system provides you with activity tracking technology!</p>
     </div>
 </div>

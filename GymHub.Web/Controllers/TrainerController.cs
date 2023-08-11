@@ -76,7 +76,7 @@ namespace GymHub.Web.Controllers
 
             if (viewModel == null)
             {
-                TempData[ErrorMessage] = "Unexpected error. Please try again later".
+                TempData[ErrorMessage] = "Unexpected error. Please try again later";
             }
 
             return View("Dashboard", viewModel);

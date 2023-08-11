@@ -4,6 +4,7 @@ namespace GymHub.Web
     using GymHub.Data.Models;
     using GymHub.Services.Data;
     using GymHub.Services.Data.Interfaces;
+    using GymHub.Web.Areas.Admin.Controllers;
     using GymHub.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
@@ -50,8 +51,8 @@ namespace GymHub.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseExceptionHandler("/Home/Error/500");
+                app.UseStatusCodePagesWithRedirects("/Home/Error?statuscode={0}");
                 app.UseHsts();
             }
 

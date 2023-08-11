@@ -39,7 +39,10 @@
             // Act
             var result = await trainingController.BookIndividualTraining(model, Guid.Empty);
 
+
             // Assert
+            Assert.That(trainingController.TempData[ErrorMessage], Is.EqualTo("Day should not be in the past. Enter a valid day"));
+
             Assert.IsInstanceOf<ViewResult>(result); // Verify that the result is a ViewResult
             var viewResult = (ViewResult)result;
 
@@ -47,7 +50,7 @@
 
             // Verify that the expected error message is set in TempData
             Assert.IsTrue(trainingController.TempData.ContainsKey(ErrorMessage));
-            Assert.That(trainingController.TempData[ErrorMessage], Is.EqualTo("Day should not be in the past. Enter a valid day"));
+            
         }
 
         [Test]

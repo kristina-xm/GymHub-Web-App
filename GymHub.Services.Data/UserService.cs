@@ -56,7 +56,8 @@
                 var certificate = new Certification
                 {
                     Name = model.Certificate.Name,
-                    IssueDate = model.Certificate.IssueDate
+                    IssueDate = model.Certificate.IssueDate,
+                    IssuingOrganization = model.Certificate.IssuingOrganization
                 };
 
                 var certificateOfTrainer = new TrainerCertification

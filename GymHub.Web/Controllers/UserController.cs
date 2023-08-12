@@ -152,6 +152,7 @@
             try
             {
                 await this.userService.AddTraineeUser(model, userId);
+                TempData[SuccessMessage] = "Your registered successfully!";
             }
             catch (Exception)
             {
@@ -186,6 +187,7 @@
             try
             {
                 await this.userService.AddTrainerUser(model, userId);
+                TempData[SuccessMessage] = "Your registered successfully!";
             }
             catch (Exception)
             {

@@ -5,6 +5,8 @@ namespace GymHub.Web
     using GymHub.Services.Data;
     using GymHub.Services.Data.Interfaces;
     using GymHub.Web.Areas.Admin.Controllers;
+    using GymHub.Web.Areas.Admin.Services;
+    using GymHub.Web.Areas.Admin.Services.Interfaces;
     using GymHub.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -41,6 +43,7 @@ namespace GymHub.Web
             builder.Services.AddScoped<IGroupActivityService, GroupActivityService>();
             builder.Services.AddScoped<IIndividualTrainingService, IndividualTrainingService>();
             builder.Services.AddScoped<ITraineeService, TraineeService>();
+            builder.Services.AddScoped<IAllUsersService, AllUsersService>();
 
             builder.Services
                .AddControllersWithViews()

@@ -1,6 +1,7 @@
 ﻿namespace GymHub.Services.Data.Interfaces
 {
     using GymHub.Data.Models;
+    using GymHub.Web.ViewModels.Trainer;
     using GymHub.Web.ViewModels.User;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -22,6 +23,7 @@
 
         Task EditTraineeAsync(RegisteredTraineeViewModel traineeModel, Guid userId);
         Task EditTrainerAsync(RegisteredTrainerViewModel trainerModel, Guid userId);
+
 
     }
 }

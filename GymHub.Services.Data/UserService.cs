@@ -3,8 +3,10 @@
     using GymHub.Data;
     using GymHub.Data.Models;
     using GymHub.Services.Data.Interfaces;
+    using GymHub.Web.ViewModels.Trainer;
     using GymHub.Web.ViewModels.User;
     using Microsoft.EntityFrameworkCore;
+
 
     public class UserService : IUserService
     {
@@ -14,6 +16,8 @@
         {
             this.dbContext = dbContext;
         }
+
+       
 
         public async Task AddTraineeUser(MoreInfoTraineeViewModel model, Guid userId)
         {

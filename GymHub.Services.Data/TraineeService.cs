@@ -40,6 +40,8 @@ namespace GymHub.Services.Data
                     EndTime = training.EndTime,
                     
                 })
+                .OrderBy(s => s.Date)
+                .ThenBy(s => s.StartTime)
                 .ToArrayAsync();
 
             scheduleModel.Trainings = upcomingIndividualSchedules;
@@ -58,6 +60,8 @@ namespace GymHub.Services.Data
                     StartHour = enrollment.Schedule.StartTime,
                     EndHour = enrollment.Schedule.EndTime,
                 })
+                .OrderBy(s => s.ActivityDay)
+                .ThenBy(s => s.StartHour)
                 .ToArrayAsync();
 
             scheduleModel.Activities = upcomingGroupSchedules;

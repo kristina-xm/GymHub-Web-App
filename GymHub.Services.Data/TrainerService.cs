@@ -38,7 +38,10 @@
                  TraineeId = e.Trainee.Id,
                  TrainingId = e.IndividualTraining.Id
 
-             }).ToArrayAsync();
+             })
+              .OrderBy(s => s.TrainingDate)
+              .ThenBy(s => s.TrainingStart)
+             .ToArrayAsync();
 
             return allUpcoming;
         }

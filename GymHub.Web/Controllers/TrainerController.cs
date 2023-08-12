@@ -134,19 +134,19 @@ namespace GymHub.Web.Controllers
             return RedirectToAction("Account", "Trainer");
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> UpcomingGroupTrainings()
-        //{
-        //    var userId = GetUserId();
+        [HttpGet]
+        public async Task<IActionResult> UpcomingGroupTrainings()
+        {
+            var userId = GetUserId();
 
-            //var viewModel = await this.trainerService.GetUpcomingGroupTrainings(userId);
+            var viewModel = await this.trainerService.GetMyGroupClasses(userId);
 
-            //if (viewModel == null)
-            //{
-            //    TempData[ErrorMessage] = "Unexpected error. Please try again later";
-            //}
+            if (viewModel == null)
+            {
+                TempData[ErrorMessage] = "Unexpected error. Please try again later";
+            }
 
-            //return View("MyGroupSchedules", viewModel);
-        //}
+            return View("MyGroupClasses", viewModel);
+        }
     }
 }

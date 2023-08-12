@@ -178,5 +178,27 @@
 
             return trainerModel;
         }
+
+        public async Task<ICollection<TrainerGroupScheduleViewModel>> GetMyGroupClasses(Guid userId)
+        {
+            var trainer = this.dbContext.Trainers.FirstOrDefault(t => t.User.Id == userId);
+
+            var dailyGroupSchedules = await this.dbContext.Trainers
+                 .Where(t => t.Id == trainer.Id)
+                .SelectMany(t => t.GroupActivityTrainers)
+                .Include(t => t.GroupActivity)
+                .ThenInclude(t => t.GroupSchedules)
+                .SelectMany(t => t.GroupActivity.GroupSchedules)
+                .Select(gs => new TrainerGroupScheduleViewModel
+                {
+                    ActivityName = gs.GroupActivity.Name,
+                    StartTime = gs.StartTime,
+                    EndTime = gs.EndTime
+                })
+                .OrderBy(s => s.StartTime)
+                .ToArrayAsync();
+
+            return dailyGroupSchedules;
+        }
     }
 }
